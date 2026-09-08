@@ -62,7 +62,7 @@ export class AssetService {
                     reject(new Error(`加载场景【${bundleName}/${path}】失败：${error.message}`));
                     return;
                 }
-                director.runScene(scene, () => resolve());
+                director.runScene(scene, undefined, () => resolve());
             });
         });
     }

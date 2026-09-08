@@ -47,10 +47,6 @@ export abstract class BaseView<TComponent extends Component = Component, TParams
         }
     }
 
-    cancelLoad() {
-        this.rollback();
-    }
-
     update(dt: number) {
         if (!this.isLoaded) return;
         for (const controller of this.controllers) controller.update(dt);

@@ -154,7 +154,7 @@ export class ViewService {
             if (task.unloadRequested) this.unloadByName(viewKey.name);
             return view;
         } catch (reason) {
-            view.cancelLoad();
+            view.unload();
             if (component && view.viewConfig.resourceType !== "scene" && component.node.isValid) component.node.destroy();
             if (view.viewConfig.cache === false) this.views.delete(viewKey.name);
             error(`加载视图【${viewKey.name}】失败`, reason);

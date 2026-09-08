@@ -3,8 +3,8 @@
   "extends": "./temp/tsconfig.cocos.json",
   /* Add your custom configuration here. */
   "compilerOptions": {
-    "moduleResolution": "bundler",
-    "noImplicitOverride": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
     "target": "esnext",
     "strict": true,
   },

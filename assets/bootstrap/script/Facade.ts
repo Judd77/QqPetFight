@@ -3,10 +3,7 @@ import { ServiceLocator } from "./service/ServiceLocator";
 
 const { ccclass } = _decorator;
 
-/**
- * 框架启动入口。
- * 只负责创建和驱动基础服务，不加载任何具体业务界面。
- */
+/** 单机 Demo 的启动入口和永久服务节点。 */
 @ccclass("Facade")
 export class Facade extends Component {
     private services?: ServiceLocator;

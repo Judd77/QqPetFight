@@ -1,2 +1,11 @@
 [mcp_servers.funplay_cocos]
 url = "http://127.0.0.1:8765/"
+
+[mcp_servers.funplay_cocos.tools.execute_javascript]
+approval_mode = "approve"
+
+[mcp_servers.funplay_cocos.tools.replace_in_file]
+approval_mode = "approve"
+
+[mcp_servers.funplay_cocos.tools.write_file]
+approval_mode = "approve"
