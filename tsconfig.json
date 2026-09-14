@@ -4,6 +4,7 @@
   /* Add your custom configuration here. */
   "compilerOptions": {
     "moduleResolution": "node",
+    "noImplicitOverride": true,
     "skipLibCheck": true,
     "target": "esnext",
     "strict": true,

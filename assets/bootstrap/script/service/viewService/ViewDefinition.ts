@@ -33,6 +33,16 @@ export namespace ViewDefinition {
         readonly assetPath: string;
     }
 
+    export interface ViewRegistration {
+        readonly key: AnyViewKey;
+        readonly config: ViewConstructor;
+    }
+
+    export interface ViewSchema {
+        readonly entryView: AnyViewKey;
+        readonly views: readonly ViewRegistration[];
+    }
+
     export interface ViewRegistry {
         getViewCtor(viewName: string): ViewConstructor | undefined;
     }
