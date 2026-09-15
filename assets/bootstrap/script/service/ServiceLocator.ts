@@ -7,26 +7,21 @@ import { ViewService } from "./viewService/ViewService";
 
 /** 基础服务组合入口，具体业务服务可以在项目层另行组合。 */
 export class ServiceLocator {
-    readonly assetService = new AssetService();
-    readonly configService = new ConfigService(this.assetService);
-    readonly audioService = new AudioService(this.assetService);
-    readonly viewRegistry = new ViewRegistry();
-    readonly viewService: ViewService;
+    declare readonly configService: ConfigService;
+    declare readonly assetService: AssetService;
+    declare readonly audioService: AudioService;
+    declare readonly viewRegistry: ViewRegistry;
+    declare readonly viewService: ViewService;
 
     constructor(facadeNode: Node) {
-        this.audioService.build(facadeNode);
-        this.viewService = new ViewService(this, this.viewRegistry);
-        this.viewService.build(facadeNode);
+        this.assetService = new AssetService();
+        this.viewRegistry = new ViewRegistry();
+        this.configService = new ConfigService(this.assetService);
+        this.audioService = new AudioService(this.assetService, facadeNode);
+        this.viewService = new ViewService(this, this.viewRegistry, facadeNode);
     }
 
     update(dt: number) {
         this.viewService.update(dt);
-    }
-
-    destroy() {
-        this.viewService.destroy();
-        this.audioService.destroy();
-        this.configService.clear();
-        this.viewRegistry.clear();
     }
 }

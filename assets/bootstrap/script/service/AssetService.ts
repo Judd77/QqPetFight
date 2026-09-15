@@ -1,39 +1,40 @@
 import { Asset, AssetManager, assetManager, Constructor, director, ImageAsset, SceneAsset, SpriteFrame, Texture2D } from "cc";
 
-/** 与具体 Bundle 名称和目录约定无关的资源服务。 */
-export class AssetService {
-    private readonly bundleTasks = new Map<string, Promise<AssetManager.Bundle>>();
+const BUNDLE_NAME = "bundle";
 
-    async loadBundle(bundleName: string): Promise<AssetManager.Bundle> {
-        const loaded = assetManager.getBundle(bundleName);
+/** 负责业务 Bundle 和远程资源的加载与释放。 */
+export class AssetService {
+    private bundleTask?: Promise<AssetManager.Bundle>;
+
+    async loadBundle(): Promise<AssetManager.Bundle> {
+        const loaded = assetManager.getBundle(BUNDLE_NAME);
         if (loaded) return loaded;
 
-        const loading = this.bundleTasks.get(bundleName);
-        if (loading) return loading;
+        if (this.bundleTask) return this.bundleTask;
 
         const task = new Promise<AssetManager.Bundle>((resolve, reject) => {
-            assetManager.loadBundle(bundleName, (error, bundle) => {
+            assetManager.loadBundle(BUNDLE_NAME, (error, bundle) => {
                 if (error) {
-                    reject(new Error(`加载资源包【${bundleName}】失败：${error.message}`));
+                    reject(new Error(`加载资源包【${BUNDLE_NAME}】失败：${error.message}`));
                     return;
                 }
                 resolve(bundle);
             });
         });
-        this.bundleTasks.set(bundleName, task);
+        this.bundleTask = task;
         try {
             return await task;
         } finally {
-            if (this.bundleTasks.get(bundleName) === task) this.bundleTasks.delete(bundleName);
+            if (this.bundleTask === task) this.bundleTask = undefined;
         }
     }
 
-    async load<T extends Asset>(bundleName: string, path: string, type: Constructor<T>): Promise<T> {
-        const bundle = await this.loadBundle(bundleName);
+    async load<T extends Asset>(path: string, type: Constructor<T>): Promise<T> {
+        const bundle = await this.loadBundle();
         return new Promise<T>((resolve, reject) => {
             bundle.load(path, type, (error, asset) => {
                 if (error) {
-                    reject(new Error(`加载资源【${bundleName}/${path}】失败：${error.message}`));
+                    reject(new Error(`加载资源【${path}】失败：${error.message}`));
                     return;
                 }
                 resolve(asset);
@@ -41,12 +42,12 @@ export class AssetService {
         });
     }
 
-    async loadDir<T extends Asset>(bundleName: string, path: string, type: Constructor<T>): Promise<T[]> {
-        const bundle = await this.loadBundle(bundleName);
+    async loadDir<T extends Asset>(path: string, type: Constructor<T>): Promise<T[]> {
+        const bundle = await this.loadBundle();
         return new Promise<T[]>((resolve, reject) => {
             bundle.loadDir(path, type, (error, assets) => {
                 if (error) {
-                    reject(new Error(`加载资源目录【${bundleName}/${path}】失败：${error.message}`));
+                    reject(new Error(`加载资源目录【${path}】失败：${error.message}`));
                     return;
                 }
                 resolve(assets);
@@ -54,12 +55,12 @@ export class AssetService {
         });
     }
 
-    async loadScene(bundleName: string, path: string): Promise<void> {
-        const bundle = await this.loadBundle(bundleName);
+    async loadScene(path: string): Promise<void> {
+        const bundle = await this.loadBundle();
         await new Promise<void>((resolve, reject) => {
             bundle.loadScene(path, (error, scene: SceneAsset) => {
                 if (error) {
-                    reject(new Error(`加载场景【${bundleName}/${path}】失败：${error.message}`));
+                    reject(new Error(`加载场景【${path}】失败：${error.message}`));
                     return;
                 }
                 director.runScene(scene, undefined, () => resolve());
@@ -88,8 +89,8 @@ export class AssetService {
         assetManager.releaseAsset(asset);
     }
 
-    removeBundle(bundleName: string) {
-        const bundle = assetManager.getBundle(bundleName);
+    removeBundle() {
+        const bundle = assetManager.getBundle(BUNDLE_NAME);
         if (bundle) assetManager.removeBundle(bundle);
     }
 }

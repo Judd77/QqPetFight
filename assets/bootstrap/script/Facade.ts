@@ -2,8 +2,6 @@ import { _decorator, Component, director } from "cc";
 import { ServiceLocator } from "./service/ServiceLocator";
 
 const { ccclass } = _decorator;
-const BUSINESS_BUNDLE = "bundle";
-
 /** 单机 Demo 的启动入口和永久服务节点。 */
 @ccclass("Facade")
 export class Facade extends Component {
@@ -16,17 +14,12 @@ export class Facade extends Component {
     }
 
     private async loadBusiness() {
-        await this.services.assetService.loadBundle(BUSINESS_BUNDLE);
+        await this.services.assetService.loadBundle();
         const entryView = this.services.viewRegistry.applySchema();
         await this.services.viewService.load(entryView);
     }
 
     protected override update(dt: number) {
         this.services.update(dt);
-    }
-
-    protected override onDestroy() {
-        this.services.destroy();
-        this.services = null!;
     }
 }

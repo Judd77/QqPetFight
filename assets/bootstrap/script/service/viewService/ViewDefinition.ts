@@ -5,8 +5,6 @@ import type { BaseViewComponent } from "./BaseViewComponent";
 export namespace ViewDefinition {
     export interface ViewKey<TView extends AnyView = AnyView> {
         readonly name: string;
-        readonly bundle: string;
-        readonly assetPath: string;
         readonly viewType?: TView;
     }
 
@@ -14,14 +12,15 @@ export namespace ViewDefinition {
     export type ViewInstance<TKey extends AnyViewKey> = TKey extends ViewKey<infer TView> ? TView : never;
     export type ViewParams<TKey extends AnyViewKey> = ViewInstance<TKey> extends BaseView<any, infer TParams> ? TParams : never;
 
-    export function defineView<TView extends AnyView>(name: string, bundle: string, assetPath: string): ViewKey<TView> {
-        return { name, bundle, assetPath };
+    export function defineView<TView extends AnyView>(name: string): ViewKey<TView> {
+        return { name };
     }
 
     export interface ViewConstructor {
         readonly ctor: new () => AnyView;
         readonly comp: Constructor<BaseViewComponent<AnyView> | Component>;
-        readonly resourceType?: "prefab" | "scene";
+        readonly assetPath: string;
+        readonly isScene?: boolean;
         readonly componentNodePath?: string;
         readonly layer?: ViewLayer;
         readonly cache?: boolean;
@@ -29,8 +28,6 @@ export namespace ViewDefinition {
 
     export interface ViewConfig extends ViewConstructor {
         readonly name: string;
-        readonly bundle: string;
-        readonly assetPath: string;
     }
 
     export interface ViewRegistration {

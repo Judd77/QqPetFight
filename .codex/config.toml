@@ -9,3 +9,21 @@ approval_mode = "approve"
 
 [mcp_servers.funplay_cocos.tools.write_file]
 approval_mode = "approve"
+
+[mcp_servers.funplay_cocos.tools.remove_component]
+approval_mode = "approve"
+
+[mcp_servers.funplay_cocos.tools.delete_node]
+approval_mode = "approve"
+
+[mcp_servers.funplay_cocos.tools.simulate_preview_input]
+approval_mode = "approve"
+
+[mcp_servers.funplay_cocos.tools.simulate_mouse_click]
+approval_mode = "approve"
+
+[mcp_servers.funplay_cocos.tools.simulate_button_click]
+approval_mode = "approve"
+
+[mcp_servers.funplay_cocos.tools.set_preview_mode]
+approval_mode = "approve"

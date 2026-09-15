@@ -13,21 +13,22 @@ export class AudioService {
     private musicVolume = 1;
     private soundVolume = 1;
 
-    constructor(private readonly assets: AssetService) {}
-
-    build(node: Node) {
+    constructor(
+        private readonly assets: AssetService,
+        node: Node,
+    ) {
         this.musicSource = node.addComponent(AudioSource);
         this.soundSource = node.addComponent(AudioSource);
         this.musicVolume = this.readVolume(MUSIC_VOLUME_KEY);
         this.soundVolume = this.readVolume(SOUND_VOLUME_KEY);
     }
 
-    async loadGroup(group: string, bundleName: string, path: string) {
+    async loadGroup(group: string, path: string) {
         if (this.groups.has(group)) return;
         const loading = this.loadingGroups.get(group);
         if (loading) return loading;
 
-        const task = this.loadAudioGroup(group, bundleName, path);
+        const task = this.loadAudioGroup(group, path);
         this.loadingGroups.set(group, task);
         try {
             await task;
@@ -77,15 +78,8 @@ export class AudioService {
         this.groups.delete(group);
     }
 
-    destroy() {
-        this.musicSource?.stop();
-        this.soundSource?.stop();
-        this.groups.clear();
-        this.loadingGroups.clear();
-    }
-
-    private async loadAudioGroup(group: string, bundleName: string, path: string) {
-        const clips = await this.assets.loadDir(bundleName, path, AudioClip);
+    private async loadAudioGroup(group: string, path: string) {
+        const clips = await this.assets.loadDir(path, AudioClip);
         const values = new Map<string, AudioClip>();
         for (const clip of clips) {
             if (values.has(clip.name)) throw new Error(`音频分组【${group}】存在重名资源【${clip.name}】`);

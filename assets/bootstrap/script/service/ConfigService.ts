@@ -8,12 +8,12 @@ export class ConfigService {
 
     constructor(private readonly assets: AssetService) {}
 
-    async loadGroup(group: string, bundleName: string, path: string) {
+    async loadGroup(group: string, path: string) {
         if (this.groups.has(group)) return;
         const loading = this.loadingGroups.get(group);
         if (loading) return loading;
 
-        const task = this.loadConfigGroup(group, bundleName, path);
+        const task = this.loadConfigGroup(group, path);
         this.loadingGroups.set(group, task);
         try {
             await task;
@@ -41,8 +41,8 @@ export class ConfigService {
         this.loadingGroups.clear();
     }
 
-    private async loadConfigGroup(group: string, bundleName: string, path: string) {
-        const assets = await this.assets.loadDir(bundleName, path, JsonAsset);
+    private async loadConfigGroup(group: string, path: string) {
+        const assets = await this.assets.loadDir(path, JsonAsset);
         const configs = new Map<string, unknown>();
         for (const asset of assets) {
             if (configs.has(asset.name)) throw new Error(`配置分组【${group}】存在重名文件【${asset.name}】`);
