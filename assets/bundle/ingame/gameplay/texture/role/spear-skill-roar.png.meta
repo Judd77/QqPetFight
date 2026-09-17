@@ -1,0 +1,134 @@
+{
+  "ver": "1.0.27",
+  "importer": "image",
+  "imported": true,
+  "uuid": "5b3bf034-c917-44d0-b2e6-62caae62632d",
+  "files": [
+    ".json",
+    ".png"
+  ],
+  "subMetas": {
+    "6c48a": {
+      "importer": "texture",
+      "uuid": "5b3bf034-c917-44d0-b2e6-62caae62632d@6c48a",
+      "displayName": "spear-skill-roar",
+      "id": "6c48a",
+      "name": "texture",
+      "userData": {
+        "wrapModeS": "clamp-to-edge",
+        "wrapModeT": "clamp-to-edge",
+        "imageUuidOrDatabaseUri": "5b3bf034-c917-44d0-b2e6-62caae62632d",
+        "isUuid": true,
+        "visible": false,
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "f9941": {
+      "importer": "sprite-frame",
+      "uuid": "5b3bf034-c917-44d0-b2e6-62caae62632d@f9941",
+      "displayName": "spear-skill-roar",
+      "id": "f9941",
+      "name": "spriteFrame",
+      "userData": {
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": -1,
+        "offsetY": 0,
+        "trimX": 2,
+        "trimY": 2,
+        "width": 1982,
+        "height": 3958,
+        "rawWidth": 1988,
+        "rawHeight": 3962,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [
+            -991,
+            -1979,
+            0,
+            991,
+            -1979,
+            0,
+            -991,
+            1979,
+            0,
+            991,
+            1979,
+            0
+          ],
+          "indexes": [
+            0,
+            1,
+            2,
+            2,
+            1,
+            3
+          ],
+          "uv": [
+            2,
+            3960,
+            1984,
+            3960,
+            2,
+            2,
+            1984,
+            2
+          ],
+          "nuv": [
+            0.001006036217303823,
+            0.0005047955577990914,
+            0.9979879275653923,
+            0.0005047955577990914,
+            0.001006036217303823,
+            0.9994952044422009,
+            0.9979879275653923,
+            0.9994952044422009
+          ],
+          "minPos": [
+            -991,
+            -1979,
+            0
+          ],
+          "maxPos": [
+            991,
+            1979,
+            0
+          ]
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "5b3bf034-c917-44d0-b2e6-62caae62632d@6c48a",
+        "atlasUuid": "",
+        "trimType": "auto"
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "type": "sprite-frame",
+    "fixAlphaTransparencyArtifacts": false,
+    "hasAlpha": true,
+    "redirect": "5b3bf034-c917-44d0-b2e6-62caae62632d@6c48a"
+  }
+}
