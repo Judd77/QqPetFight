@@ -1,0 +1,16 @@
+[
+  {
+    "id": "standing",
+    "action": "",
+    "x": 0,
+    "y": -24,
+    "scanCycle": false
+  },
+  {
+    "id": "running",
+    "action": "run",
+    "x": -12.2,
+    "y": -24,
+    "scanCycle": true
+  }
+]
