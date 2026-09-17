@@ -15,7 +15,12 @@ export class Facade extends Component {
 
     private async loadBusiness() {
         await this.services.assetService.loadBundle();
-        const entryView = this.services.viewRegistry.applySchema();
+        const entryView = this.services.viewRegistry.registerSchema();
+        await Promise.all([
+            this.services.audioService.setAudioClips(this.services.viewRegistry.sharedPath),
+            this.services.configService.loadConfig(this.services.viewRegistry.sharedPath),
+            ...this.services.viewRegistry.preloadViews.map((view) => this.services.viewService.preload(view)),
+        ]);
         await this.services.viewService.load(entryView);
     }
 

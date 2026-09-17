@@ -1,54 +1,55 @@
-import { JsonAsset } from "cc";
 import { AssetService } from "./AssetService";
 
-/** 通用 JSON 配置仓库，不依赖任何生成表类型。 */
+/** 由业务层补充具体表类型，启动包不依赖业务生成脚本。 */
+export interface ConfigTables {}
+
+/** 统一加载并持有 Luban 配置表。 */
 export class ConfigService {
-    private readonly groups = new Map<string, Map<string, unknown>>();
-    private readonly loadingGroups = new Map<string, Promise<void>>();
+    /** 业务 Bundle 加载时提供 Tables 的创建方法。 */
+    static createTables?: (loader: (fileName: string) => unknown) => ConfigTables;
+    private loadingPromise?: Promise<void>;
+    private table?: ConfigTables;
 
     constructor(private readonly assets: AssetService) {}
 
-    async loadGroup(group: string, path: string) {
-        if (this.groups.has(group)) return;
-        const loading = this.loadingGroups.get(group);
-        if (loading) return loading;
+    /** 获取启动阶段已经加载好的配置表。 */
+    get tables(): ConfigTables {
+        if (!this.table) throw new Error("配置表尚未加载");
+        return this.table;
+    }
 
-        const task = this.loadConfigGroup(group, path);
-        this.loadingGroups.set(group, task);
+    /** 加载公共配置表。 */
+    async loadConfig(sharedPath: string) {
+        if (this.table) return;
+        if (this.loadingPromise) return this.loadingPromise;
+
+        const task = this.loadTable(sharedPath);
+        this.loadingPromise = task;
         try {
             await task;
         } finally {
-            if (this.loadingGroups.get(group) === task) this.loadingGroups.delete(group);
+            if (this.loadingPromise === task) this.loadingPromise = undefined;
         }
     }
 
-    get<T>(name: string, group = "default"): T {
-        const configs = this.groups.get(group);
-        if (!configs?.has(name)) throw new Error(`配置【${group}/${name}】尚未加载`);
-        return configs.get(name) as T;
-    }
+    /** 将 JsonAsset 映射交给 Luban Tables 构造函数解析。 */
+    private async loadTable(sharedPath: string) {
+        const createTables = ConfigService.createTables;
+        if (!createTables) throw new Error("业务配置表尚未注册");
+        const assets = await this.assets.loadJsonAssets(sharedPath);
+        if (!assets.length) throw new Error(`配置目录【${sharedPath}/config】为空`);
 
-    has(name: string, group = "default"): boolean {
-        return this.groups.get(group)?.has(name) ?? false;
-    }
-
-    unloadGroup(group: string) {
-        this.groups.delete(group);
-    }
-
-    clear() {
-        this.groups.clear();
-        this.loadingGroups.clear();
-    }
-
-    private async loadConfigGroup(group: string, path: string) {
-        const assets = await this.assets.loadDir(path, JsonAsset);
         const configs = new Map<string, unknown>();
         for (const asset of assets) {
-            if (configs.has(asset.name)) throw new Error(`配置分组【${group}】存在重名文件【${asset.name}】`);
-            if (asset.json == null) throw new Error(`配置【${group}/${asset.name}】内容为空`);
+            if (configs.has(asset.name)) throw new Error(`配置文件名称重复【${asset.name}】`);
+            if (asset.json == null) throw new Error(`配置文件【${asset.name}】内容为空`);
             configs.set(asset.name, asset.json);
         }
-        this.groups.set(group, configs);
+
+        const loader = (fileName: string) => {
+            if (!configs.has(fileName)) throw new Error(`缺少配置文件【${fileName}】`);
+            return configs.get(fileName);
+        };
+        this.table = createTables(loader);
     }
 }

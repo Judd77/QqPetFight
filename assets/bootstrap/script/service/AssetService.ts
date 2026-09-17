@@ -1,4 +1,4 @@
-import { Asset, AssetManager, assetManager, Constructor, director, ImageAsset, SceneAsset, SpriteFrame, Texture2D } from "cc";
+import { Asset, AssetManager, assetManager, AudioClip, Constructor, director, ImageAsset, JsonAsset, SceneAsset, SpriteFrame, Texture2D } from "cc";
 
 const BUNDLE_NAME = "bundle";
 
@@ -53,6 +53,19 @@ export class AssetService {
                 resolve(assets);
             });
         });
+    }
+
+    /** 加载业务音频；业务没有 audio 资源时返回空列表。 */
+    async loadAudioClips(businessPath: string): Promise<AudioClip[]> {
+        const bundle = await this.loadBundle();
+        const path = `${businessPath}/audio`;
+        if (bundle.getDirWithPath(path, AudioClip).length === 0) return [];
+        return this.loadDir(path, AudioClip);
+    }
+
+    /** 加载公共配置目录。 */
+    async loadJsonAssets(sharedPath: string): Promise<JsonAsset[]> {
+        return this.loadDir(`${sharedPath}/config`, JsonAsset);
     }
 
     async loadScene(path: string): Promise<void> {

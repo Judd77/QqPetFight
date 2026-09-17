@@ -48,6 +48,18 @@ export class ViewService {
         for (const viewName of this.activeViewNames) this.views.get(viewName)?.update(dt);
     }
 
+    /** 预加载视图文件，不创建节点、不激活 View，也不执行其业务逻辑。 */
+    async preload(viewKey: ViewDefinition.AnyViewKey): Promise<void> {
+        const config = this.registry.getViewCtor(viewKey.name);
+        if (!config) throw new Error(`视图【${viewKey.name}】尚未注册`);
+        const bundle = await this.services.assetService.loadBundle();
+        await new Promise<void>((resolve, reject) => {
+            const onComplete = (error: Error | null) => error ? reject(error) : resolve();
+            if (config.isScene) bundle.preloadScene(`${config.path}/scene/${viewKey.name}`, onComplete);
+            else bundle.preload(`${config.path}/prefab/${viewKey.name}`, Prefab, onComplete);
+        });
+    }
+
     /** 加载视图。 */
     load<TKey extends ViewDefinition.AnyViewKey>(viewKey: TKey, ...params: ViewDefinition.ViewParams<TKey>): Promise<ViewDefinition.ViewInstance<TKey>> {
         return this.requestLoad(viewKey, undefined, params);
@@ -135,6 +147,7 @@ export class ViewService {
 
         let component: BaseViewComponent<AnyView> | undefined;
         try {
+            await this.services.audioService.setAudioClips(view.viewConfig.path);
             view.prepare();
             component = await this.loadViewComponent(view.viewConfig);
             component.view = view;
@@ -161,7 +174,7 @@ export class ViewService {
     private async loadViewComponent(config: ViewDefinition.ViewConfig): Promise<BaseViewComponent<AnyView>> {
         if (config.isScene) {
             this.unloadCurrentSceneView();
-            await this.services.assetService.loadScene(config.assetPath);
+            await this.services.assetService.loadScene(`${config.path}/scene/${config.name}`);
 
             const scene = director.getScene();
             const componentNode = scene ? find(config.componentNodePath ?? "Component", scene) : null;
@@ -170,7 +183,7 @@ export class ViewService {
             return component as BaseViewComponent<AnyView>;
         }
 
-        const prefab = await this.services.assetService.load(config.assetPath, Prefab);
+        const prefab = await this.services.assetService.load(`${config.path}/prefab/${config.name}`, Prefab);
         const node = instantiate(prefab);
         const layer = config.layer ?? ViewDefinition.ViewLayer.Main;
         const parent = this.layers[layer];

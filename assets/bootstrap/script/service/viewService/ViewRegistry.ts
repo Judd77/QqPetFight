@@ -4,33 +4,30 @@ import { ViewDefinition } from "./ViewDefinition";
 export class ViewRegistry implements ViewDefinition.ViewRegistry {
     private static schema?: ViewDefinition.ViewSchema;
 
+    declare sharedPath: string;
+    readonly preloadViews: ViewDefinition.AnyViewKey[] = [];
+
     private readonly constructors = new Map<string, ViewDefinition.ViewConstructor>();
 
     static setSchema(schema: ViewDefinition.ViewSchema) {
         ViewRegistry.schema = schema;
     }
 
-    applySchema(): ViewDefinition.AnyViewKey {
+    registerSchema(): ViewDefinition.AnyViewKey {
         const schema = ViewRegistry.schema;
         if (!schema) throw new Error("业务 View Schema 尚未加载");
+        this.sharedPath = schema.sharedPath;
+        this.preloadViews.push(...(schema.preloadViews ?? []));
         for (const view of schema.views) this.register(view.key, view.config);
         return schema.entryView;
     }
 
-    register(viewKey: ViewDefinition.AnyViewKey, constructor: ViewDefinition.ViewConstructor) {
+    private register(viewKey: ViewDefinition.AnyViewKey, constructor: ViewDefinition.ViewConstructor) {
         if (this.constructors.has(viewKey.name)) throw new Error(`视图【${viewKey.name}】重复注册`);
         this.constructors.set(viewKey.name, constructor);
     }
 
-    unregister(viewKey: ViewDefinition.AnyViewKey): boolean {
-        return this.constructors.delete(viewKey.name);
-    }
-
     getViewCtor(viewName: string): ViewDefinition.ViewConstructor | undefined {
         return this.constructors.get(viewName);
-    }
-
-    clear() {
-        this.constructors.clear();
     }
 }

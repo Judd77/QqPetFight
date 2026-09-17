@@ -19,7 +19,8 @@ export namespace ViewDefinition {
     export interface ViewConstructor {
         readonly ctor: new () => AnyView;
         readonly comp: Constructor<BaseViewComponent<AnyView> | Component>;
-        readonly assetPath: string;
+        /** 业务根目录，其下按 scene、prefab、audio 分类存放资源。 */
+        readonly path: string;
         readonly isScene?: boolean;
         readonly componentNodePath?: string;
         readonly layer?: ViewLayer;
@@ -36,7 +37,9 @@ export namespace ViewDefinition {
     }
 
     export interface ViewSchema {
+        readonly sharedPath: string;
         readonly entryView: AnyViewKey;
+        readonly preloadViews?: readonly AnyViewKey[];
         readonly views: readonly ViewRegistration[];
     }
 
