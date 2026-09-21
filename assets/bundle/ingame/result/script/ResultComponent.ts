@@ -13,6 +13,7 @@ export class ResultComponent extends BaseViewComponent<ResultView> {
     declare saveButton: Button;
     declare againButton: Button;
     declare closeButton: Button;
+    declare againLabel: Label;
 
     /** 动态获取预制体内的固定节点。 */
     protected override onLoad() {
@@ -21,6 +22,7 @@ export class ResultComponent extends BaseViewComponent<ResultView> {
         this.summary = this.node.getChildByName("Summary")!.getComponent(Label)!;
         this.saveButton = this.node.getChildByName("SaveRecording")!.getComponent(Button)!;
         this.againButton = this.node.getChildByName("Again")!.getComponent(Button)!;
+        this.againLabel = this.againButton.node.getChildByName("Label")!.getComponent(Label)!;
         this.closeButton = this.node.getChildByName("Close")!.getComponent(Button)!;
         this.saveButton.node.on(Button.EventType.CLICK, () => this.view.resultCtrl.onClickSave());
         this.againButton.node.on(Button.EventType.CLICK, () => this.view.resultCtrl.onClickAgain());

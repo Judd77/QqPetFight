@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "version": 2,
+    "demoSeed": 20260915,
+    "frameRate": 20,
+    "countdownFrames": 60,
+    "maxFrames": 7200,
+    "defaultWeapon": 0,
+    "leftStartX": -300,
+    "rightStartX": 300,
+    "moveSpeed": 18,
+    "nextTurnDelay": 8,
+    "dodgeChance": 12,
+    "criticalChance": 15,
+    "criticalMultiplier": 1.5,
+    "damageVariance": 3,
+    "hurtFrames": 18,
+    "dodgeFrames": 20,
+    "throwChance": 28,
+    "skillChance": 25,
+    "healThreshold": 0.6,
+    "projectileSpeed": 35,
+    "projectileMinFrames": 8,
+    "maxCatchUpFrames": 100
+  }
+]

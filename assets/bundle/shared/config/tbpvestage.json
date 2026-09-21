@@ -1,0 +1,144 @@
+[
+  {
+    "id": 1,
+    "name": "青蛙",
+    "gender": 0,
+    "hp": 150,
+    "description": "第 1 关 · 青蛙，留意它的专属攻击。",
+    "weapons": [],
+    "skills": [
+      50121,
+      50122
+    ],
+    "npcId": 5012,
+    "portrait": "shared/texture/role/npc5012/spriteFrame"
+  },
+  {
+    "id": 2,
+    "name": "狐狸精",
+    "gender": 1,
+    "hp": 200,
+    "description": "第 2 关 · 狐狸精，留意它的专属攻击。",
+    "weapons": [],
+    "skills": [
+      50141,
+      50142
+    ],
+    "npcId": 5014,
+    "portrait": "shared/texture/role/npc5014/spriteFrame"
+  },
+  {
+    "id": 3,
+    "name": "树妖",
+    "gender": 0,
+    "hp": 240,
+    "description": "第 3 关 · 树妖，留意它的专属攻击。",
+    "weapons": [],
+    "skills": [
+      50162,
+      50161
+    ],
+    "npcId": 5016,
+    "portrait": "shared/texture/role/npc5016/spriteFrame"
+  },
+  {
+    "id": 4,
+    "name": "花妖",
+    "gender": 1,
+    "hp": 280,
+    "description": "第 4 关 · 花妖，留意它的专属攻击。",
+    "weapons": [],
+    "skills": [
+      50182,
+      50181
+    ],
+    "npcId": 5018,
+    "portrait": "shared/texture/role/npc5018/spriteFrame"
+  },
+  {
+    "id": 5,
+    "name": "黑熊",
+    "gender": 0,
+    "hp": 320,
+    "description": "第 5 关 · 黑熊，留意它的专属攻击。",
+    "weapons": [],
+    "skills": [
+      50201,
+      50202,
+      50203
+    ],
+    "npcId": 5020,
+    "portrait": "shared/texture/role/npc5020/spriteFrame"
+  },
+  {
+    "id": 6,
+    "name": "虾兵",
+    "gender": 0,
+    "hp": 360,
+    "description": "第 6 关 · 虾兵，留意它的专属攻击。",
+    "weapons": [],
+    "skills": [
+      50221,
+      50222
+    ],
+    "npcId": 5022,
+    "portrait": "shared/texture/role/npc5022/spriteFrame"
+  },
+  {
+    "id": 7,
+    "name": "蟹兵",
+    "gender": 0,
+    "hp": 410,
+    "description": "第 7 关 · 蟹兵，留意它的专属攻击。",
+    "weapons": [],
+    "skills": [
+      50241,
+      50242
+    ],
+    "npcId": 5024,
+    "portrait": "shared/texture/role/npc5024/spriteFrame"
+  },
+  {
+    "id": 8,
+    "name": "章鱼",
+    "gender": 0,
+    "hp": 450,
+    "description": "第 8 关 · 章鱼，留意它的专属攻击。",
+    "weapons": [],
+    "skills": [
+      50262,
+      50261
+    ],
+    "npcId": 5026,
+    "portrait": "shared/texture/role/npc5026/spriteFrame"
+  },
+  {
+    "id": 9,
+    "name": "龟丞相",
+    "gender": 0,
+    "hp": 490,
+    "description": "第 9 关 · 龟丞相，留意它的专属攻击。",
+    "weapons": [],
+    "skills": [
+      50281,
+      50282
+    ],
+    "npcId": 5028,
+    "portrait": "shared/texture/role/npc5028/spriteFrame"
+  },
+  {
+    "id": 10,
+    "name": "夜叉",
+    "gender": 0,
+    "hp": 540,
+    "description": "第 10 关 · 夜叉，留意它的专属攻击。",
+    "weapons": [],
+    "skills": [
+      50301,
+      50302,
+      50303
+    ],
+    "npcId": 5030,
+    "portrait": "shared/texture/role/npc5030/spriteFrame"
+  }
+]

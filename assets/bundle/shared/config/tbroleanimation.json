@@ -5,11 +5,16 @@
     "width": 3476,
     "height": 128,
     "profile": "standing",
-    "offsetX": 21.40000000000001,
-    "offsetY": -11.999999999999993,
+    "offsetX": 21.4,
+    "offsetY": -12,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 0,
+    "animation": 0,
+    "assetPath": "ingame/gameplay/texture/role/mm/fist-idle",
+    "loop": true
   },
   {
     "id": "fist-run",
@@ -18,10 +23,15 @@
     "height": 135,
     "profile": "running",
     "offsetX": 18.75,
-    "offsetY": 3.8000000000000043,
+    "offsetY": 3.8,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 0,
+    "animation": 1,
+    "assetPath": "ingame/gameplay/texture/role/mm/fist-run",
+    "loop": true
   },
   {
     "id": "fist-dodge",
@@ -29,11 +39,16 @@
     "width": 1024,
     "height": 2183,
     "profile": "standing",
-    "offsetX": 21.695787048339852,
-    "offsetY": 1.6909378051758033,
+    "offsetX": 21.6957870483399,
+    "offsetY": 1.6909378051758,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 0,
+    "animation": 2,
+    "assetPath": "ingame/gameplay/texture/role/mm/fist-dodge",
+    "loop": false
   },
   {
     "id": "fist-hurt",
@@ -41,11 +56,16 @@
     "width": 792,
     "height": 127,
     "profile": "standing",
-    "offsetX": 19.500000000000007,
-    "offsetY": 1.0999999999999943,
+    "offsetX": 19.5,
+    "offsetY": 1.09999999999999,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 0,
+    "animation": 3,
+    "assetPath": "ingame/gameplay/texture/role/mm/fist-hurt",
+    "loop": false
   },
   {
     "id": "fist-win",
@@ -54,10 +74,15 @@
     "height": 1586,
     "profile": "standing",
     "offsetX": 18.45,
-    "offsetY": 1.3499999999999872,
+    "offsetY": 1.34999999999999,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 0,
+    "animation": 4,
+    "assetPath": "ingame/gameplay/texture/role/mm/fist-win",
+    "loop": false
   },
   {
     "id": "fist-lose",
@@ -65,11 +90,16 @@
     "width": 512,
     "height": 627,
     "profile": "standing",
-    "offsetX": 18.50000000000001,
-    "offsetY": 1.6000000000000014,
+    "offsetX": 18.5,
+    "offsetY": 1.6,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 0,
+    "animation": 5,
+    "assetPath": "ingame/gameplay/texture/role/mm/fist-lose",
+    "loop": false
   },
   {
     "id": "fist-throw",
@@ -77,11 +107,16 @@
     "width": 1908,
     "height": 137,
     "profile": "standing",
-    "offsetX": 19.150000000000006,
-    "offsetY": 1.000000000000007,
+    "offsetX": 19.15,
+    "offsetY": 1.00000000000001,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 0,
+    "animation": 6,
+    "assetPath": "ingame/gameplay/texture/role/mm/fist-throw",
+    "loop": false
   },
   {
     "id": "fist-equip",
@@ -90,10 +125,15 @@
     "height": 790,
     "profile": "standing",
     "offsetX": 18.7,
-    "offsetY": 1.5999999999999872,
+    "offsetY": 1.59999999999999,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 0,
+    "animation": 7,
+    "assetPath": "ingame/gameplay/texture/role/mm/fist-equip",
+    "loop": false
   },
   {
     "id": "fist-fist",
@@ -101,11 +141,16 @@
     "width": 1020,
     "height": 128,
     "profile": "standing",
-    "offsetX": 18.199999999999992,
+    "offsetX": 18.2,
     "offsetY": 1.25,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 0,
+    "animation": 8,
+    "assetPath": "ingame/gameplay/texture/role/mm/fist-fist",
+    "loop": false
   },
   {
     "id": "fist-thrust",
@@ -113,11 +158,16 @@
     "width": 1020,
     "height": 377,
     "profile": "standing",
-    "offsetX": 18.736946105957042,
-    "offsetY": 1.5621810913085952,
+    "offsetX": 18.736946105957,
+    "offsetY": 1.5621810913086,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 0,
+    "animation": 9,
+    "assetPath": "ingame/gameplay/texture/role/mm/fist-thrust",
+    "loop": false
   },
   {
     "id": "fist-slash",
@@ -126,10 +176,15 @@
     "height": 1497,
     "profile": "standing",
     "offsetX": 18.5,
-    "offsetY": 1.5500000000000043,
+    "offsetY": 1.55,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 0,
+    "animation": 10,
+    "assetPath": "ingame/gameplay/texture/role/mm/fist-slash",
+    "loop": false
   },
   {
     "id": "sword-idle",
@@ -138,10 +193,15 @@
     "height": 758,
     "profile": "standing",
     "offsetX": 21.05,
-    "offsetY": -11.750000000000007,
+    "offsetY": -11.75,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 1,
+    "animation": 0,
+    "assetPath": "ingame/gameplay/texture/role/mm/sword-idle",
+    "loop": true
   },
   {
     "id": "sword-run",
@@ -149,11 +209,16 @@
     "width": 1044,
     "height": 135,
     "profile": "running",
-    "offsetX": 18.950000000000003,
-    "offsetY": 3.650000000000013,
+    "offsetX": 18.95,
+    "offsetY": 3.65000000000001,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 1,
+    "animation": 1,
+    "assetPath": "ingame/gameplay/texture/role/mm/sword-run",
+    "loop": true
   },
   {
     "id": "sword-dodge",
@@ -161,11 +226,16 @@
     "width": 1024,
     "height": 2494,
     "profile": "standing",
-    "offsetX": 21.645565795898435,
-    "offsetY": 1.6909378051758033,
+    "offsetX": 21.6455657958984,
+    "offsetY": 1.6909378051758,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 1,
+    "animation": 2,
+    "assetPath": "ingame/gameplay/texture/role/mm/sword-dodge",
+    "loop": false
   },
   {
     "id": "sword-hurt",
@@ -173,11 +243,16 @@
     "width": 960,
     "height": 153,
     "profile": "standing",
-    "offsetX": 19.699999999999996,
-    "offsetY": 1.0500000000000114,
+    "offsetX": 19.7,
+    "offsetY": 1.05000000000001,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 1,
+    "animation": 3,
+    "assetPath": "ingame/gameplay/texture/role/mm/sword-hurt",
+    "loop": false
   },
   {
     "id": "sword-win",
@@ -186,10 +261,15 @@
     "height": 842,
     "profile": "standing",
     "offsetX": 18.45,
-    "offsetY": 1.8000000000000043,
+    "offsetY": 1.8,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 1,
+    "animation": 4,
+    "assetPath": "ingame/gameplay/texture/role/mm/sword-win",
+    "loop": false
   },
   {
     "id": "sword-lose",
@@ -198,10 +278,15 @@
     "height": 2140,
     "profile": "standing",
     "offsetX": 18.2,
-    "offsetY": 1.249999999999993,
+    "offsetY": 1.24999999999999,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 1,
+    "animation": 5,
+    "assetPath": "ingame/gameplay/texture/role/mm/sword-lose",
+    "loop": false
   },
   {
     "id": "sword-throw",
@@ -209,11 +294,16 @@
     "width": 2712,
     "height": 137,
     "profile": "standing",
-    "offsetX": 19.400000000000006,
+    "offsetX": 19.4,
     "offsetY": 1.5,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 1,
+    "animation": 6,
+    "assetPath": "ingame/gameplay/texture/role/mm/sword-throw",
+    "loop": false
   },
   {
     "id": "sword-equip",
@@ -221,11 +311,16 @@
     "width": 504,
     "height": 1021,
     "profile": "standing",
-    "offsetX": 18.800000000000022,
-    "offsetY": 1.5999999999999872,
+    "offsetX": 18.8,
+    "offsetY": 1.59999999999999,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 1,
+    "animation": 7,
+    "assetPath": "ingame/gameplay/texture/role/mm/sword-equip",
+    "loop": false
   },
   {
     "id": "sword-fist",
@@ -233,11 +328,16 @@
     "width": 1020,
     "height": 128,
     "profile": "standing",
-    "offsetX": 18.199999999999992,
+    "offsetX": 18.2,
     "offsetY": 1.25,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 1,
+    "animation": 8,
+    "assetPath": "ingame/gameplay/texture/role/mm/sword-fist",
+    "loop": false
   },
   {
     "id": "sword-thrust",
@@ -245,11 +345,16 @@
     "width": 1908,
     "height": 300,
     "profile": "standing",
-    "offsetX": 18.586282348632817,
-    "offsetY": 1.4115173339843565,
+    "offsetX": 18.5862823486328,
+    "offsetY": 1.41151733398436,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 1,
+    "animation": 9,
+    "assetPath": "ingame/gameplay/texture/role/mm/sword-thrust",
+    "loop": false
   },
   {
     "id": "sword-slash",
@@ -258,10 +363,15 @@
     "height": 777,
     "profile": "standing",
     "offsetX": 18.5,
-    "offsetY": 1.5500000000000043,
+    "offsetY": 1.55,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 1,
+    "animation": 10,
+    "assetPath": "ingame/gameplay/texture/role/mm/sword-slash",
+    "loop": false
   },
   {
     "id": "spear-idle",
@@ -269,11 +379,16 @@
     "width": 408,
     "height": 1280,
     "profile": "standing",
-    "offsetX": 26.491439819335945,
-    "offsetY": 3.400341796875008,
+    "offsetX": 26.4914398193359,
+    "offsetY": 3.40034179687501,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 2,
+    "animation": 0,
+    "assetPath": "ingame/gameplay/texture/role/mm/spear-idle",
+    "loop": true
   },
   {
     "id": "spear-run",
@@ -281,11 +396,16 @@
     "width": 200,
     "height": 764,
     "profile": "running",
-    "offsetX": 17.583132934570312,
-    "offsetY": 9.200341796875009,
+    "offsetX": 17.5831329345703,
+    "offsetY": 9.20034179687501,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 2,
+    "animation": 1,
+    "assetPath": "ingame/gameplay/texture/role/mm/spear-run",
+    "loop": true
   },
   {
     "id": "spear-dodge",
@@ -293,11 +413,16 @@
     "width": 996,
     "height": 2497,
     "profile": "standing",
-    "offsetX": 21.645565795898435,
-    "offsetY": 1.6909378051758033,
+    "offsetX": 21.6455657958984,
+    "offsetY": 1.6909378051758,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 2,
+    "animation": 2,
+    "assetPath": "ingame/gameplay/texture/role/mm/spear-dodge",
+    "loop": false
   },
   {
     "id": "spear-hurt",
@@ -305,11 +430,16 @@
     "width": 256,
     "height": 1207,
     "profile": "standing",
-    "offsetX": 22.739958190917974,
-    "offsetY": 2.6292831420898573,
+    "offsetX": 22.739958190918,
+    "offsetY": 2.62928314208986,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 2,
+    "animation": 3,
+    "assetPath": "ingame/gameplay/texture/role/mm/spear-hurt",
+    "loop": false
   },
   {
     "id": "spear-win",
@@ -318,10 +448,15 @@
     "height": 842,
     "profile": "standing",
     "offsetX": 18.45,
-    "offsetY": 1.8000000000000043,
+    "offsetY": 1.8,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 2,
+    "animation": 4,
+    "assetPath": "ingame/gameplay/texture/role/mm/spear-win",
+    "loop": false
   },
   {
     "id": "spear-lose",
@@ -330,10 +465,15 @@
     "height": 2223,
     "profile": "standing",
     "offsetX": 18.2,
-    "offsetY": 1.249999999999993,
+    "offsetY": 1.24999999999999,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 2,
+    "animation": 5,
+    "assetPath": "ingame/gameplay/texture/role/mm/spear-lose",
+    "loop": false
   },
   {
     "id": "spear-throw",
@@ -341,11 +481,16 @@
     "width": 2712,
     "height": 143,
     "profile": "standing",
-    "offsetX": 19.400000000000006,
+    "offsetX": 19.4,
     "offsetY": 1.5,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 2,
+    "animation": 6,
+    "assetPath": "ingame/gameplay/texture/role/mm/spear-throw",
+    "loop": false
   },
   {
     "id": "spear-equip",
@@ -353,11 +498,16 @@
     "width": 916,
     "height": 319,
     "profile": "standing",
-    "offsetX": 19.188983154296874,
-    "offsetY": 1.0383941650390796,
+    "offsetX": 19.1889831542969,
+    "offsetY": 1.03839416503908,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 2,
+    "animation": 7,
+    "assetPath": "ingame/gameplay/texture/role/mm/spear-equip",
+    "loop": false
   },
   {
     "id": "spear-fist",
@@ -365,11 +515,16 @@
     "width": 1020,
     "height": 128,
     "profile": "standing",
-    "offsetX": 18.199999999999992,
+    "offsetX": 18.2,
     "offsetY": 1.25,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 2,
+    "animation": 8,
+    "assetPath": "ingame/gameplay/texture/role/mm/spear-fist",
+    "loop": false
   },
   {
     "id": "spear-thrust",
@@ -377,11 +532,16 @@
     "width": 1952,
     "height": 303,
     "profile": "standing",
-    "offsetX": 18.586282348632817,
-    "offsetY": 1.4115173339843565,
+    "offsetX": 18.5862823486328,
+    "offsetY": 1.41151733398436,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 2,
+    "animation": 9,
+    "assetPath": "ingame/gameplay/texture/role/mm/spear-thrust",
+    "loop": false
   },
   {
     "id": "spear-slash",
@@ -390,10 +550,15 @@
     "height": 776,
     "profile": "standing",
     "offsetX": 18.5,
-    "offsetY": 1.5500000000000043,
+    "offsetY": 1.55,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 2,
+    "animation": 10,
+    "assetPath": "ingame/gameplay/texture/role/mm/spear-slash",
+    "loop": false
   },
   {
     "id": "skill-water",
@@ -401,11 +566,16 @@
     "width": 1004,
     "height": 2241,
     "profile": "standing",
-    "offsetX": 20.400000000000006,
+    "offsetX": 20.4,
     "offsetY": -10,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 0,
+    "animation": 11,
+    "assetPath": "ingame/gameplay/texture/role/mm/skill-water",
+    "loop": false
   },
   {
     "id": "skill-kick",
@@ -413,11 +583,16 @@
     "width": 512,
     "height": 4062,
     "profile": "standing",
-    "offsetX": 21.150030517578127,
+    "offsetX": 21.1500305175781,
     "offsetY": -8.39990234375,
     "outerScale": 0.649993896484375,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 0,
+    "animation": 12,
+    "assetPath": "ingame/gameplay/texture/role/mm/skill-kick",
+    "loop": false
   },
   {
     "id": "skill-roar",
@@ -425,11 +600,16 @@
     "width": 2024,
     "height": 3673,
     "profile": "standing",
-    "offsetX": 20.684027099609377,
+    "offsetX": 20.6840270996094,
     "offsetY": -9.89111328125,
     "outerScale": 0.743194580078125,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 0,
+    "animation": 13,
+    "assetPath": "ingame/gameplay/texture/role/mm/skill-roar",
+    "loop": false
   },
   {
     "id": "male-fist-idle",
@@ -437,11 +617,16 @@
     "width": 3364,
     "height": 105,
     "profile": "standing",
-    "offsetX": 21.400000000000006,
+    "offsetX": 21.4,
     "offsetY": 0,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 0,
+    "animation": 0,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-fist-idle",
+    "loop": true
   },
   {
     "id": "male-fist-run",
@@ -449,11 +634,16 @@
     "width": 568,
     "height": 110,
     "profile": "running",
-    "offsetX": 21.399999999999995,
-    "offsetY": 1.1000000000000014,
+    "offsetX": 21.4,
+    "offsetY": 1.1,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 0,
+    "animation": 1,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-fist-run",
+    "loop": true
   },
   {
     "id": "male-fist-dodge",
@@ -461,11 +651,16 @@
     "width": 1004,
     "height": 2146,
     "profile": "standing",
-    "offsetX": 22.649548339843736,
-    "offsetY": 0.4424865722656257,
+    "offsetX": 22.6495483398437,
+    "offsetY": 0.442486572265626,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 0,
+    "animation": 2,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-fist-dodge",
+    "loop": false
   },
   {
     "id": "male-fist-hurt",
@@ -473,11 +668,16 @@
     "width": 488,
     "height": 105,
     "profile": "standing",
-    "offsetX": 22.400000000000002,
-    "offsetY": 7.105427357601002E-15,
+    "offsetX": 22.4,
+    "offsetY": 7.105427357601E-15,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 0,
+    "animation": 3,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-fist-hurt",
+    "loop": false
   },
   {
     "id": "male-fist-win",
@@ -485,11 +685,16 @@
     "width": 1416,
     "height": 114,
     "profile": "standing",
-    "offsetX": 21.200000000000003,
-    "offsetY": 0.5999999999999943,
+    "offsetX": 21.2,
+    "offsetY": 0.599999999999994,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 0,
+    "animation": 4,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-fist-win",
+    "loop": false
   },
   {
     "id": "male-fist-lose",
@@ -497,11 +702,16 @@
     "width": 2532,
     "height": 104,
     "profile": "standing",
-    "offsetX": 21.10000000000001,
+    "offsetX": 21.1,
     "offsetY": 0,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 0,
+    "animation": 5,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-fist-lose",
+    "loop": false
   },
   {
     "id": "male-fist-throw",
@@ -509,11 +719,16 @@
     "width": 1648,
     "height": 114,
     "profile": "standing",
-    "offsetX": 21.600000000000023,
-    "offsetY": -0.09999999999999076,
+    "offsetX": 21.6,
+    "offsetY": -0.0999999999999908,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 0,
+    "animation": 6,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-fist-throw",
+    "loop": false
   },
   {
     "id": "male-fist-equip",
@@ -522,10 +737,15 @@
     "height": 1421,
     "profile": "standing",
     "offsetX": 21.5,
-    "offsetY": 0.30000000000001137,
+    "offsetY": 0.300000000000011,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 0,
+    "animation": 7,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-fist-equip",
+    "loop": false
   },
   {
     "id": "male-fist-fist",
@@ -533,11 +753,16 @@
     "width": 1012,
     "height": 105,
     "profile": "standing",
-    "offsetX": 27.20000000000001,
-    "offsetY": -5.899999999999999,
+    "offsetX": 27.2,
+    "offsetY": -5.9,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 0,
+    "animation": 8,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-fist-fist",
+    "loop": false
   },
   {
     "id": "male-fist-thrust",
@@ -545,11 +770,16 @@
     "width": 2756,
     "height": 116,
     "profile": "standing",
-    "offsetX": 21.686282348632822,
-    "offsetY": 0.5146148681640597,
+    "offsetX": 21.6862823486328,
+    "offsetY": 0.51461486816406,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 0,
+    "animation": 9,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-fist-thrust",
+    "loop": false
   },
   {
     "id": "male-fist-slash",
@@ -557,11 +787,16 @@
     "width": 892,
     "height": 782,
     "profile": "standing",
-    "offsetX": 21.100000000000012,
-    "offsetY": 0.30000000000001137,
+    "offsetX": 21.1,
+    "offsetY": 0.300000000000011,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 0,
+    "animation": 10,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-fist-slash",
+    "loop": false
   },
   {
     "id": "male-sword-idle",
@@ -569,11 +804,16 @@
     "width": 204,
     "height": 2989,
     "profile": "standing",
-    "offsetX": 21.400000000000002,
+    "offsetX": 21.4,
     "offsetY": 0,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 1,
+    "animation": 0,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-sword-idle",
+    "loop": true
   },
   {
     "id": "male-sword-run",
@@ -582,10 +822,15 @@
     "height": 111,
     "profile": "running",
     "offsetX": 21.7,
-    "offsetY": 0.9999999999999787,
+    "offsetY": 0.999999999999979,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 1,
+    "animation": 1,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-sword-run",
+    "loop": true
   },
   {
     "id": "male-sword-dodge",
@@ -593,11 +838,16 @@
     "width": 2004,
     "height": 1097,
     "profile": "standing",
-    "offsetX": 22.649548339843733,
-    "offsetY": 0.4424865722656257,
+    "offsetX": 22.6495483398437,
+    "offsetY": 0.442486572265626,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 1,
+    "animation": 2,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-sword-dodge",
+    "loop": false
   },
   {
     "id": "male-sword-hurt",
@@ -605,11 +855,16 @@
     "width": 216,
     "height": 339,
     "profile": "standing",
-    "offsetX": 22.300000000000004,
-    "offsetY": -0.20000000000000995,
+    "offsetX": 22.3,
+    "offsetY": -0.20000000000001,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 1,
+    "animation": 3,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-sword-hurt",
+    "loop": false
   },
   {
     "id": "male-sword-win",
@@ -617,11 +872,16 @@
     "width": 1872,
     "height": 137,
     "profile": "standing",
-    "offsetX": 21.199999999999985,
+    "offsetX": 21.2,
     "offsetY": 1,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 1,
+    "animation": 4,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-sword-win",
+    "loop": false
   },
   {
     "id": "male-sword-lose",
@@ -629,11 +889,16 @@
     "width": 200,
     "height": 2080,
     "profile": "standing",
-    "offsetX": 21.100000000000005,
-    "offsetY": -0.10000000000000853,
+    "offsetX": 21.1,
+    "offsetY": -0.100000000000009,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 1,
+    "animation": 5,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-sword-lose",
+    "loop": false
   },
   {
     "id": "male-sword-throw",
@@ -641,11 +906,16 @@
     "width": 512,
     "height": 552,
     "profile": "standing",
-    "offsetX": 21.69999999999999,
-    "offsetY": 0.2000000000000064,
+    "offsetX": 21.7,
+    "offsetY": 0.200000000000006,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 1,
+    "animation": 6,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-sword-throw",
+    "loop": false
   },
   {
     "id": "male-sword-equip",
@@ -654,10 +924,15 @@
     "height": 990,
     "profile": "standing",
     "offsetX": 21.5,
-    "offsetY": 0.30000000000001137,
+    "offsetY": 0.300000000000011,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 1,
+    "animation": 7,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-sword-equip",
+    "loop": false
   },
   {
     "id": "male-sword-fist",
@@ -665,11 +940,16 @@
     "width": 1012,
     "height": 105,
     "profile": "standing",
-    "offsetX": 27.20000000000001,
-    "offsetY": -5.899999999999999,
+    "offsetX": 27.2,
+    "offsetY": -5.9,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 1,
+    "animation": 8,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-sword-fist",
+    "loop": false
   },
   {
     "id": "male-sword-thrust",
@@ -677,11 +957,16 @@
     "width": 996,
     "height": 463,
     "profile": "standing",
-    "offsetX": 21.384954833984374,
-    "offsetY": 0.3137298583984318,
+    "offsetX": 21.3849548339844,
+    "offsetY": 0.313729858398432,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 1,
+    "animation": 9,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-sword-thrust",
+    "loop": false
   },
   {
     "id": "male-sword-slash",
@@ -689,11 +974,16 @@
     "width": 456,
     "height": 1531,
     "profile": "standing",
-    "offsetX": 21.10000000000001,
-    "offsetY": 0.30000000000001137,
+    "offsetX": 21.1,
+    "offsetY": 0.300000000000011,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 1,
+    "animation": 10,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-sword-slash",
+    "loop": false
   },
   {
     "id": "male-spear-idle",
@@ -701,11 +991,16 @@
     "width": 3552,
     "height": 112,
     "profile": "standing",
-    "offsetX": 27.39364318847656,
-    "offsetY": 2.400341796875008,
+    "offsetX": 27.3936431884766,
+    "offsetY": 2.40034179687501,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 2,
+    "animation": 0,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-spear-idle",
+    "loop": true
   },
   {
     "id": "male-spear-run",
@@ -714,10 +1009,15 @@
     "height": 640,
     "profile": "running",
     "offsetX": 20.78203125,
-    "offsetY": 6.6003417968750036,
+    "offsetY": 6.600341796875,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 2,
+    "animation": 1,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-spear-run",
+    "loop": true
   },
   {
     "id": "male-spear-dodge",
@@ -725,11 +1025,16 @@
     "width": 2016,
     "height": 1097,
     "profile": "standing",
-    "offsetX": 22.649548339843733,
-    "offsetY": 0.4424865722656257,
+    "offsetX": 22.6495483398437,
+    "offsetY": 0.442486572265626,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 2,
+    "animation": 2,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-spear-dodge",
+    "loop": false
   },
   {
     "id": "male-spear-hurt",
@@ -737,11 +1042,16 @@
     "width": 244,
     "height": 1064,
     "profile": "standing",
-    "offsetX": 23.347669982910155,
+    "offsetX": 23.3476699829102,
     "offsetY": 0.431486511230478,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 2,
+    "animation": 3,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-spear-hurt",
+    "loop": false
   },
   {
     "id": "male-spear-win",
@@ -749,11 +1059,16 @@
     "width": 1824,
     "height": 145,
     "profile": "standing",
-    "offsetX": 21.199999999999985,
+    "offsetX": 21.2,
     "offsetY": 1,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 2,
+    "animation": 4,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-spear-win",
+    "loop": false
   },
   {
     "id": "male-spear-lose",
@@ -761,11 +1076,16 @@
     "width": 204,
     "height": 2160,
     "profile": "standing",
-    "offsetX": 21.100000000000005,
-    "offsetY": -0.10000000000000853,
+    "offsetX": 21.1,
+    "offsetY": -0.100000000000009,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 2,
+    "animation": 5,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-spear-lose",
+    "loop": false
   },
   {
     "id": "male-spear-throw",
@@ -773,11 +1093,16 @@
     "width": 512,
     "height": 582,
     "profile": "standing",
-    "offsetX": 21.69999999999999,
-    "offsetY": 0.2000000000000064,
+    "offsetX": 21.7,
+    "offsetY": 0.200000000000006,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 2,
+    "animation": 6,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-spear-throw",
+    "loop": false
   },
   {
     "id": "male-spear-equip",
@@ -785,11 +1110,16 @@
     "width": 468,
     "height": 539,
     "profile": "standing",
-    "offsetX": 21.990635681152334,
-    "offsetY": -0.36215667724608736,
+    "offsetX": 21.9906356811523,
+    "offsetY": -0.362156677246087,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 2,
+    "animation": 7,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-spear-equip",
+    "loop": false
   },
   {
     "id": "male-spear-fist",
@@ -797,11 +1127,16 @@
     "width": 1012,
     "height": 105,
     "profile": "standing",
-    "offsetX": 27.20000000000001,
-    "offsetY": -5.899999999999999,
+    "offsetX": 27.2,
+    "offsetY": -5.9,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 2,
+    "animation": 8,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-spear-fist",
+    "loop": false
   },
   {
     "id": "male-spear-thrust",
@@ -809,11 +1144,16 @@
     "width": 1004,
     "height": 462,
     "profile": "standing",
-    "offsetX": 21.38495483398437,
-    "offsetY": 0.3137298583984318,
+    "offsetX": 21.3849548339844,
+    "offsetY": 0.313729858398432,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 2,
+    "animation": 9,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-spear-thrust",
+    "loop": false
   },
   {
     "id": "male-spear-slash",
@@ -821,11 +1161,16 @@
     "width": 456,
     "height": 1530,
     "profile": "standing",
-    "offsetX": 21.10000000000001,
-    "offsetY": 0.30000000000001137,
+    "offsetX": 21.1,
+    "offsetY": 0.300000000000011,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 2,
+    "animation": 10,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-spear-slash",
+    "loop": false
   },
   {
     "id": "male-skill-water",
@@ -833,11 +1178,16 @@
     "width": 1012,
     "height": 2635,
     "profile": "standing",
-    "offsetX": 20.400000000000006,
+    "offsetX": 20.4,
     "offsetY": 0,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 0,
+    "animation": 11,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-skill-water",
+    "loop": false
   },
   {
     "id": "male-skill-kick",
@@ -845,11 +1195,16 @@
     "width": 508,
     "height": 3935,
     "profile": "standing",
-    "offsetX": 21.840002441406252,
-    "offsetY": -6.959991455078125,
-    "outerScale": 0.6399993896484375,
+    "offsetX": 21.8400024414063,
+    "offsetY": -6.95999145507812,
+    "outerScale": 0.639999389648437,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 0,
+    "animation": 12,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-skill-kick",
+    "loop": false
   },
   {
     "id": "male-skill-roar",
@@ -857,11 +1212,16 @@
     "width": 4032,
     "height": 1847,
     "profile": "standing",
-    "offsetX": 20.684027099609377,
+    "offsetX": 20.6840270996094,
     "offsetY": -0.9727783203125,
     "outerScale": 0.743194580078125,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 0,
+    "animation": 13,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-skill-roar",
+    "loop": false
   },
   {
     "id": "male-sword-put-down",
@@ -869,11 +1229,16 @@
     "width": 188,
     "height": 748,
     "profile": "standing",
-    "offsetX": 22.09368286132813,
-    "offsetY": -0.015596008300786224,
+    "offsetX": 22.0936828613281,
+    "offsetY": -0.0155960083007862,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 1,
+    "animation": 14,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-sword-put-down",
+    "loop": false
   },
   {
     "id": "male-sword-pick-up",
@@ -881,11 +1246,16 @@
     "width": 692,
     "height": 105,
     "profile": "standing",
-    "offsetX": 21.494209289550785,
-    "offsetY": 0.2849304199218743,
+    "offsetX": 21.4942092895508,
+    "offsetY": 0.284930419921874,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 1,
+    "animation": 15,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-sword-pick-up",
+    "loop": false
   },
   {
     "id": "male-spear-put-down",
@@ -893,11 +1263,16 @@
     "width": 472,
     "height": 396,
     "profile": "standing",
-    "offsetX": 24.261991882324224,
-    "offsetY": 1.6350891113281314,
+    "offsetX": 24.2619918823242,
+    "offsetY": 1.63508911132813,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 2,
+    "animation": 14,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-spear-put-down",
+    "loop": false
   },
   {
     "id": "male-spear-pick-up",
@@ -905,11 +1280,16 @@
     "width": 512,
     "height": 260,
     "profile": "standing",
-    "offsetX": 22.487881469726567,
-    "offsetY": -0.2632583618164155,
+    "offsetX": 22.4878814697266,
+    "offsetY": -0.263258361816415,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 2,
+    "animation": 15,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-spear-pick-up",
+    "loop": false
   },
   {
     "id": "sword-put-down",
@@ -917,11 +1297,16 @@
     "width": 188,
     "height": 894,
     "profile": "standing",
-    "offsetX": 22.194560241699225,
-    "offsetY": 1.8844039916992124,
+    "offsetX": 22.1945602416992,
+    "offsetY": 1.88440399169921,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 1,
+    "animation": 14,
+    "assetPath": "ingame/gameplay/texture/role/mm/sword-put-down",
+    "loop": false
   },
   {
     "id": "sword-pick-up",
@@ -929,11 +1314,16 @@
     "width": 692,
     "height": 127,
     "profile": "standing",
-    "offsetX": 18.394209289550783,
-    "offsetY": 1.5844039916992116,
+    "offsetX": 18.3942092895508,
+    "offsetY": 1.58440399169921,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 1,
+    "animation": 15,
+    "assetPath": "ingame/gameplay/texture/role/mm/sword-pick-up",
+    "loop": false
   },
   {
     "id": "spear-put-down",
@@ -941,11 +1331,16 @@
     "width": 256,
     "height": 902,
     "profile": "standing",
-    "offsetX": 21.665296936035155,
-    "offsetY": 3.3361907958984247,
+    "offsetX": 21.6652969360352,
+    "offsetY": 3.33619079589842,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 2,
+    "animation": 14,
+    "assetPath": "ingame/gameplay/texture/role/mm/spear-put-down",
+    "loop": false
   },
   {
     "id": "spear-pick-up",
@@ -953,11 +1348,16 @@
     "width": 1068,
     "height": 168,
     "profile": "standing",
-    "offsetX": 19.586779785156256,
-    "offsetY": 1.0383941650390653,
+    "offsetX": 19.5867797851563,
+    "offsetY": 1.03839416503907,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 2,
+    "animation": 15,
+    "assetPath": "ingame/gameplay/texture/role/mm/spear-pick-up",
+    "loop": false
   },
   {
     "id": "male-sword-skill-water",
@@ -965,11 +1365,16 @@
     "width": 1012,
     "height": 2640,
     "profile": "standing",
-    "offsetX": 20.400000000000006,
+    "offsetX": 20.4,
     "offsetY": 0,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 1,
+    "animation": 11,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-sword-skill-water",
+    "loop": false
   },
   {
     "id": "male-sword-skill-roar",
@@ -977,11 +1382,16 @@
     "width": 1976,
     "height": 4083,
     "profile": "standing",
-    "offsetX": 20.684027099609377,
-    "offsetY": -0.9727783203125178,
+    "offsetX": 20.6840270996094,
+    "offsetY": -0.972778320312518,
     "outerScale": 0.743194580078125,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 1,
+    "animation": 13,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-sword-skill-roar",
+    "loop": false
   },
   {
     "id": "male-spear-skill-water",
@@ -989,11 +1399,16 @@
     "width": 1012,
     "height": 2641,
     "profile": "standing",
-    "offsetX": 20.400000000000006,
+    "offsetX": 20.4,
     "offsetY": 0,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 2,
+    "animation": 11,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-spear-skill-water",
+    "loop": false
   },
   {
     "id": "male-spear-skill-roar",
@@ -1001,11 +1416,16 @@
     "width": 1984,
     "height": 4083,
     "profile": "standing",
-    "offsetX": 20.684027099609377,
-    "offsetY": -0.9727783203125178,
+    "offsetX": 20.6840270996094,
+    "offsetY": -0.972778320312518,
     "outerScale": 0.743194580078125,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 2,
+    "animation": 13,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-spear-skill-roar",
+    "loop": false
   },
   {
     "id": "sword-skill-water",
@@ -1013,11 +1433,16 @@
     "width": 1012,
     "height": 2264,
     "profile": "standing",
-    "offsetX": 20.400000000000006,
+    "offsetX": 20.4,
     "offsetY": -10,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 1,
+    "animation": 11,
+    "assetPath": "ingame/gameplay/texture/role/mm/sword-skill-water",
+    "loop": false
   },
   {
     "id": "sword-skill-roar",
@@ -1025,11 +1450,16 @@
     "width": 2032,
     "height": 3962,
     "profile": "standing",
-    "offsetX": 20.684027099609377,
-    "offsetY": -9.891113281250014,
+    "offsetX": 20.6840270996094,
+    "offsetY": -9.89111328125001,
     "outerScale": 0.743194580078125,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 1,
+    "animation": 13,
+    "assetPath": "ingame/gameplay/texture/role/mm/sword-skill-roar",
+    "loop": false
   },
   {
     "id": "spear-skill-water",
@@ -1037,11 +1467,16 @@
     "width": 1012,
     "height": 2264,
     "profile": "standing",
-    "offsetX": 20.400000000000006,
+    "offsetX": 20.4,
     "offsetY": -10,
     "outerScale": 1,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 2,
+    "animation": 11,
+    "assetPath": "ingame/gameplay/texture/role/mm/spear-skill-water",
+    "loop": false
   },
   {
     "id": "spear-skill-roar",
@@ -1049,11 +1484,16 @@
     "width": 1988,
     "height": 3962,
     "profile": "standing",
-    "offsetX": 20.684027099609377,
-    "offsetY": -9.891113281250014,
+    "offsetX": 20.6840270996094,
+    "offsetY": -9.89111328125001,
     "outerScale": 0.743194580078125,
     "outerTransformApplied": false,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 2,
+    "animation": 13,
+    "assetPath": "ingame/gameplay/texture/role/mm/spear-skill-roar",
+    "loop": false
   },
   {
     "id": "male-knife-idle",
@@ -1061,11 +1501,16 @@
     "width": 2440,
     "height": 55,
     "profile": "standing",
-    "offsetX": 30.400000000000002,
-    "offsetY": -9.200000000000003,
+    "offsetX": 30.4,
+    "offsetY": -9.2,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 3,
+    "animation": 0,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-knife-idle",
+    "loop": true
   },
   {
     "id": "male-knife-run",
@@ -1074,10 +1519,15 @@
     "height": 63,
     "profile": "running",
     "offsetX": 31.7,
-    "offsetY": -7.7999999999999865,
+    "offsetY": -7.79999999999999,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 3,
+    "animation": 1,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-knife-run",
+    "loop": true
   },
   {
     "id": "male-knife-dodge",
@@ -1085,11 +1535,16 @@
     "width": 3844,
     "height": 152,
     "profile": "standing",
-    "offsetX": 31.689373779296872,
-    "offsetY": -9.601763916015642,
+    "offsetX": 31.6893737792969,
+    "offsetY": -9.60176391601564,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 3,
+    "animation": 2,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-knife-dodge",
+    "loop": false
   },
   {
     "id": "male-knife-hurt",
@@ -1097,11 +1552,16 @@
     "width": 324,
     "height": 62,
     "profile": "standing",
-    "offsetX": 33.00000000000001,
-    "offsetY": -9.199999999999996,
+    "offsetX": 33,
+    "offsetY": -9.2,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 3,
+    "animation": 3,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-knife-hurt",
+    "loop": false
   },
   {
     "id": "male-knife-put-down",
@@ -1110,10 +1570,15 @@
     "height": 55,
     "profile": "standing",
     "offsetX": 32.6121078491211,
-    "offsetY": -10.233494567871091,
+    "offsetY": -10.2334945678711,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 3,
+    "animation": 14,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-knife-put-down",
+    "loop": false
   },
   {
     "id": "male-knife-pick-up",
@@ -1121,11 +1586,16 @@
     "width": 296,
     "height": 54,
     "profile": "standing",
-    "offsetX": 30.510002136230472,
-    "offsetY": -10.133319091796878,
+    "offsetX": 30.5100021362305,
+    "offsetY": -10.1333190917969,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 3,
+    "animation": 15,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-knife-pick-up",
+    "loop": false
   },
   {
     "id": "male-knife-win",
@@ -1133,11 +1603,16 @@
     "width": 808,
     "height": 63,
     "profile": "standing",
-    "offsetX": 30.50000000000001,
-    "offsetY": -10.200000000000003,
+    "offsetX": 30.5,
+    "offsetY": -10.2,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 3,
+    "animation": 4,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-knife-win",
+    "loop": false
   },
   {
     "id": "male-knife-lose",
@@ -1145,11 +1620,16 @@
     "width": 1596,
     "height": 72,
     "profile": "standing",
-    "offsetX": 31.100000000000005,
-    "offsetY": -9.299999999999997,
+    "offsetX": 31.1,
+    "offsetY": -9.3,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 3,
+    "animation": 5,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-knife-lose",
+    "loop": false
   },
   {
     "id": "male-knife-throw",
@@ -1157,11 +1637,16 @@
     "width": 1116,
     "height": 63,
     "profile": "standing",
-    "offsetX": 30.39999999999999,
-    "offsetY": -10.499999999999986,
+    "offsetX": 30.4,
+    "offsetY": -10.5,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 3,
+    "animation": 6,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-knife-throw",
+    "loop": false
   },
   {
     "id": "male-knife-equip",
@@ -1169,11 +1654,16 @@
     "width": 248,
     "height": 375,
     "profile": "standing",
-    "offsetX": 30.500000000000014,
-    "offsetY": -9.200000000000003,
+    "offsetX": 30.5,
+    "offsetY": -9.2,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 3,
+    "animation": 7,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-knife-equip",
+    "loop": false
   },
   {
     "id": "male-knife-fist",
@@ -1182,10 +1672,15 @@
     "height": 55,
     "profile": "standing",
     "offsetX": 37.2,
-    "offsetY": -14.899999999999999,
+    "offsetY": -14.9,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 3,
+    "animation": 8,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-knife-fist",
+    "loop": false
   },
   {
     "id": "male-knife-thrust",
@@ -1193,11 +1688,16 @@
     "width": 1704,
     "height": 61,
     "profile": "standing",
-    "offsetX": 30.625665283203137,
-    "offsetY": -10.634503173828122,
+    "offsetX": 30.6256652832031,
+    "offsetY": -10.6345031738281,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 3,
+    "animation": 9,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-knife-thrust",
+    "loop": false
   },
   {
     "id": "male-knife-slash",
@@ -1205,11 +1705,16 @@
     "width": 460,
     "height": 349,
     "profile": "standing",
-    "offsetX": 30.900000000000006,
-    "offsetY": -10.700000000000003,
+    "offsetX": 30.9,
+    "offsetY": -10.7,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 3,
+    "animation": 10,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-knife-slash",
+    "loop": false
   },
   {
     "id": "male-knife-skill-water",
@@ -1218,10 +1723,15 @@
     "height": 2641,
     "profile": "standing",
     "offsetX": 30.6,
-    "offsetY": -9.499999999999957,
+    "offsetY": -9.49999999999996,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 3,
+    "animation": 11,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-knife-skill-water",
+    "loop": false
   },
   {
     "id": "male-knife-skill-roar",
@@ -1229,11 +1739,16 @@
     "width": 1992,
     "height": 3743,
     "profile": "standing",
-    "offsetX": 20.970416259765624,
-    "offsetY": 0.18196716308595384,
+    "offsetX": 20.9704162597656,
+    "offsetY": 0.181967163085954,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 0,
+    "weapon": 3,
+    "animation": 13,
+    "assetPath": "ingame/gameplay/texture/role/gg/male-knife-skill-roar",
+    "loop": false
   },
   {
     "id": "knife-idle",
@@ -1241,11 +1756,16 @@
     "width": 508,
     "height": 322,
     "profile": "standing",
-    "offsetX": 27.400000000000002,
-    "offsetY": -7.699999999999996,
+    "offsetX": 27.4,
+    "offsetY": -7.7,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 3,
+    "animation": 0,
+    "assetPath": "ingame/gameplay/texture/role/mm/knife-idle",
+    "loop": true
   },
   {
     "id": "knife-run",
@@ -1254,10 +1774,15 @@
     "height": 70,
     "profile": "running",
     "offsetX": 28.7,
-    "offsetY": -6.399999999999999,
+    "offsetY": -6.4,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 3,
+    "animation": 1,
+    "assetPath": "ingame/gameplay/texture/role/mm/knife-run",
+    "loop": true
   },
   {
     "id": "knife-dodge",
@@ -1265,11 +1790,16 @@
     "width": 2032,
     "height": 301,
     "profile": "standing",
-    "offsetX": 32.69424133300781,
-    "offsetY": -8.001763916015634,
+    "offsetX": 32.6942413330078,
+    "offsetY": -8.00176391601563,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 3,
+    "animation": 2,
+    "assetPath": "ingame/gameplay/texture/role/mm/knife-dodge",
+    "loop": false
   },
   {
     "id": "knife-hurt",
@@ -1277,11 +1807,16 @@
     "width": 488,
     "height": 67,
     "profile": "standing",
-    "offsetX": 29.699999999999996,
-    "offsetY": -7.400000000000006,
+    "offsetX": 29.7,
+    "offsetY": -7.40000000000001,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 3,
+    "animation": 3,
+    "assetPath": "ingame/gameplay/texture/role/mm/knife-hurt",
+    "loop": false
   },
   {
     "id": "knife-put-down",
@@ -1290,10 +1825,15 @@
     "height": 66,
     "profile": "standing",
     "offsetX": 32.2121078491211,
-    "offsetY": -7.632266235351565,
+    "offsetY": -7.63226623535157,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 3,
+    "animation": 14,
+    "assetPath": "ingame/gameplay/texture/role/mm/knife-put-down",
+    "loop": false
   },
   {
     "id": "knife-pick-up",
@@ -1301,11 +1841,16 @@
     "width": 296,
     "height": 66,
     "profile": "standing",
-    "offsetX": 27.41000213623047,
-    "offsetY": -9.134371948242183,
+    "offsetX": 27.4100021362305,
+    "offsetY": -9.13437194824218,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 3,
+    "animation": 15,
+    "assetPath": "ingame/gameplay/texture/role/mm/knife-pick-up",
+    "loop": false
   },
   {
     "id": "knife-win",
@@ -1313,11 +1858,16 @@
     "width": 488,
     "height": 798,
     "profile": "standing",
-    "offsetX": 28.799999999999994,
+    "offsetX": 28.8,
     "offsetY": -8.29999999999999,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 3,
+    "animation": 4,
+    "assetPath": "ingame/gameplay/texture/role/mm/knife-win",
+    "loop": false
   },
   {
     "id": "knife-lose",
@@ -1325,11 +1875,16 @@
     "width": 1604,
     "height": 78,
     "profile": "standing",
-    "offsetX": 28.100000000000005,
-    "offsetY": -8.900000000000013,
+    "offsetX": 28.1,
+    "offsetY": -8.90000000000001,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 3,
+    "animation": 5,
+    "assetPath": "ingame/gameplay/texture/role/mm/knife-lose",
+    "loop": false
   },
   {
     "id": "knife-throw",
@@ -1337,11 +1892,16 @@
     "width": 1232,
     "height": 71,
     "profile": "standing",
-    "offsetX": 28.50000000000003,
-    "offsetY": -7.799999999999997,
+    "offsetX": 28.5,
+    "offsetY": -7.8,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 3,
+    "animation": 6,
+    "assetPath": "ingame/gameplay/texture/role/mm/knife-throw",
+    "loop": false
   },
   {
     "id": "knife-equip",
@@ -1349,11 +1909,16 @@
     "width": 252,
     "height": 482,
     "profile": "standing",
-    "offsetX": 27.50000000000001,
-    "offsetY": -9.199999999999996,
+    "offsetX": 27.5,
+    "offsetY": -9.2,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 3,
+    "animation": 7,
+    "assetPath": "ingame/gameplay/texture/role/mm/knife-equip",
+    "loop": false
   },
   {
     "id": "knife-fist",
@@ -1361,11 +1926,16 @@
     "width": 524,
     "height": 66,
     "profile": "standing",
-    "offsetX": 28.099999999999994,
-    "offsetY": -7.599999999999994,
+    "offsetX": 28.1,
+    "offsetY": -7.59999999999999,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 3,
+    "animation": 8,
+    "assetPath": "ingame/gameplay/texture/role/mm/knife-fist",
+    "loop": false
   },
   {
     "id": "knife-thrust",
@@ -1373,11 +1943,16 @@
     "width": 508,
     "height": 258,
     "profile": "standing",
-    "offsetX": 27.525665283203136,
+    "offsetX": 27.5256652832031,
     "offsetY": -9.03450317382812,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 3,
+    "animation": 9,
+    "assetPath": "ingame/gameplay/texture/role/mm/knife-thrust",
+    "loop": false
   },
   {
     "id": "knife-slash",
@@ -1386,10 +1961,15 @@
     "height": 379,
     "profile": "standing",
     "offsetX": 27.5,
-    "offsetY": -8.499999999999979,
+    "offsetY": -8.49999999999998,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 3,
+    "animation": 10,
+    "assetPath": "ingame/gameplay/texture/role/mm/knife-slash",
+    "loop": false
   },
   {
     "id": "knife-skill-water",
@@ -1398,10 +1978,15 @@
     "height": 2230,
     "profile": "standing",
     "offsetX": 27.7,
-    "offsetY": -7.899999999999956,
+    "offsetY": -7.89999999999996,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 3,
+    "animation": 11,
+    "assetPath": "ingame/gameplay/texture/role/mm/knife-skill-water",
+    "loop": false
   },
   {
     "id": "knife-skill-roar",
@@ -1409,10 +1994,15 @@
     "width": 2000,
     "height": 4083,
     "profile": "standing",
-    "offsetX": 16.670416259765624,
-    "offsetY": 1.6819671630859538,
+    "offsetX": 16.6704162597656,
+    "offsetY": 1.68196716308595,
     "outerScale": 1,
     "outerTransformApplied": true,
-    "registrationVersion": 1
+    "registrationVersion": 1,
+    "gender": 1,
+    "weapon": 3,
+    "animation": 13,
+    "assetPath": "ingame/gameplay/texture/role/mm/knife-skill-roar",
+    "loop": false
   }
 ]

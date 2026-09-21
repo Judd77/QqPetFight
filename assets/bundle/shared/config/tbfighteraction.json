@@ -1,0 +1,54 @@
+[
+  {
+    "id": 0,
+    "animation": 0
+  },
+  {
+    "id": 1,
+    "animation": 1
+  },
+  {
+    "id": 2,
+    "animation": -1
+  },
+  {
+    "id": 3,
+    "animation": 1
+  },
+  {
+    "id": 4,
+    "animation": 6
+  },
+  {
+    "id": 5,
+    "animation": 5
+  },
+  {
+    "id": 6,
+    "animation": 4
+  },
+  {
+    "id": 7,
+    "animation": 7
+  },
+  {
+    "id": 8,
+    "animation": 3
+  },
+  {
+    "id": 9,
+    "animation": 2
+  },
+  {
+    "id": 10,
+    "animation": -1
+  },
+  {
+    "id": 11,
+    "animation": 14
+  },
+  {
+    "id": 12,
+    "animation": 15
+  }
+]

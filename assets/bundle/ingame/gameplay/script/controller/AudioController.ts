@@ -1,75 +1,81 @@
 import { BaseController } from "db://assets/bootstrap/script/service/viewService/BaseController";
 import type { GameplayView } from "../GameplayView";
-import type { BattleWorld } from "../battle/BattleWorld";
-import { BattleEventType, BattlePhase, COUNTDOWN_FRAMES, FighterAction, FighterGender, FRAME_RATE, SkillId, WeaponId } from "../battle/BattleTypes";
+import {
+    BattleEventType, BattleStepResult, FighterGender, WeaponId,
+} from "../battle/BattleTypes";
 
-const SKILL_SOUNDS: Partial<Record<SkillId, string>> = {
-    [SkillId.MineralWater]: "KuangQuanShui",
-    [SkillId.ShadowlessKick]: "FoShanWuYingJiao",
-    [SkillId.PenguinRoar]: "QiEHou",
-};
-
-/** 只消费战斗事件播放原版音效，不参与逻辑计算或修改用户音量。 */
+/** 只把逻辑事件映射为配置音效，不扫描动画状态、不参与战斗计算。 */
 export class AudioController extends BaseController<GameplayView> {
     private lastTick = -1;
-    private readonly hurtSounds: string[] = [];
+    private readonly attackWeapons: WeaponId[] = [];
 
-    /** 新局与回放都重新开始倒计时，不继承上一局的受击声音。 */
     reset() {
         this.lastTick = -1;
-        this.hurtSounds.length = 0;
-        this.play("NumSound");
+        this.attackWeapons.length = 0;
+        this.play(this.view.config.view.countdownSound);
     }
 
-    /** 按逻辑帧消费一次；投掷命中仍使用脱手前的武器受击声。 */
-    onFrame(world: BattleWorld) {
-        if (world.tick <= this.lastTick) return;
-        this.lastTick = world.tick;
-        if (world.phase === BattlePhase.Countdown && world.tick > 0 && world.tick % FRAME_RATE === 0) {
-            this.play("NumSound");
-        }
-        if (world.tick === COUNTDOWN_FRAMES) this.play("StartReady");
-        for (const fighter of world.fighters) {
-            if (fighter.action === FighterAction.Run && fighter.actionFrame === world.tick) this.play("RunTo");
-        }
-        for (const event of world.events) {
-            const prefix = this.getVoicePrefix(event.actor);
+    onStep(result: BattleStepResult) {
+        if (result.state.tick <= this.lastTick) return;
+        this.lastTick = result.state.tick;
+        for (const event of result.events) {
             switch (event.type) {
-                case BattleEventType.Attack:
+                case BattleEventType.Countdown:
+                    this.play(this.view.config.view.countdownSound);
+                    break;
+                case BattleEventType.Start:
+                    this.play(this.view.config.view.startSound);
+                    break;
+                case BattleEventType.Move:
+                    this.play(this.view.config.view.runSound);
+                    break;
+                case BattleEventType.Attack: {
+                    const weapon = event.weapon ?? this.view.config.battle.rules.defaultWeapon;
+                    const config = this.view.config.getWeapon(weapon);
+                    this.attackWeapons[event.actor] = weapon;
+                    this.play(this.gender(event.actor) === FighterGender.Female
+                        ? config.attackSoundFemale
+                        : config.attackSoundMale);
+                    break;
+                }
                 case BattleEventType.Throw: {
-                    const weapon = event.weapon ?? WeaponId.Fist;
-                    // 官网配置：短剑、红缨枪的攻击/投掷音效均为 Small，不能按武器体型猜。
-                    this.play(event.type === BattleEventType.Throw ? "ThrowSmall"
-                        : weapon === WeaponId.Fist ? prefix + "KongShou" : "CommonSmall");
-                    this.hurtSounds[event.actor] = this.getVoicePrefix(1 - event.actor) + "ShouShang"
-                        + (weapon === WeaponId.Fist ? "" : "Dao");
+                    const weapon = event.weapon!;
+                    this.attackWeapons[event.actor] = weapon;
+                    this.play(this.view.config.getWeapon(weapon).throwSound);
                     break;
                 }
                 case BattleEventType.Skill:
-                    this.play(SKILL_SOUNDS[event.skill!]);
-                    this.hurtSounds[event.actor] = this.getVoicePrefix(1 - event.actor) + "ShouShang";
+                    this.attackWeapons[event.actor] = this.view.config.battle.rules.defaultWeapon;
+                    this.play(this.view.config.getSkill(event.skill!).sound);
                     break;
-                case BattleEventType.Hit:
-                    this.play(this.hurtSounds[event.actor]);
+                case BattleEventType.Hit: {
+                    const weapon = this.view.config.getWeapon(
+                        this.attackWeapons[event.actor] ?? this.view.config.battle.rules.defaultWeapon,
+                    );
+                    this.play(this.gender(event.target!) === FighterGender.Female
+                        ? weapon.hurtSoundFemale
+                        : weapon.hurtSoundMale);
                     break;
+                }
                 case BattleEventType.Dodge:
-                    this.play("ShanDuo");
+                    this.play(this.view.config.view.dodgeSound);
                     break;
                 case BattleEventType.Finish:
-                    if (world.winner >= 0) this.play(this.getVoicePrefix(1 - world.winner) + "Lose");
+                    if (result.state.winner >= 0) {
+                        this.play(this.gender(1 - result.state.winner) === FighterGender.Female
+                            ? this.view.config.view.femaleLoseSound
+                            : this.view.config.view.maleLoseSound);
+                    }
                     break;
             }
         }
     }
 
-    /** 从参战者数据选择男女配音，不依赖左右站位。 */
-    private getVoicePrefix(player: number) {
-        return this.view.context.info?.fighters[player]?.gender === FighterGender.Female ? "MM" : "GG";
+    private gender(player: number) {
+        return this.view.context.info!.fighters[player]!.gender;
     }
 
-    /** 保留框架已有的静音与音量设置。 */
-    private play(name: string | undefined) {
+    private play(name: string) {
         if (name) this.view.serve.audioService.playSound(name);
     }
-
 }

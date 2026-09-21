@@ -1,66 +1,174 @@
+import { instantiate } from "cc";
 import { BaseController } from "db://assets/bootstrap/script/service/viewService/BaseController";
 import type { GameplayView } from "../GameplayView";
-import type { BattleWorld } from "../battle/BattleWorld";
-import { BattleEventType, BattlePhase, COUNTDOWN_FRAMES, FRAME_RATE, SKILLS, WeaponId, WEAPONS } from "../battle/BattleTypes";
+import {
+    BattleEventType, BattleInfo, BattlePhase, BattleState, BattleStepResult, SkillId, WeaponId,
+} from "../battle/BattleTypes";
+import { SkillCellComponent } from "../skill/SkillCellComponent";
+import { WeaponCellComponent } from "../weapon/WeaponCellComponent";
 
-/** 处理固定 UI 的输入转发与战斗数据显示。 */
+/** 负责 HUD 数据和动态格子；不加载资源、不计算战斗结果。 */
 export class UiController extends BaseController<GameplayView> {
+    private readonly weaponCells: WeaponCellComponent[][] = [[], []];
+    private readonly skillCells: SkillCellComponent[][] = [[], []];
+    private actionExpires = 0;
     private finishElapsed = 0;
     private resultRequested = false;
 
-    /** 展示本次出招提示。 */
-    onFrame(world: BattleWorld) {
-        const state = this.view.component;
-        for (const event of world.events) {
-            if (event.type === BattleEventType.Skill) state.actionLabel.string = SKILLS[event.skill!].name;
-            else if (event.type === BattleEventType.PutDown) state.actionLabel.string = "放下" + WEAPONS[event.weapon!].name;
-            else if (event.type === BattleEventType.PickUp) state.actionLabel.string = "拾起" + WEAPONS[event.weapon!].name;
-            else if (event.type === BattleEventType.Equip) state.actionLabel.string = "取出" + WEAPONS[event.weapon!].name;
-            else if (event.type === BattleEventType.Throw) state.actionLabel.string = "投掷" + WEAPONS[event.weapon!].name;
-            else if (event.type === BattleEventType.Attack) state.actionLabel.string = WEAPONS[event.weapon ?? WeaponId.Fist].name;
-            else continue;
-            state.actionExpires = world.tick + FRAME_RATE * 2;
+    prepare(info: BattleInfo) {
+        this.clearCells();
+        const view = this.view.config.view;
+        for (const fighter of info.fighters) {
+            const player = this.view.component.players[fighter.id]!;
+            player.portrait.spriteFrame = this.view.assetCtrl.getPortrait(fighter);
+            const portraitSize = player.portrait.spriteFrame.originalSize;
+            const portraitScale = view.portraitSize / Math.max(portraitSize.width, portraitSize.height);
+            player.portrait.node.setScale(portraitScale, portraitScale, 1);
+
+            for (const weaponId of fighter.weapons) {
+                const node = instantiate(this.view.assetCtrl.weaponCellPrefab);
+                const cell = node.getComponent(WeaponCellComponent)!;
+                cell.init();
+                cell.weaponId = weaponId;
+                cell.icon.spriteFrame = this.view.assetCtrl.getWeaponFrame(weaponId);
+                const size = cell.icon.spriteFrame.originalSize;
+                const scale = Math.min(view.weaponIconWidth / size.width, view.weaponIconHeight / size.height);
+                node.setScale(scale, scale, 1);
+                node.name = "Weapon " + weaponId;
+                node.parent = player.weapons;
+                this.weaponCells[fighter.id]!.push(cell);
+            }
+            for (const skillInfo of fighter.skills) {
+                const node = instantiate(this.view.assetCtrl.skillCellPrefab);
+                const cell = node.getComponent(SkillCellComponent)!;
+                cell.init();
+                cell.skillId = skillInfo.id;
+                cell.icon.spriteFrame = this.view.assetCtrl.getSkillFrame(skillInfo.id);
+                const size = cell.icon.spriteFrame.originalSize;
+                const scale = view.skillIconSize / Math.max(size.width, size.height);
+                node.setScale(scale, scale, 1);
+                node.name = "Skill " + skillInfo.id;
+                node.parent = player.skills;
+                this.skillCells[fighter.id]!.push(cell);
+            }
         }
+        this.layoutSkillCells();
     }
 
-    /** 刷新生命值、库存和战斗结果。 */
+    onStep(result: BattleStepResult) {
+        const view = this.view.config.view;
+        for (const event of result.events) {
+            let text: string | undefined;
+            if (event.type === BattleEventType.Skill) text = this.view.config.getSkill(event.skill!).name;
+            else if (event.type === BattleEventType.PutDown) {
+                text = this.view.config.format(view.putDownText, this.view.config.getWeapon(event.weapon!).name);
+            } else if (event.type === BattleEventType.PickUp) {
+                text = this.view.config.format(view.pickUpText, this.view.config.getWeapon(event.weapon!).name);
+            } else if (event.type === BattleEventType.Equip) {
+                text = this.view.config.format(view.equipText, this.view.config.getWeapon(event.weapon!).name);
+            } else if (event.type === BattleEventType.Throw) {
+                text = this.view.config.format(view.throwText, this.view.config.getWeapon(event.weapon!).name);
+            } else if (event.type === BattleEventType.Attack) {
+                text = this.view.config.getWeapon(event.weapon ?? this.view.config.battle.rules.defaultWeapon).name;
+            }
+            if (!text) continue;
+            this.view.component.actionLabel.string = text;
+            this.actionExpires = result.state.tick + view.actionDurationFrames;
+        }
+        this.renderInventory(result.state);
+        this.renderSkills(result.state);
+    }
+
+    reset() {
+        this.resultRequested = false;
+        this.finishElapsed = 0;
+        this.actionExpires = 0;
+        this.view.component.actionLabel.string = "";
+    }
+
+    onClickSpeed() {
+        this.view.battleCtrl.toggleSpeed();
+    }
+
     protected override onUpdate(dt: number) {
-        const state = this.view.component;
         const session = this.view.context.session;
         if (!session) return;
-        const world = session.world;
-        state.speedButton.active = !session.finished;
-        for (const fighter of world.fighters) {
-            const ui = state.players[fighter.id]!;
+        const state = session.state;
+        const component = this.view.component;
+        const rules = this.view.config.battle.rules;
+        component.speedButton.active = !session.finished;
+        for (const fighter of state.fighters) {
+            const ui = component.players[fighter.id]!;
             ui.hp.fillRange = fighter.hp / fighter.maxHp * (fighter.id === 0 ? 1 : -1);
             ui.health.string = fighter.hp + "/" + fighter.maxHp;
             ui.name.string = this.view.context.info!.fighters[fighter.id]!.name;
         }
-        state.roundLabel.string = world.phase === BattlePhase.Countdown
-            ? String(Math.max(1, Math.ceil((COUNTDOWN_FRAMES - world.tick) / FRAME_RATE)))
-            : "第" + Math.ceil(world.round / 2) + "回合";
-        if (world.tick > state.actionExpires) state.actionLabel.string = "";
+        component.roundLabel.string = state.phase === BattlePhase.Countdown
+            ? String(Math.max(1, Math.ceil((rules.countdownFrames - state.tick) / rules.frameRate)))
+            : this.view.config.format(this.view.config.view.roundText, Math.ceil(state.round / 2));
+        if (state.tick > this.actionExpires) component.actionLabel.string = "";
         if (session.finished && !session.paused) this.finishElapsed += dt * session.speed;
-        if (session.finished && this.finishElapsed > 0.8 && !this.resultRequested && !this.view.context.loading) {
+        if (session.finished && this.finishElapsed > this.view.config.view.resultDelay &&
+            !this.resultRequested && !this.view.context.loading) {
             this.resultRequested = true;
             void this.view.openResult().catch((error) => {
                 console.error(error);
-                state.actionLabel.string = "结算加载失败，请重新进入战斗";
-                state.actionExpires = Number.MAX_SAFE_INTEGER;
+                component.actionLabel.string = this.view.config.view.loadErrorText;
+                this.actionExpires = Number.MAX_SAFE_INTEGER;
             });
         }
     }
 
-    /** 开局清理状态，保留已编辑好的所有节点。 */
-    reset() {
-        const state = this.view.component;
-        this.resultRequested = false;
-        this.finishElapsed = 0;
-        state.actionExpires = 0;
-        state.actionLabel.string = "";
+    protected override onUnload() {
+        this.clearCells();
     }
 
-    /** 切换播放倍速。 */
-    onClickSpeed() { this.view.battleCtrl.toggleSpeed(); }
+    private renderInventory(state: BattleState) {
+        const view = this.view.config.view;
+        for (const fighter of state.fighters) {
+            let visibleIndex = 0;
+            const direction = fighter.id === 0 ? 1 : -1;
+            for (const cell of this.weaponCells[fighter.id]!) {
+                cell.node.active = fighter.inventory.includes(cell.weaponId);
+                if (!cell.node.active) continue;
+                cell.node.setPosition(
+                    direction * (view.cellStartX + visibleIndex % view.cellColumns * view.cellSpacingX),
+                    -Math.floor(visibleIndex / view.cellColumns) * view.cellSpacingY,
+                );
+                visibleIndex++;
+            }
+        }
+    }
 
+    private renderSkills(state: BattleState) {
+        for (const fighter of state.fighters) {
+            for (const cell of this.skillCells[fighter.id]!) {
+                cell.icon.grayscale = fighter.usedSkills.includes(cell.skillId);
+            }
+        }
+    }
+
+    private layoutSkillCells() {
+        const view = this.view.config.view;
+        for (let fighter = 0; fighter < this.skillCells.length; fighter++) {
+            const direction = fighter === 0 ? 1 : -1;
+            this.skillCells[fighter]!.forEach((cell, index) => {
+                cell.node.setPosition(
+                    direction * (view.cellStartX + index % view.cellColumns * view.cellSpacingX),
+                    -Math.floor(index / view.cellColumns) * view.cellSpacingY,
+                );
+            });
+        }
+    }
+
+    private clearCells() {
+        for (const cells of this.weaponCells) {
+            for (const cell of cells) cell.node.destroy();
+            cells.length = 0;
+        }
+        for (const cells of this.skillCells) {
+            for (const cell of cells) cell.node.destroy();
+            cells.length = 0;
+        }
+    }
 }

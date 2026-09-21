@@ -1,30 +1,89 @@
-/** 逻辑层不依赖 Cocos；时间统一使用 20Hz 服务帧，坐标统一使用整数。 */
-export const FRAME_RATE = 20;
-export const FRAME_SECONDS = 1 / FRAME_RATE;
-export const COUNTDOWN_FRAMES = 60;
-export const MAX_BATTLE_FRAMES = 7200;
-export const MAX_HP = 360;
-
+/** 战斗逻辑层只使用整数帧和整数坐标，不依赖 Cocos 或 Luban 生成类型。 */
 export enum FighterGender { Male, Female }
-export enum WeaponId { Fist, Dagger, Spear, FlyingKnife }
-export enum FighterAction { Idle, Run, Attack, Retreat, Throw, Dead, Victory, Equip, Hurt, Dodge, Skill, PutDown, PickUp }
+export type WeaponId = number;
+export type SkillId = number;
+export type AnimationId = number;
+export enum SkillEffect { Damage, Heal }
 export enum BattlePhase { Countdown, Fighting, Finished }
-export enum CommandType { Equip }
-export enum BattleEventType { Attack, Throw, Hit, Dodge, Block, Equip, Finish, Skill, Heal, PutDown, PickUp }
-export enum SkillId { None = 0, MineralWater = 22, ShadowlessKick = 25, PenguinRoar = 27 }
+export enum FighterAction { Idle, Run, Attack, Retreat, Throw, Dead, Victory, Equip, Hurt, Dodge, Skill, PutDown, PickUp }
+export enum BattleIntent { Attack, Equip, Throw, Skill }
+export enum BattleCommandType { Act }
+export enum BattleEventType { Countdown, Start, Move, Attack, Throw, Hit, Dodge, Block, Equip, Finish, Skill, Heal, PutDown, PickUp }
 
-/** 原版技能名称与导出动画时间轴；威力由模拟对战数据提供。 */
-export const SKILLS = {
-    [SkillId.None]: { name: "", clip: "", hitFrame: 0, duration: 0, downWeapon: false },
-    [SkillId.MineralWater]: { name: "矿泉水", clip: "skill-water", hitFrame: 30, duration: 61, downWeapon: false },
-    [SkillId.ShadowlessKick]: { name: "佛山无影脚", clip: "skill-kick", hitFrame: 30, duration: 60, downWeapon: true },
-    [SkillId.PenguinRoar]: { name: "企鹅吼", clip: "skill-roar", hitFrame: 27, duration: 48, downWeapon: false },
-} as const;
+export interface BattleRules {
+    version: number;
+    demoSeed: number;
+    frameRate: number;
+    countdownFrames: number;
+    maxFrames: number;
+    defaultWeapon: WeaponId;
+    leftStartX: number;
+    rightStartX: number;
+    moveSpeed: number;
+    nextTurnDelay: number;
+    dodgeChance: number;
+    criticalChance: number;
+    criticalMultiplier: number;
+    damageVariance: number;
+    hurtFrames: number;
+    dodgeFrames: number;
+    throwChance: number;
+    skillChance: number;
+    healThreshold: number;
+    projectileSpeed: number;
+    projectileMinFrames: number;
+    maxCatchUpFrames: number;
+}
 
-/** 单机响应中的技能效果数值，不冒充原版服务器公式。 */
-export interface SkillInfo { id: SkillId; power: number; }
+export interface WeaponDefinition {
+    id: WeaponId;
+    name: string;
+    damage: number;
+    range: number;
+    windup: number;
+    recovery: number;
+    attackAnimation: AnimationId;
+    ranged: boolean;
+    equipFrames: number;
+    putDownFrames: number;
+    pickUpFrames: number;
+    projectileArc: number;
+    projectileOffset: number;
+    projectileRotation: number;
+    iconPath: string;
+    attackSoundMale: string;
+    attackSoundFemale: string;
+    throwSound: string;
+    hurtSoundMale: string;
+    hurtSoundFemale: string;
+}
 
-/** 模拟服务器返回的参战者信息。 */
+export interface SkillDefinition {
+    id: SkillId;
+    name: string;
+    effect: SkillEffect;
+    power: number;
+    animation: AnimationId;
+    hitFrame: number;
+    duration: number;
+    requiresUnarmed: boolean;
+    iconPath: string;
+    sound: string;
+    /** 是否可重复施放；NPC 的固有攻击也通过技能指令执行。 */
+    repeatable: boolean;
+}
+
+export interface BattleDefinitions {
+    rules: BattleRules;
+    weapons: ReadonlyMap<WeaponId, WeaponDefinition>;
+    skills: ReadonlyMap<SkillId, SkillDefinition>;
+}
+
+export interface SkillInfo {
+    id: SkillId;
+    power: number;
+}
+
 export interface FighterInfo {
     id: number;
     name: string;
@@ -33,28 +92,24 @@ export interface FighterInfo {
     maxHp: number;
     weapons: WeaponId[];
     skills: SkillInfo[];
+    /** 服务端下发的头像资源；未提供时使用性别默认头像。 */
+    portraitPath?: string;
+    /** NPC 外观配置编号；玩家不提供此字段。 */
+    npcId?: number;
 }
 
-/** 对战初始化数据；场景不预设双方的武器库存。 */
 export interface BattleInfo {
     id: string;
     seed: number;
     fighters: FighterInfo[];
 }
 
-export const WEAPONS = [
-    { name: "空手", damage: 16, range: 105, windup: 5, recovery: 13, icon: "", role: "fist", isRanged: false },
-    { name: "短剑", damage: 25, range: 135, windup: 5, recovery: 12, icon: "weapon-sword", role: "sword", isRanged: false },
-    { name: "红缨枪", damage: 34, range: 185, windup: 8, recovery: 17, icon: "weapon-spear", role: "spear", isRanged: false },
-    // 官网武器 23：spcType=2，原地出手、直线飞行；伤害仍是 Demo 参数。
-    { name: "小李飞刀", damage: 28, range: 700, windup: 9, recovery: 22, icon: "weapon-knife", role: "knife", isRanged: true },
-] as const;
-
 export interface BattleCommand {
     player: number;
     sequence: number;
-    type: CommandType;
-    weapon: WeaponId;
+    type: BattleCommandType;
+    intent: BattleIntent;
+    entryId: number;
 }
 
 export interface ServiceFrame {
@@ -72,18 +127,16 @@ export interface FighterState {
     weapon: WeaponId;
     stowedWeapon: WeaponId;
     inventory: WeaponId[];
-    skill: SkillId;
+    skill?: SkillId;
     usedSkills: SkillId[];
     action: FighterAction;
+    actionWeapon: WeaponId;
     actionFrame: number;
-    resolveFrame: number;
     readyFrame: number;
-    equipFrame: number;
     attacks: number;
     combo: number;
     damageDealt: number;
     dodges: number;
-    lastEquipFrame: number;
 }
 
 export interface ProjectileState {
@@ -91,10 +144,22 @@ export interface ProjectileState {
     owner: number;
     target: number;
     weapon: WeaponId;
+    damage: number;
     startX: number;
     endX: number;
     startFrame: number;
     endFrame: number;
+}
+
+export interface BattleState {
+    tick: number;
+    phase: BattlePhase;
+    winner: number;
+    round: number;
+    activePlayer: number;
+    nextActionFrame: number;
+    fighters: FighterState[];
+    projectiles: ProjectileState[];
 }
 
 export interface BattleEvent {
@@ -103,24 +168,32 @@ export interface BattleEvent {
     target?: number;
     damage?: number;
     critical?: boolean;
-    combo?: boolean;
     weapon?: WeaponId;
     skill?: SkillId;
 }
 
+export interface BattleStepResult {
+    state: Readonly<BattleState>;
+    events: readonly BattleEvent[];
+}
+
 export interface BattleRecording {
-    version: 2;
+    version: 4;
+    configVersion: number;
     battle: BattleInfo;
     frames: ServiceFrame[];
 }
 
-/** 有种子的整数随机数；禁止在战斗逻辑里使用 Math.random。 */
+/** 有种子的整数随机数；确定性逻辑中禁止使用 Math.random。 */
 export class BattleRandom {
     state: number;
 
-    constructor(seed: number) { this.state = (seed >>> 0) || 1; }
+    constructor(seed: number) {
+        this.state = (seed >>> 0) || 1;
+    }
 
     next(max: number): number {
+        if (!Number.isSafeInteger(max) || max <= 0) throw new Error("随机范围无效");
         let value = this.state;
         value ^= value << 13;
         value ^= value >>> 17;

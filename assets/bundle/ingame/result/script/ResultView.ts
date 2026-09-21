@@ -4,6 +4,8 @@ import type { ResultComponent } from "./ResultComponent";
 
 export interface ResultParams {
     winner: number;
+    summary: string;
+    actionText: string;
     saved: boolean;
     saveRecording: () => void;
     playAgain: () => Promise<void>;

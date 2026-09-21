@@ -15,7 +15,8 @@ export class ResultController extends BaseController<ResultView> {
         this.saved = saved;
         state.victory.active = winner === 0;
         state.defeat.active = winner !== 0;
-        state.summary.string = winner === 0 ? "乐斗胜利！" : winner === -1 ? "平局" : "再接再厉";
+        state.summary.string = this.view.params.summary;
+        state.againLabel.string = this.view.params.actionText;
         this.refreshButtons();
         if (winner >= 0) this.view.serve.audioService.playSound(winner === 0 ? "Win" : "Lose");
     }

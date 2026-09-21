@@ -19,10 +19,12 @@ export class LoadingController extends BaseController<LoadingView> {
             await new Promise<void>((resolve) => director.once(Director.EVENT_AFTER_DRAW, resolve));
             await this.view.serve.viewService.loadWithComponentReady(ViewKeys.Gameplay,
                 () => this.setProgress(0.2, "准备战斗资源"),
+                this.view.battle,
                 (progress, message) => this.setProgress(progress, message));
             this.setProgress(1, "准备就绪");
             await new Promise<void>((resolve) => director.once(Director.EVENT_AFTER_DRAW, resolve));
             this.view.serve.viewService.unload(ViewKeys.Loading);
+            this.view.serve.viewService.unload(ViewKeys.Pve);
         } catch (error) {
             console.error(error);
             state.message.string = "加载失败，请重试或返回大厅";
@@ -53,6 +55,7 @@ export class LoadingController extends BaseController<LoadingView> {
         this.busy = true;
         try {
             await this.view.serve.viewService.load(ViewKeys.Lobby);
+            this.view.serve.viewService.unload(ViewKeys.Pve);
             this.view.serve.viewService.unload(ViewKeys.Loading);
         } catch (error) {
             console.error(error);

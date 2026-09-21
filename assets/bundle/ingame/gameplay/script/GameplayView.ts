@@ -3,49 +3,54 @@ import { ViewKeys } from "db://assets/bundle/shared/script/schema/ViewKeys";
 import type { LoadingProgress } from "db://assets/bundle/ingame/loading/script/LoadingView";
 import type { GameplayComponent } from "./GameplayComponent";
 import { BattleContext } from "./battle/BattleContext";
-import type { BattleInfo, BattleRecording } from "./battle/BattleTypes";
-import type { BattleWorld } from "./battle/BattleWorld";
+import type { BattleInfo, BattleRecording, BattleStepResult } from "./battle/BattleTypes";
+import { GameplayConfig } from "./config/GameplayConfig";
 import { AudioController } from "./controller/AudioController";
 import { BattleController } from "./controller/BattleController";
-import { UiController } from "./controller/UiController";
-import { PresentationController } from "./controller/PresentationController";
+import { GameplayAssetController } from "./controller/GameplayAssetController";
 import { RecordingController } from "./controller/RecordingController";
-import { SkillController } from "./skill/SkillController";
-import { WeaponController } from "./weapon/WeaponController";
+import { StageController } from "./controller/StageController";
+import { UiController } from "./controller/UiController";
+import type { BattleEntry } from "./battle/BattleEntry";
+import { BattleResultController } from "./controller/BattleResultController";
 
-/** 玩法总入口：组装 Controller，协调对战数据、资源与表现。 */
-export class GameplayView extends BaseView<GameplayComponent, [LoadingProgress?]> {
+/** 玩法总入口：只编排数据、资源、会话、表现和结算的先后顺序。 */
+export class GameplayView extends BaseView<GameplayComponent, [BattleEntry, LoadingProgress?]> {
+    declare entry: BattleEntry;
     readonly context = new BattleContext();
+    readonly config = new GameplayConfig();
+    readonly assetCtrl = new GameplayAssetController(this);
     readonly battleCtrl = new BattleController(this);
-    readonly weaponCtrl = new WeaponController(this);
-    readonly skillCtrl = new SkillController(this);
-    readonly presentationCtrl = new PresentationController(this);
+    readonly stageCtrl = new StageController(this);
     readonly uiCtrl = new UiController(this);
     readonly audioCtrl = new AudioController(this);
     readonly recordingCtrl = new RecordingController(this);
+    readonly resultCtrl = new BattleResultController(this);
 
     protected override readonly controllers = [
+        this.assetCtrl,
         this.battleCtrl,
-        this.recordingCtrl,
-        this.weaponCtrl,
-        this.skillCtrl,
-        this.presentationCtrl,
+        this.stageCtrl,
         this.uiCtrl,
         this.audioCtrl,
+        this.recordingCtrl,
+        this.resultCtrl,
     ];
 
-    /** 完成固定资源加载后，申请第一场对战。 */
-    protected override async onLoad(onProgress?: LoadingProgress) {
-        await this.restart(onProgress);
+    protected override onBeforeLoad() {
+        this.config.load(this.serve.configService.tables);
     }
 
-    /** 根据新响应准备资源，再启动这一场战斗。 */
-    async restart(onProgress?: LoadingProgress) {
+    protected override async onLoad(entry: BattleEntry, onProgress?: LoadingProgress) {
+        this.entry = entry;
+        await this.startBattle(entry.battle, onProgress);
+    }
+
+    private async startBattle(info: BattleInfo, onProgress?: LoadingProgress) {
         if (this.context.loading) return;
         this.context.loading = true;
         try {
-            onProgress?.(0.25, "获取对战信息");
-            const info = await this.battleCtrl.requestBattle();
+            onProgress?.(0.25, "准备对战");
             await this.prepareBattle(info, onProgress);
             this.battleCtrl.start(info);
             this.resetPresentation();
@@ -55,71 +60,48 @@ export class GameplayView extends BaseView<GameplayComponent, [LoadingProgress?]
         }
     }
 
-    /** 使用录像保存的配装重建武器栏，不请求另一份对战数据。 */
     async replay(recording: BattleRecording | undefined = this.context.lastRecording, checksum = this.context.lastChecksum) {
         if (this.context.loading || !recording) return;
         this.context.loading = true;
         try {
-            const info = recording.battle;
-            await this.prepareBattle(info);
+            await this.prepareBattle(recording.battle);
             this.context.lastRecording = recording;
             this.context.lastChecksum = checksum;
-            if (this.battleCtrl.replay()) this.resetPresentation();
+            if (this.battleCtrl.replay(recording)) this.resetPresentation();
         } finally {
             this.context.loading = false;
         }
     }
 
-    /** 汇总武器、技能和角色动画的实际完成进度。 */
-    private async prepareBattle(info: BattleInfo, onProgress?: LoadingProgress) {
-        let completed = 0;
-        let roleProgress = 0;
-        const report = () => onProgress?.(0.3 + 0.65 * (completed + roleProgress) / 3, "加载角色、武器与技能");
-        report();
-        const results = await Promise.allSettled([
-            this.weaponCtrl.prepare(info).then(() => { completed++; report(); }),
-            this.skillCtrl.prepare(info).then(() => { completed++; report(); }),
-            this.presentationCtrl.prepare(info, (progress) => { roleProgress = progress; report(); }),
-        ]);
-        const failed = results.find((result) => result.status === "rejected") as PromiseRejectedResult | undefined;
-        if (failed) throw failed.reason;
+    onBattleStep(result: BattleStepResult) {
+        this.stageCtrl.onStep(result);
+        this.uiCtrl.onStep(result);
+        this.audioCtrl.onStep(result);
     }
 
-    /** 打开独立结算 View，传入本局结果与业务操作。 */
     async openResult() {
-        const session = this.context.session;
-        if (!session?.finished) return;
-        await this.serve.viewService.load(ViewKeys.Result, {
-            winner: session.world.winner,
-            saved: this.recordingCtrl.isCurrentSaved,
-            saveRecording: () => this.recordingCtrl.save(),
-            playAgain: () => this.restart(),
-        });
+        await this.resultCtrl.show();
     }
 
-    /** 离开玩法时同时关闭结算，避免弹窗遗留到大厅。 */
     protected override onUnload() {
         this.serve.viewService.unload(ViewKeys.Result);
     }
 
-    /** 按逻辑帧通知各表现模块，补帧时不遗漏事件。 */
-    onBattleFrame(world: BattleWorld) {
-        this.presentationCtrl.onFrame(world);
-        this.uiCtrl.onFrame(world);
-        this.audioCtrl.onFrame(world);
-        this.weaponCtrl.render(world);
-        this.skillCtrl.render(world);
+    private async prepareBattle(info: BattleInfo, onProgress?: LoadingProgress) {
+        onProgress?.(0.3, "加载角色、武器与技能");
+        await this.assetCtrl.prepare(info, (progress) => {
+            onProgress?.(0.3 + 0.65 * progress, "加载角色、武器与技能");
+        });
+        this.stageCtrl.prepare();
+        this.uiCtrl.prepare(info);
     }
 
-    /** 切换对战后立即刷新显示，不额外推进逻辑帧。 */
     private resetPresentation() {
         this.serve.viewService.unload(ViewKeys.Result);
-        this.presentationCtrl.reset();
+        this.stageCtrl.reset();
         this.uiCtrl.reset();
         this.audioCtrl.reset();
-        this.weaponCtrl.render(this.context.session!.world);
-        this.skillCtrl.render(this.context.session!.world);
-        this.presentationCtrl.update(0);
+        this.stageCtrl.update(0);
         this.uiCtrl.update(0);
     }
 }

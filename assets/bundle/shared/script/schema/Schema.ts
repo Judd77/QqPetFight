@@ -7,7 +7,487 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+export namespace Schema {
 
+    export class BattleRuleEntry {
+
+        constructor(_json_: any) {
+            if (_json_.id === undefined) throw new Error();
+            this.id = _json_.id;
+            if (_json_.version === undefined) throw new Error();
+            this.version = _json_.version;
+            if (_json_.demoSeed === undefined) throw new Error();
+            this.demoSeed = _json_.demoSeed;
+            if (_json_.frameRate === undefined) throw new Error();
+            this.frameRate = _json_.frameRate;
+            if (_json_.countdownFrames === undefined) throw new Error();
+            this.countdownFrames = _json_.countdownFrames;
+            if (_json_.maxFrames === undefined) throw new Error();
+            this.maxFrames = _json_.maxFrames;
+            if (_json_.defaultWeapon === undefined) throw new Error();
+            this.defaultWeapon = _json_.defaultWeapon;
+            if (_json_.leftStartX === undefined) throw new Error();
+            this.leftStartX = _json_.leftStartX;
+            if (_json_.rightStartX === undefined) throw new Error();
+            this.rightStartX = _json_.rightStartX;
+            if (_json_.moveSpeed === undefined) throw new Error();
+            this.moveSpeed = _json_.moveSpeed;
+            if (_json_.nextTurnDelay === undefined) throw new Error();
+            this.nextTurnDelay = _json_.nextTurnDelay;
+            if (_json_.dodgeChance === undefined) throw new Error();
+            this.dodgeChance = _json_.dodgeChance;
+            if (_json_.criticalChance === undefined) throw new Error();
+            this.criticalChance = _json_.criticalChance;
+            if (_json_.criticalMultiplier === undefined) throw new Error();
+            this.criticalMultiplier = _json_.criticalMultiplier;
+            if (_json_.damageVariance === undefined) throw new Error();
+            this.damageVariance = _json_.damageVariance;
+            if (_json_.hurtFrames === undefined) throw new Error();
+            this.hurtFrames = _json_.hurtFrames;
+            if (_json_.dodgeFrames === undefined) throw new Error();
+            this.dodgeFrames = _json_.dodgeFrames;
+            if (_json_.throwChance === undefined) throw new Error();
+            this.throwChance = _json_.throwChance;
+            if (_json_.skillChance === undefined) throw new Error();
+            this.skillChance = _json_.skillChance;
+            if (_json_.healThreshold === undefined) throw new Error();
+            this.healThreshold = _json_.healThreshold;
+            if (_json_.projectileSpeed === undefined) throw new Error();
+            this.projectileSpeed = _json_.projectileSpeed;
+            if (_json_.projectileMinFrames === undefined) throw new Error();
+            this.projectileMinFrames = _json_.projectileMinFrames;
+            if (_json_.maxCatchUpFrames === undefined) throw new Error();
+            this.maxCatchUpFrames = _json_.maxCatchUpFrames;
+        }
+
+        /**
+        * 规则 ID
+        */
+        readonly id: number;
+        /**
+        * 配置版本
+        */
+        readonly version: number;
+        /**
+        * 演示种子
+        */
+        readonly demoSeed: number;
+        /**
+        * 服务帧率
+        */
+        readonly frameRate: number;
+        /**
+        * 倒计时帧
+        */
+        readonly countdownFrames: number;
+        /**
+        * 最大帧数
+        */
+        readonly maxFrames: number;
+        /**
+        * 默认武器
+        */
+        readonly defaultWeapon: number;
+        /**
+        * 左侧出生点
+        */
+        readonly leftStartX: number;
+        /**
+        * 右侧出生点
+        */
+        readonly rightStartX: number;
+        /**
+        * 移动速度
+        */
+        readonly moveSpeed: number;
+        /**
+        * 回合间隔
+        */
+        readonly nextTurnDelay: number;
+        /**
+        * 闪避概率
+        */
+        readonly dodgeChance: number;
+        /**
+        * 暴击概率
+        */
+        readonly criticalChance: number;
+        /**
+        * 暴击倍率
+        */
+        readonly criticalMultiplier: number;
+        /**
+        * 伤害浮动
+        */
+        readonly damageVariance: number;
+        /**
+        * 受击帧
+        */
+        readonly hurtFrames: number;
+        /**
+        * 闪避帧
+        */
+        readonly dodgeFrames: number;
+        /**
+        * 投掷概率
+        */
+        readonly throwChance: number;
+        /**
+        * 技能概率
+        */
+        readonly skillChance: number;
+        /**
+        * 治疗触发血量比例
+        */
+        readonly healThreshold: number;
+        /**
+        * 投射物速度
+        */
+        readonly projectileSpeed: number;
+        /**
+        * 投射物最少帧
+        */
+        readonly projectileMinFrames: number;
+        /**
+        * 单次最大补帧
+        */
+        readonly maxCatchUpFrames: number;
+
+        protected resolve(tables: Tables): void {
+        }
+    }
+
+    export class BattleViewEntry {
+
+        constructor(_json_: any) {
+            if (_json_.id === undefined) throw new Error();
+            this.id = _json_.id;
+            if (_json_.actorY === undefined) throw new Error();
+            this.actorY = _json_.actorY;
+            if (_json_.groundOffsetX === undefined) throw new Error();
+            this.groundOffsetX = _json_.groundOffsetX;
+            if (_json_.groundY === undefined) throw new Error();
+            this.groundY = _json_.groundY;
+            if (_json_.groundMaxWidth === undefined) throw new Error();
+            this.groundMaxWidth = _json_.groundMaxWidth;
+            if (_json_.groundMaxHeight === undefined) throw new Error();
+            this.groundMaxHeight = _json_.groundMaxHeight;
+            if (_json_.groundAngle === undefined) throw new Error();
+            this.groundAngle = _json_.groundAngle;
+            if (_json_.projectileY === undefined) throw new Error();
+            this.projectileY = _json_.projectileY;
+            if (_json_.projectileMaxWidth === undefined) throw new Error();
+            this.projectileMaxWidth = _json_.projectileMaxWidth;
+            if (_json_.projectileMaxHeight === undefined) throw new Error();
+            this.projectileMaxHeight = _json_.projectileMaxHeight;
+            if (_json_.damageY === undefined) throw new Error();
+            this.damageY = _json_.damageY;
+            if (_json_.damageDuration === undefined) throw new Error();
+            this.damageDuration = _json_.damageDuration;
+            if (_json_.damageRiseSpeed === undefined) throw new Error();
+            this.damageRiseSpeed = _json_.damageRiseSpeed;
+            if (_json_.portraitSize === undefined) throw new Error();
+            this.portraitSize = _json_.portraitSize;
+            if (_json_.weaponIconWidth === undefined) throw new Error();
+            this.weaponIconWidth = _json_.weaponIconWidth;
+            if (_json_.weaponIconHeight === undefined) throw new Error();
+            this.weaponIconHeight = _json_.weaponIconHeight;
+            if (_json_.skillIconSize === undefined) throw new Error();
+            this.skillIconSize = _json_.skillIconSize;
+            if (_json_.cellStartX === undefined) throw new Error();
+            this.cellStartX = _json_.cellStartX;
+            if (_json_.cellSpacingX === undefined) throw new Error();
+            this.cellSpacingX = _json_.cellSpacingX;
+            if (_json_.cellSpacingY === undefined) throw new Error();
+            this.cellSpacingY = _json_.cellSpacingY;
+            if (_json_.cellColumns === undefined) throw new Error();
+            this.cellColumns = _json_.cellColumns;
+            if (_json_.actionDurationFrames === undefined) throw new Error();
+            this.actionDurationFrames = _json_.actionDurationFrames;
+            if (_json_.resultDelay === undefined) throw new Error();
+            this.resultDelay = _json_.resultDelay;
+            if (_json_.weaponCellPrefab === undefined) throw new Error();
+            this.weaponCellPrefab = _json_.weaponCellPrefab;
+            if (_json_.skillCellPrefab === undefined) throw new Error();
+            this.skillCellPrefab = _json_.skillCellPrefab;
+            if (_json_.malePortrait === undefined) throw new Error();
+            this.malePortrait = _json_.malePortrait;
+            if (_json_.femalePortrait === undefined) throw new Error();
+            this.femalePortrait = _json_.femalePortrait;
+            if (_json_.countdownSound === undefined) throw new Error();
+            this.countdownSound = _json_.countdownSound;
+            if (_json_.startSound === undefined) throw new Error();
+            this.startSound = _json_.startSound;
+            if (_json_.dodgeSound === undefined) throw new Error();
+            this.dodgeSound = _json_.dodgeSound;
+            if (_json_.roundText === undefined) throw new Error();
+            this.roundText = _json_.roundText;
+            if (_json_.equipText === undefined) throw new Error();
+            this.equipText = _json_.equipText;
+            if (_json_.putDownText === undefined) throw new Error();
+            this.putDownText = _json_.putDownText;
+            if (_json_.pickUpText === undefined) throw new Error();
+            this.pickUpText = _json_.pickUpText;
+            if (_json_.throwText === undefined) throw new Error();
+            this.throwText = _json_.throwText;
+            if (_json_.loadErrorText === undefined) throw new Error();
+            this.loadErrorText = _json_.loadErrorText;
+            if (_json_.runSound === undefined) throw new Error();
+            this.runSound = _json_.runSound;
+            if (_json_.maleLoseSound === undefined) throw new Error();
+            this.maleLoseSound = _json_.maleLoseSound;
+            if (_json_.femaleLoseSound === undefined) throw new Error();
+            this.femaleLoseSound = _json_.femaleLoseSound;
+            if (_json_.healColor === undefined) throw new Error();
+            this.healColor = _json_.healColor;
+            if (_json_.criticalColor === undefined) throw new Error();
+            this.criticalColor = _json_.criticalColor;
+            if (_json_.damageColor === undefined) throw new Error();
+            this.damageColor = _json_.damageColor;
+            if (_json_.dodgeText === undefined) throw new Error();
+            this.dodgeText = _json_.dodgeText;
+            if (_json_.blockText === undefined) throw new Error();
+            this.blockText = _json_.blockText;
+            if (_json_.healPrefix === undefined) throw new Error();
+            this.healPrefix = _json_.healPrefix;
+            if (_json_.damagePrefix === undefined) throw new Error();
+            this.damagePrefix = _json_.damagePrefix;
+            if (_json_.normalSpeed === undefined) throw new Error();
+            this.normalSpeed = _json_.normalSpeed;
+            if (_json_.fastSpeed === undefined) throw new Error();
+            this.fastSpeed = _json_.fastSpeed;
+            if (_json_.recordingStorageKey === undefined) throw new Error();
+            this.recordingStorageKey = _json_.recordingStorageKey;
+            if (_json_.maxRecordings === undefined) throw new Error();
+            this.maxRecordings = _json_.maxRecordings;
+        }
+
+        /**
+        * 表现 ID
+        */
+        readonly id: number;
+        /**
+        * 角色 Y
+        */
+        readonly actorY: number;
+        /**
+        * 落地武器 X 偏移
+        */
+        readonly groundOffsetX: number;
+        /**
+        * 落地武器 Y
+        */
+        readonly groundY: number;
+        /**
+        * 落地武器最大宽
+        */
+        readonly groundMaxWidth: number;
+        /**
+        * 落地武器最大高
+        */
+        readonly groundMaxHeight: number;
+        /**
+        * 落地武器角度
+        */
+        readonly groundAngle: number;
+        /**
+        * 投射物 Y
+        */
+        readonly projectileY: number;
+        /**
+        * 投射物最大宽
+        */
+        readonly projectileMaxWidth: number;
+        /**
+        * 投射物最大高
+        */
+        readonly projectileMaxHeight: number;
+        /**
+        * 伤害数字 Y
+        */
+        readonly damageY: number;
+        /**
+        * 伤害持续秒
+        */
+        readonly damageDuration: number;
+        /**
+        * 伤害上升速度
+        */
+        readonly damageRiseSpeed: number;
+        /**
+        * 头像尺寸
+        */
+        readonly portraitSize: number;
+        /**
+        * 武器图标宽
+        */
+        readonly weaponIconWidth: number;
+        /**
+        * 武器图标高
+        */
+        readonly weaponIconHeight: number;
+        /**
+        * 技能图标尺寸
+        */
+        readonly skillIconSize: number;
+        /**
+        * 列表起点 X
+        */
+        readonly cellStartX: number;
+        /**
+        * 列表横向间距
+        */
+        readonly cellSpacingX: number;
+        /**
+        * 列表纵向间距
+        */
+        readonly cellSpacingY: number;
+        /**
+        * 每行数量
+        */
+        readonly cellColumns: number;
+        /**
+        * 动作提示帧数
+        */
+        readonly actionDurationFrames: number;
+        /**
+        * 结算延迟秒
+        */
+        readonly resultDelay: number;
+        /**
+        * 武器格预制体
+        */
+        readonly weaponCellPrefab: string;
+        /**
+        * 技能格预制体
+        */
+        readonly skillCellPrefab: string;
+        /**
+        * 男性头像
+        */
+        readonly malePortrait: string;
+        /**
+        * 女性头像
+        */
+        readonly femalePortrait: string;
+        /**
+        * 倒计时音效
+        */
+        readonly countdownSound: string;
+        /**
+        * 开始音效
+        */
+        readonly startSound: string;
+        /**
+        * 闪避音效
+        */
+        readonly dodgeSound: string;
+        /**
+        * 回合文本
+        */
+        readonly roundText: string;
+        /**
+        * 取出文本
+        */
+        readonly equipText: string;
+        /**
+        * 放下文本
+        */
+        readonly putDownText: string;
+        /**
+        * 拾起文本
+        */
+        readonly pickUpText: string;
+        /**
+        * 投掷文本
+        */
+        readonly throwText: string;
+        /**
+        * 加载失败文本
+        */
+        readonly loadErrorText: string;
+        /**
+        * 移动音效
+        */
+        readonly runSound: string;
+        /**
+        * 男性失败音效
+        */
+        readonly maleLoseSound: string;
+        /**
+        * 女性失败音效
+        */
+        readonly femaleLoseSound: string;
+        /**
+        * 治疗颜色
+        */
+        readonly healColor: string;
+        /**
+        * 暴击颜色
+        */
+        readonly criticalColor: string;
+        /**
+        * 伤害颜色
+        */
+        readonly damageColor: string;
+        /**
+        * 闪避文本
+        */
+        readonly dodgeText: string;
+        /**
+        * 格挡文本
+        */
+        readonly blockText: string;
+        /**
+        * 治疗前缀
+        */
+        readonly healPrefix: string;
+        /**
+        * 伤害前缀
+        */
+        readonly damagePrefix: string;
+        /**
+        * 普通速度
+        */
+        readonly normalSpeed: number;
+        /**
+        * 快速速度
+        */
+        readonly fastSpeed: number;
+        /**
+        * 录像存储键
+        */
+        readonly recordingStorageKey: string;
+        /**
+        * 最大录像数
+        */
+        readonly maxRecordings: number;
+
+        protected resolve(tables: Tables): void {
+        }
+    }
+
+    export class FighterActionEntry {
+
+        constructor(_json_: any) {
+            if (_json_.id === undefined) throw new Error();
+            this.id = _json_.id;
+            if (_json_.animation === undefined) throw new Error();
+            this.animation = _json_.animation;
+        }
+
+        /**
+        * 逻辑动作
+        */
+        readonly id: number;
+        /**
+        * 动画类型
+        */
+        readonly animation: number;
+
+        protected resolve(tables: Tables): void {
+        }
+    }
 
     export class FootAlignmentEntry {
 
@@ -83,6 +563,158 @@
         }
     }
 
+    export class NpcAnimationEntry {
+
+        constructor(_json_: any) {
+            if (_json_.id === undefined) throw new Error();
+            this.id = _json_.id;
+            if (_json_.npcId === undefined) throw new Error();
+            this.npcId = _json_.npcId;
+            if (_json_.phase === undefined) throw new Error();
+            this.phase = _json_.phase;
+            if (_json_.action === undefined) throw new Error();
+            this.action = _json_.action;
+            if (_json_.skillId === undefined) throw new Error();
+            this.skillId = _json_.skillId;
+            if (_json_.fps === undefined) throw new Error();
+            this.fps = _json_.fps;
+            if (_json_.loop === undefined) throw new Error();
+            this.loop = _json_.loop;
+            if (_json_.facing === undefined) throw new Error();
+            this.facing = _json_.facing;
+            if (_json_.width === undefined) throw new Error();
+            this.width = _json_.width;
+            if (_json_.height === undefined) throw new Error();
+            this.height = _json_.height;
+            if (_json_.assetPath === undefined) throw new Error();
+            this.assetPath = _json_.assetPath;
+            if (_json_.offsetX === undefined) throw new Error();
+            this.offsetX = _json_.offsetX;
+            if (_json_.offsetY === undefined) throw new Error();
+            this.offsetY = _json_.offsetY;
+        }
+
+        /**
+        * 图集 ID
+        */
+        readonly id: string;
+        /**
+        * 官网角色 ID
+        */
+        readonly npcId: number;
+        /**
+        * 阶段 0准备 1战斗 2结束
+        */
+        readonly phase: number;
+        /**
+        * FighterAction
+        */
+        readonly action: number;
+        /**
+        * 专属技能 ID，非技能填0
+        */
+        readonly skillId: number;
+        /**
+        * 原版帧率
+        */
+        readonly fps: number;
+        /**
+        * 循环
+        */
+        readonly loop: boolean;
+        /**
+        * 图像原始朝向
+        */
+        readonly facing: number;
+        /**
+        * 图集宽
+        */
+        readonly width: number;
+        /**
+        * 图集高
+        */
+        readonly height: number;
+        /**
+        * 资源路径
+        */
+        readonly assetPath: string;
+        /**
+        * 整体X偏移
+        */
+        readonly offsetX: number;
+        /**
+        * 整体Y偏移
+        */
+        readonly offsetY: number;
+
+        protected resolve(tables: Tables): void {
+        }
+    }
+
+    export class PveStageEntry {
+
+        constructor(_json_: any) {
+            if (_json_.id === undefined) throw new Error();
+            this.id = _json_.id;
+            if (_json_.name === undefined) throw new Error();
+            this.name = _json_.name;
+            if (_json_.gender === undefined) throw new Error();
+            this.gender = _json_.gender;
+            if (_json_.hp === undefined) throw new Error();
+            this.hp = _json_.hp;
+            if (_json_.description === undefined) throw new Error();
+            this.description = _json_.description;
+            if (_json_.weapons === undefined) throw new Error();
+            { this.weapons = []; for(let _ele0 of _json_.weapons) { let _e0; _e0 = _ele0; this.weapons.push(_e0);}};
+            if (_json_.skills === undefined) throw new Error();
+            { this.skills = []; for(let _ele0 of _json_.skills) { let _e0; _e0 = _ele0; this.skills.push(_e0);}};
+            if (_json_.npcId === undefined) throw new Error();
+            this.npcId = _json_.npcId;
+            if (_json_.portrait === undefined) throw new Error();
+            this.portrait = _json_.portrait;
+        }
+
+        /**
+        * 关卡序号
+        */
+        readonly id: number;
+        /**
+        * 对手名称
+        */
+        readonly name: string;
+        /**
+        * 性别
+        */
+        readonly gender: number;
+        /**
+        * 生命
+        */
+        readonly hp: number;
+        /**
+        * 关卡描述
+        */
+        readonly description: string;
+        /**
+        * 武器ID列表
+        */
+        readonly weapons: number[];
+        /**
+        * 技能ID列表
+        */
+        readonly skills: number[];
+        /**
+        * 官网NPC编号
+        */
+        readonly npcId: number;
+        /**
+        * 头像资源
+        */
+        readonly portrait: string;
+
+        protected resolve(tables: Tables): void {
+        }
+    }
+
     export class RoleAnimationEntry {
 
         constructor(_json_: any) {
@@ -106,6 +738,16 @@
             this.outerTransformApplied = _json_.outerTransformApplied;
             if (_json_.registrationVersion === undefined) throw new Error();
             this.registrationVersion = _json_.registrationVersion;
+            if (_json_.gender === undefined) throw new Error();
+            this.gender = _json_.gender;
+            if (_json_.weapon === undefined) throw new Error();
+            this.weapon = _json_.weapon;
+            if (_json_.animation === undefined) throw new Error();
+            this.animation = _json_.animation;
+            if (_json_.assetPath === undefined) throw new Error();
+            this.assetPath = _json_.assetPath;
+            if (_json_.loop === undefined) throw new Error();
+            this.loop = _json_.loop;
         }
 
         /**
@@ -148,6 +790,26 @@
         * 脚底采样版本
         */
         readonly registrationVersion: number;
+        /**
+        * 性别
+        */
+        readonly gender: number;
+        /**
+        * 武器 ID
+        */
+        readonly weapon: number;
+        /**
+        * 动画类型
+        */
+        readonly animation: number;
+        /**
+        * 图集资源路径
+        */
+        readonly assetPath: string;
+        /**
+        * 是否循环
+        */
+        readonly loop: boolean;
 
         protected resolve(tables: Tables): void {
         }
@@ -212,6 +874,212 @@
         * 原始帧缩放
         */
         readonly scale: number;
+
+        protected resolve(tables: Tables): void {
+        }
+    }
+
+    export class SkillEntry {
+
+        constructor(_json_: any) {
+            if (_json_.id === undefined) throw new Error();
+            this.id = _json_.id;
+            if (_json_.name === undefined) throw new Error();
+            this.name = _json_.name;
+            if (_json_.effect === undefined) throw new Error();
+            this.effect = _json_.effect;
+            if (_json_.power === undefined) throw new Error();
+            this.power = _json_.power;
+            if (_json_.animation === undefined) throw new Error();
+            this.animation = _json_.animation;
+            if (_json_.hitFrame === undefined) throw new Error();
+            this.hitFrame = _json_.hitFrame;
+            if (_json_.duration === undefined) throw new Error();
+            this.duration = _json_.duration;
+            if (_json_.requiresUnarmed === undefined) throw new Error();
+            this.requiresUnarmed = _json_.requiresUnarmed;
+            if (_json_.iconPath === undefined) throw new Error();
+            this.iconPath = _json_.iconPath;
+            if (_json_.sound === undefined) throw new Error();
+            this.sound = _json_.sound;
+            if (_json_.repeatable === undefined) throw new Error();
+            this.repeatable = _json_.repeatable;
+        }
+
+        /**
+        * 技能 ID
+        */
+        readonly id: number;
+        /**
+        * 名称
+        */
+        readonly name: string;
+        /**
+        * 效果类型
+        */
+        readonly effect: number;
+        /**
+        * 基础威力
+        */
+        readonly power: number;
+        /**
+        * 动画类型
+        */
+        readonly animation: number;
+        /**
+        * 效果帧
+        */
+        readonly hitFrame: number;
+        /**
+        * 总帧数
+        */
+        readonly duration: number;
+        /**
+        * 是否需要空手
+        */
+        readonly requiresUnarmed: boolean;
+        /**
+        * 图标路径
+        */
+        readonly iconPath: string;
+        /**
+        * 音效
+        */
+        readonly sound: string;
+        /**
+        * 可重复施放（NPC固有攻击）
+        */
+        readonly repeatable: boolean;
+
+        protected resolve(tables: Tables): void {
+        }
+    }
+
+    export class WeaponEntry {
+
+        constructor(_json_: any) {
+            if (_json_.id === undefined) throw new Error();
+            this.id = _json_.id;
+            if (_json_.name === undefined) throw new Error();
+            this.name = _json_.name;
+            if (_json_.damage === undefined) throw new Error();
+            this.damage = _json_.damage;
+            if (_json_.range === undefined) throw new Error();
+            this.range = _json_.range;
+            if (_json_.windup === undefined) throw new Error();
+            this.windup = _json_.windup;
+            if (_json_.recovery === undefined) throw new Error();
+            this.recovery = _json_.recovery;
+            if (_json_.attackAnimation === undefined) throw new Error();
+            this.attackAnimation = _json_.attackAnimation;
+            if (_json_.ranged === undefined) throw new Error();
+            this.ranged = _json_.ranged;
+            if (_json_.equipFrames === undefined) throw new Error();
+            this.equipFrames = _json_.equipFrames;
+            if (_json_.putDownFrames === undefined) throw new Error();
+            this.putDownFrames = _json_.putDownFrames;
+            if (_json_.pickUpFrames === undefined) throw new Error();
+            this.pickUpFrames = _json_.pickUpFrames;
+            if (_json_.projectileArc === undefined) throw new Error();
+            this.projectileArc = _json_.projectileArc;
+            if (_json_.projectileOffset === undefined) throw new Error();
+            this.projectileOffset = _json_.projectileOffset;
+            if (_json_.projectileRotation === undefined) throw new Error();
+            this.projectileRotation = _json_.projectileRotation;
+            if (_json_.iconPath === undefined) throw new Error();
+            this.iconPath = _json_.iconPath;
+            if (_json_.attackSoundMale === undefined) throw new Error();
+            this.attackSoundMale = _json_.attackSoundMale;
+            if (_json_.attackSoundFemale === undefined) throw new Error();
+            this.attackSoundFemale = _json_.attackSoundFemale;
+            if (_json_.throwSound === undefined) throw new Error();
+            this.throwSound = _json_.throwSound;
+            if (_json_.hurtSoundMale === undefined) throw new Error();
+            this.hurtSoundMale = _json_.hurtSoundMale;
+            if (_json_.hurtSoundFemale === undefined) throw new Error();
+            this.hurtSoundFemale = _json_.hurtSoundFemale;
+        }
+
+        /**
+        * 武器 ID
+        */
+        readonly id: number;
+        /**
+        * 名称
+        */
+        readonly name: string;
+        /**
+        * 基础伤害
+        */
+        readonly damage: number;
+        /**
+        * 攻击距离
+        */
+        readonly range: number;
+        /**
+        * 命中前摇
+        */
+        readonly windup: number;
+        /**
+        * 命中后摇
+        */
+        readonly recovery: number;
+        /**
+        * 攻击动画
+        */
+        readonly attackAnimation: number;
+        /**
+        * 是否远程
+        */
+        readonly ranged: boolean;
+        /**
+        * 取出帧
+        */
+        readonly equipFrames: number;
+        /**
+        * 放下帧
+        */
+        readonly putDownFrames: number;
+        /**
+        * 拾起帧
+        */
+        readonly pickUpFrames: number;
+        /**
+        * 投射物弧高
+        */
+        readonly projectileArc: number;
+        /**
+        * 投射物起点偏移
+        */
+        readonly projectileOffset: number;
+        /**
+        * 投射物旋转角
+        */
+        readonly projectileRotation: number;
+        /**
+        * 图标路径
+        */
+        readonly iconPath: string;
+        /**
+        * 男性攻击音效
+        */
+        readonly attackSoundMale: string;
+        /**
+        * 女性攻击音效
+        */
+        readonly attackSoundFemale: string;
+        /**
+        * 投掷音效
+        */
+        readonly throwSound: string;
+        /**
+        * 男性受击音效
+        */
+        readonly hurtSoundMale: string;
+        /**
+        * 女性受击音效
+        */
+        readonly hurtSoundFemale: string;
 
         protected resolve(tables: Tables): void {
         }
@@ -329,6 +1197,216 @@
         }
     }
 
+    /**
+    * 战斗规则
+    */
+    export class TbBattleRule {
+
+        private _dataMap: Map<number, BattleRuleEntry>;
+        private _dataList: BattleRuleEntry[];
+
+        constructor(_json_: any) {
+            this._dataMap = new Map<number, BattleRuleEntry>();
+            this._dataList = [];
+            for (const _json2_ of _json_) {
+                let _v: BattleRuleEntry;
+                _v = new BattleRuleEntry(_json2_);
+                this._dataList.push(_v);
+                this._dataMap.set(_v.id, _v);
+            }
+        }
+
+        getDataMap(): ReadonlyMap<number, BattleRuleEntry> { return this._dataMap; }
+        getDataList(): ReadonlyArray<BattleRuleEntry> { return this._dataList; }
+
+        get(key: number): BattleRuleEntry | undefined { return this._dataMap.get(key); }
+
+        protected resolve(tables: Tables): void {
+            //@ts-ignore
+            for (const data of this._dataList) { data.resolve(tables); }
+        }
+    }
+
+    /**
+    * 武器
+    */
+    export class TbWeapon {
+
+        private _dataMap: Map<number, WeaponEntry>;
+        private _dataList: WeaponEntry[];
+
+        constructor(_json_: any) {
+            this._dataMap = new Map<number, WeaponEntry>();
+            this._dataList = [];
+            for (const _json2_ of _json_) {
+                let _v: WeaponEntry;
+                _v = new WeaponEntry(_json2_);
+                this._dataList.push(_v);
+                this._dataMap.set(_v.id, _v);
+            }
+        }
+
+        getDataMap(): ReadonlyMap<number, WeaponEntry> { return this._dataMap; }
+        getDataList(): ReadonlyArray<WeaponEntry> { return this._dataList; }
+
+        get(key: number): WeaponEntry | undefined { return this._dataMap.get(key); }
+
+        protected resolve(tables: Tables): void {
+            //@ts-ignore
+            for (const data of this._dataList) { data.resolve(tables); }
+        }
+    }
+
+    /**
+    * 技能
+    */
+    export class TbSkill {
+
+        private _dataMap: Map<number, SkillEntry>;
+        private _dataList: SkillEntry[];
+
+        constructor(_json_: any) {
+            this._dataMap = new Map<number, SkillEntry>();
+            this._dataList = [];
+            for (const _json2_ of _json_) {
+                let _v: SkillEntry;
+                _v = new SkillEntry(_json2_);
+                this._dataList.push(_v);
+                this._dataMap.set(_v.id, _v);
+            }
+        }
+
+        getDataMap(): ReadonlyMap<number, SkillEntry> { return this._dataMap; }
+        getDataList(): ReadonlyArray<SkillEntry> { return this._dataList; }
+
+        get(key: number): SkillEntry | undefined { return this._dataMap.get(key); }
+
+        protected resolve(tables: Tables): void {
+            //@ts-ignore
+            for (const data of this._dataList) { data.resolve(tables); }
+        }
+    }
+
+    /**
+    * 角色动作映射
+    */
+    export class TbFighterAction {
+
+        private _dataMap: Map<number, FighterActionEntry>;
+        private _dataList: FighterActionEntry[];
+
+        constructor(_json_: any) {
+            this._dataMap = new Map<number, FighterActionEntry>();
+            this._dataList = [];
+            for (const _json2_ of _json_) {
+                let _v: FighterActionEntry;
+                _v = new FighterActionEntry(_json2_);
+                this._dataList.push(_v);
+                this._dataMap.set(_v.id, _v);
+            }
+        }
+
+        getDataMap(): ReadonlyMap<number, FighterActionEntry> { return this._dataMap; }
+        getDataList(): ReadonlyArray<FighterActionEntry> { return this._dataList; }
+
+        get(key: number): FighterActionEntry | undefined { return this._dataMap.get(key); }
+
+        protected resolve(tables: Tables): void {
+            //@ts-ignore
+            for (const data of this._dataList) { data.resolve(tables); }
+        }
+    }
+
+    /**
+    * 战斗表现
+    */
+    export class TbBattleView {
+
+        private _dataMap: Map<number, BattleViewEntry>;
+        private _dataList: BattleViewEntry[];
+
+        constructor(_json_: any) {
+            this._dataMap = new Map<number, BattleViewEntry>();
+            this._dataList = [];
+            for (const _json2_ of _json_) {
+                let _v: BattleViewEntry;
+                _v = new BattleViewEntry(_json2_);
+                this._dataList.push(_v);
+                this._dataMap.set(_v.id, _v);
+            }
+        }
+
+        getDataMap(): ReadonlyMap<number, BattleViewEntry> { return this._dataMap; }
+        getDataList(): ReadonlyArray<BattleViewEntry> { return this._dataList; }
+
+        get(key: number): BattleViewEntry | undefined { return this._dataMap.get(key); }
+
+        protected resolve(tables: Tables): void {
+            //@ts-ignore
+            for (const data of this._dataList) { data.resolve(tables); }
+        }
+    }
+
+    /**
+    * PVE关卡
+    */
+    export class TbPveStage {
+
+        private _dataMap: Map<number, PveStageEntry>;
+        private _dataList: PveStageEntry[];
+
+        constructor(_json_: any) {
+            this._dataMap = new Map<number, PveStageEntry>();
+            this._dataList = [];
+            for (const _json2_ of _json_) {
+                let _v: PveStageEntry;
+                _v = new PveStageEntry(_json2_);
+                this._dataList.push(_v);
+                this._dataMap.set(_v.id, _v);
+            }
+        }
+
+        getDataMap(): ReadonlyMap<number, PveStageEntry> { return this._dataMap; }
+        getDataList(): ReadonlyArray<PveStageEntry> { return this._dataList; }
+
+        get(key: number): PveStageEntry | undefined { return this._dataMap.get(key); }
+
+        protected resolve(tables: Tables): void {
+            //@ts-ignore
+            for (const data of this._dataList) { data.resolve(tables); }
+        }
+    }
+
+    /**
+    * NPC完整动作
+    */
+    export class TbNpcAnimation {
+
+        private _dataMap: Map<string, NpcAnimationEntry>;
+        private _dataList: NpcAnimationEntry[];
+
+        constructor(_json_: any) {
+            this._dataMap = new Map<string, NpcAnimationEntry>();
+            this._dataList = [];
+            for (const _json2_ of _json_) {
+                let _v: NpcAnimationEntry;
+                _v = new NpcAnimationEntry(_json2_);
+                this._dataList.push(_v);
+                this._dataMap.set(_v.id, _v);
+            }
+        }
+
+        getDataMap(): ReadonlyMap<string, NpcAnimationEntry> { return this._dataMap; }
+        getDataList(): ReadonlyArray<NpcAnimationEntry> { return this._dataList; }
+
+        get(key: string): NpcAnimationEntry | undefined { return this._dataMap.get(key); }
+
+        protected resolve(tables: Tables): void {
+            //@ts-ignore
+            for (const data of this._dataList) { data.resolve(tables); }
+        }
+    }
+
     type JsonLoader = (file: string) => any;
 
     export class Tables {
@@ -353,12 +1431,54 @@
         * 脚底采样
         */
         get TbFootSample(): TbFootSample { return this._TbFootSample; }
+        private _TbBattleRule: TbBattleRule;
+        /**
+        * 战斗规则
+        */
+        get TbBattleRule(): TbBattleRule { return this._TbBattleRule; }
+        private _TbWeapon: TbWeapon;
+        /**
+        * 武器
+        */
+        get TbWeapon(): TbWeapon { return this._TbWeapon; }
+        private _TbSkill: TbSkill;
+        /**
+        * 技能
+        */
+        get TbSkill(): TbSkill { return this._TbSkill; }
+        private _TbFighterAction: TbFighterAction;
+        /**
+        * 角色动作映射
+        */
+        get TbFighterAction(): TbFighterAction { return this._TbFighterAction; }
+        private _TbBattleView: TbBattleView;
+        /**
+        * 战斗表现
+        */
+        get TbBattleView(): TbBattleView { return this._TbBattleView; }
+        private _TbPveStage: TbPveStage;
+        /**
+        * PVE关卡
+        */
+        get TbPveStage(): TbPveStage { return this._TbPveStage; }
+        private _TbNpcAnimation: TbNpcAnimation;
+        /**
+        * NPC完整动作
+        */
+        get TbNpcAnimation(): TbNpcAnimation { return this._TbNpcAnimation; }
 
         constructor(loader: JsonLoader) {
             this._TbRoleAnimation = new TbRoleAnimation(loader('tbroleanimation'));
             this._TbRoleFrame = new TbRoleFrame(loader('tbroleframe'));
             this._TbFootAlignment = new TbFootAlignment(loader('tbfootalignment'));
             this._TbFootSample = new TbFootSample(loader('tbfootsample'));
+            this._TbBattleRule = new TbBattleRule(loader('tbbattlerule'));
+            this._TbWeapon = new TbWeapon(loader('tbweapon'));
+            this._TbSkill = new TbSkill(loader('tbskill'));
+            this._TbFighterAction = new TbFighterAction(loader('tbfighteraction'));
+            this._TbBattleView = new TbBattleView(loader('tbbattleview'));
+            this._TbPveStage = new TbPveStage(loader('tbpvestage'));
+            this._TbNpcAnimation = new TbNpcAnimation(loader('tbnpcanimation'));
 
             //@ts-ignore
             this._TbRoleAnimation.resolve(this);
@@ -368,7 +1488,21 @@
             this._TbFootAlignment.resolve(this);
             //@ts-ignore
             this._TbFootSample.resolve(this);
+            //@ts-ignore
+            this._TbBattleRule.resolve(this);
+            //@ts-ignore
+            this._TbWeapon.resolve(this);
+            //@ts-ignore
+            this._TbSkill.resolve(this);
+            //@ts-ignore
+            this._TbFighterAction.resolve(this);
+            //@ts-ignore
+            this._TbBattleView.resolve(this);
+            //@ts-ignore
+            this._TbPveStage.resolve(this);
+            //@ts-ignore
+            this._TbNpcAnimation.resolve(this);
         }
     }
 
-
+}
