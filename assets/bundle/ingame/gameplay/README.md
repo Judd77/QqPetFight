@@ -10,17 +10,21 @@
 
 `NPC动画.xlsx` 按 NPC、阶段、动作、技能映射图集，帧数据与玩家共用 `角色序列帧.xlsx`，缩放和偏移均在表内。RoleRenderer 统一播放序列帧；NPC 不使用静态头像作为战斗形象，也不回退为企鹅外观。资源放 `texture/role/npc编号`，共用头像放 `shared/texture/role`，技能散图放 `texture/atlas/skill`。
 
+NPC 的 82 段动作已按脚掌或身体接地点校准。采样保存在 `脚底采样.xlsx`，共用默认站立基准，`tool/gameplay/align-npc-feet.cjs` 只计算整段 offsetX/offsetY 并写回 `NPC动画.xlsx`。入场采用落地后的采样帧，保留原始腾空、攻击和倒地位移；渲染层不硬编码 NPC 偏移。生成后运行 `node test/gameplay/verify-npc-feet.cjs` 检查。
+
 NPC 固有攻击在技能表中设为 repeatable，由自动指令生成器选择，战斗内核执行。技能编号是当前 PVE 配置的内部编号，伤害、命中时点与关卡生命是当前版本调校数据，不代表官网服务器公式；技能缩略图取自对应动作，尚不是原版独立技能图标。
 
 主角配装来自 PlayerGateway，关卡对手来自 PVE关卡表。素材转换与导出步骤见项目根目录 `tool/gameplay/README.md`。
 
 启动时根据 ViewSchema 调用一次 `viewService.preload(ViewKeys.Loading)`，只预加载 LoadingView，不创建节点或执行业务逻辑，也不预加载玩法。点击战斗真正打开 `ingame/loading` 下的 LoadingView 后，才加载玩法并显示场景切换与本场角色、武器、技能的准备进度；完成后销毁加载页，失败可重试或返回大厅。LoadingView 不缓存 View 实例，已加载的玩法资源留在可复用 Controller 中，退出战斗不释放。
 
+角色加载清单由本场 BattleInfo 决定：NPC 仅加载当前对手和其技能动作，玩家根据武器、技能与动作映射选取图集。远程武器只准备取出、投掷及结算动作；需要空手的技能只准备空手版本，携带这类技能时才准备近战武器的暂放、拾回动作。不整批加载角色目录，成功缓存跨局复用。场景 Actor 不绑定固定角色图集或默认帧，避免 PVE 随场景隐式加载 mm；角色在本场资源就绪后显示。运行 `node test/gameplay/verify-battle-assets.cjs` 验证加载范围和完整战斗动作覆盖。
+
 ## 已接入的玩法
 
-- 20Hz 本地服务帧、确定性随机数、整局录像和回放校验；渲染帧率不参与战斗计算。
+- 20Hz 本地服务帧、整局录像和回放校验；渲染帧率不参与战斗计算。
 - PlayerGateway 提供主角存档，PveCampaign 按关卡表组装对手；正式服务器协议尚未接入。
-- 本地机器人只生成服务端指令，BattleEngine 只消费连续服务帧；单机 Demo 与未来联网共用同一逻辑入口。
+- 本地服务端在开战前生成已结算的完整战报，攻击者、目标、伤害和闪避均由战报指定；BattleEngine 只按连续服务帧播放，不固定交替也不自行随机判定。
 - 原版男女企鹅，空手、短剑、红缨枪、小李飞刀。红缨枪使用官方中型武器的站立、跑步、受击和取出姿势。
 - 小李飞刀原地投出、直线飞行；消耗服务器响应里的库存，不做近战接近。
 - 依次取武器、接近、出招、投掷、归位；矿泉水回血、佛山无影脚、企鹅吼。
@@ -52,7 +56,7 @@ NPC 固有攻击在技能表中设为 repeatable，由自动指令生成器选�
 - `GameplayComponent`：动态获取 Cocos 节点与组件，保存被动引用并转发按钮，不保存业务运行状态。
 - `GameplayConfig`：唯一 Luban 适配层；把生成表转换成玩法只读定义，战斗内核不依赖 Schema。
 - `shared/script/player/PlayerGateway` / `../pve/script/PveCampaign`：分别提供主角数据、关卡对手与通关进度。
-- `LocalFrameServer` / `server/AutoBattleCommandProducer`：模拟固定频率服务帧和自动战斗指令，不直接修改战斗状态。
+- `LocalFrameServer` / `server/BattleReportProducer`：模拟固定频率服务帧并顺序发送开战前生成的完整战报，不直接修改客户端战斗状态。
 - `BattleSession`：处理实时帧源、回放帧源、顺序帧缓存、渲染插值时间和录像。
 - `BattleEngine` / `BattleActionQueue`：纯 TypeScript 确定性逻辑；输入服务帧，输出状态与事件。
 - `GameplayAssetController`：根据本场数据加载并缓存角色、头像、武器、技能和动态格子资源。
