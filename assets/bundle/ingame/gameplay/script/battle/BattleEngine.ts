@@ -1,7 +1,7 @@
 import { BattleActionQueue, BattleActionStep, BattleActionStepType } from "./BattleActionQueue";
 import {
     BattleCommand, BattleCommandType, BattleDefinitions, BattleEvent, BattleEventType, BattleInfo, BattleIntent, BattlePhase,
-    BattleRandom, BattleState, BattleStepResult, FighterAction, FighterState, ProjectileState, ServiceFrame,
+    BattleReaction, BattleResolution, BattleState, BattleStepResult, FighterAction, FighterState, ServiceFrame,
     SkillEffect, SkillId, WeaponId,
 } from "./BattleTypes";
 
@@ -9,14 +9,12 @@ import {
 export class BattleEngine {
     readonly info: BattleInfo;
     readonly state: BattleState;
-    readonly random: BattleRandom;
     readonly actions = new BattleActionQueue();
     private readonly events: BattleEvent[] = [];
     private projectileId = 0;
 
     constructor(info: BattleInfo, readonly config: BattleDefinitions) {
         this.info = JSON.parse(JSON.stringify(info)) as BattleInfo;
-        this.random = new BattleRandom(this.info.seed);
         const rules = config.rules;
         this.state = {
             tick: 0,
@@ -84,7 +82,7 @@ export class BattleEngine {
         if (this.checkFinish()) return this.result();
 
         if (this.actions.empty && this.state.tick >= this.state.nextActionFrame) {
-            const command = frame.commands.find((item) => item.player === this.state.activePlayer);
+            const command = frame.commands[0];
             if (command) this.beginCommand(command);
         }
         this.updateAction();
@@ -95,7 +93,6 @@ export class BattleEngine {
     checksum(): string {
         const source = JSON.stringify({
             state: this.state,
-            random: this.random.state,
             projectileId: this.projectileId,
             actions: this.actions.snapshot(),
         });
@@ -111,43 +108,48 @@ export class BattleEngine {
     }
 
     private beginCommand(command: BattleCommand) {
-        if (command.type !== BattleCommandType.Act || command.player !== this.state.activePlayer) return;
+        if (command.type !== BattleCommandType.Act || !this.actions.empty) return;
+        this.state.activePlayer = command.player;
         const actor = this.actor;
         const target = this.target;
         const steps: BattleActionStep[] = [];
         switch (command.intent) {
             case BattleIntent.Equip: {
+                this.assertTarget(command.resolution, target.id);
                 const weapon = command.entryId as WeaponId;
                 if (actor.weapon !== this.config.rules.defaultWeapon || !actor.inventory.includes(weapon)) return;
                 steps.push({ type: BattleActionStepType.Equip, weapon });
                 if (this.weapon(weapon).ranged) {
-                    steps.push({ type: BattleActionStepType.Throw, weapon });
+                    steps.push({ type: BattleActionStepType.Throw, weapon, resolution: command.resolution });
                 } else {
                     steps.push({ type: BattleActionStepType.Approach, weapon });
-                    steps.push({ type: BattleActionStepType.Attack, weapon });
+                    steps.push({ type: BattleActionStepType.Attack, weapon, resolution: command.resolution });
                 }
                 break;
             }
             case BattleIntent.Attack:
+                this.assertTarget(command.resolution, target.id);
                 if (this.weapon(actor.weapon).ranged) return;
                 steps.push({ type: BattleActionStepType.Approach, weapon: actor.weapon });
-                steps.push({ type: BattleActionStepType.Attack, weapon: actor.weapon });
+                steps.push({ type: BattleActionStepType.Attack, weapon: actor.weapon, resolution: command.resolution });
                 break;
             case BattleIntent.Throw:
+                this.assertTarget(command.resolution, target.id);
                 if (actor.weapon === this.config.rules.defaultWeapon) return;
-                steps.push({ type: BattleActionStepType.Throw, weapon: actor.weapon });
+                steps.push({ type: BattleActionStepType.Throw, weapon: actor.weapon, resolution: command.resolution });
                 break;
             case BattleIntent.Skill: {
                 const skillId = command.entryId as SkillId;
                 const skill = this.config.skills.get(skillId);
                 if (!skill || (!skill.repeatable && actor.usedSkills.includes(skillId)) ||
                     !this.info.fighters[actor.id]!.skills.some((item) => item.id === skillId)) return;
+                this.assertTarget(command.resolution, skill.effect === SkillEffect.Heal ? actor.id : target.id);
                 actor.skill = skillId;
                 if (!skill.repeatable) actor.usedSkills.push(skillId);
                 if (skill.requiresUnarmed && actor.weapon !== this.config.rules.defaultWeapon) {
                     steps.push({ type: BattleActionStepType.PutDown, weapon: actor.weapon });
                 }
-                steps.push({ type: BattleActionStepType.Skill, skill: skillId });
+                steps.push({ type: BattleActionStepType.Skill, skill: skillId, resolution: command.resolution });
                 if (skill.requiresUnarmed && actor.weapon !== this.config.rules.defaultWeapon) {
                     steps.push({ type: BattleActionStepType.PickUp, weapon: actor.weapon });
                 }
@@ -159,7 +161,8 @@ export class BattleEngine {
         steps.push({ type: BattleActionStepType.Wait });
         steps.push({ type: BattleActionStepType.Return });
         steps.push({ type: BattleActionStepType.Complete });
-        this.state.round++;
+        this.state.round = command.round;
+        actor.combo = command.comboIndex;
         this.actions.replace(steps);
         if (Math.abs(actor.x - target.x) <= 0) throw new Error("参战者位置重叠");
     }
@@ -241,7 +244,7 @@ export class BattleEngine {
         if (!step.resolved && this.state.tick >= step.resolveFrame!) {
             step.resolved = true;
             actor.attacks++;
-            this.hit(actor.id, this.target.id, weapon.damage);
+            this.resolve(actor.id, step.resolution!);
         }
         if (this.state.tick >= step.endFrame!) this.actions.advance();
     }
@@ -266,7 +269,9 @@ export class BattleEngine {
                 owner: actor.id,
                 target: target.id,
                 weapon: weapon.id,
-                damage: weapon.damage,
+                damage: step.resolution!.damage,
+                reaction: step.resolution!.reaction,
+                critical: step.resolution!.critical,
                 startX: actor.x + actor.facing * weapon.projectileOffset,
                 endX: target.x,
                 startFrame: this.state.tick,
@@ -302,11 +307,11 @@ export class BattleEngine {
             const info = this.info.fighters[actor.id]!.skills.find((item) => item.id === skill.id);
             if (!info) throw new Error("参战数据缺少技能：" + skill.id);
             if (skill.effect === SkillEffect.Heal) {
-                const restored = Math.min(info.power, actor.maxHp - actor.hp);
+                const restored = Math.min(step.resolution!.healing, actor.maxHp - actor.hp);
                 actor.hp += restored;
                 this.events.push({ type: BattleEventType.Heal, actor: actor.id, target: actor.id, damage: restored, skill: skill.id });
             } else {
-                this.hit(actor.id, this.target.id, info.power);
+                this.resolve(actor.id, step.resolution!);
             }
         }
         if (this.state.tick >= step.endFrame!) this.actions.advance();
@@ -341,7 +346,7 @@ export class BattleEngine {
     private completeTurn() {
         this.setAction(this.actor, FighterAction.Idle);
         this.actor.skill = undefined;
-        this.state.activePlayer = 1 - this.state.activePlayer;
+        this.actor.combo = 0;
         this.state.nextActionFrame = this.state.tick + this.config.rules.nextTurnDelay;
         this.actions.clear();
     }
@@ -357,33 +362,44 @@ export class BattleEngine {
         for (let index = this.state.projectiles.length - 1; index >= 0; index--) {
             const projectile = this.state.projectiles[index]!;
             if (this.state.tick < projectile.endFrame) continue;
-            this.hit(projectile.owner, projectile.target, projectile.damage);
+            this.resolve(projectile.owner, {
+                target: projectile.target,
+                reaction: projectile.reaction,
+                damage: projectile.damage,
+                healing: 0,
+                critical: projectile.critical,
+            });
             this.state.projectiles.splice(index, 1);
         }
     }
 
-    private hit(attackerId: number, targetId: number, baseDamage: number) {
+    private resolve(attackerId: number, resolution: BattleResolution) {
         const attacker = this.state.fighters[attackerId]!;
-        const target = this.state.fighters[targetId]!;
-        const rules = this.config.rules;
-        if (this.random.next(100) < rules.dodgeChance) {
+        const target = this.state.fighters[resolution.target]!;
+        if (resolution.reaction === BattleReaction.Dodge) {
             target.dodges++;
             this.setAction(target, FighterAction.Dodge);
-            target.readyFrame = this.state.tick + rules.dodgeFrames;
-            this.events.push({ type: BattleEventType.Dodge, actor: attackerId, target: targetId });
+            target.readyFrame = this.state.tick + this.config.rules.dodgeFrames;
+            this.events.push({ type: BattleEventType.Dodge, actor: attackerId, target: target.id });
             return;
         }
-        const critical = this.random.next(100) < rules.criticalChance;
-        const variance = rules.damageVariance;
-        const damage = Math.max(1, Math.floor(
-            (baseDamage + this.random.next(variance * 2 + 1) - variance) * (critical ? rules.criticalMultiplier : 1),
-        ));
-        const applied = Math.min(target.hp, damage);
+        if (resolution.reaction === BattleReaction.Block) {
+            this.events.push({ type: BattleEventType.Block, actor: attackerId, target: target.id });
+            return;
+        }
+        if (resolution.reaction !== BattleReaction.Hit) return;
+        const applied = Math.min(target.hp, resolution.damage);
         target.hp -= applied;
         attacker.damageDealt += applied;
         this.setAction(target, FighterAction.Hurt);
-        target.readyFrame = this.state.tick + rules.hurtFrames;
-        this.events.push({ type: BattleEventType.Hit, actor: attackerId, target: targetId, damage: applied, critical });
+        target.readyFrame = this.state.tick + this.config.rules.hurtFrames;
+        this.events.push({
+            type: BattleEventType.Hit,
+            actor: attackerId,
+            target: target.id,
+            damage: applied,
+            critical: resolution.critical,
+        });
     }
 
     private checkFinish() {
@@ -422,6 +438,10 @@ export class BattleEngine {
         fighter.actionWeapon = actionWeapon;
         fighter.actionFrame = this.state.tick;
         return true;
+    }
+
+    private assertTarget(resolution: BattleResolution, target: number) {
+        if (resolution.target !== target) throw new Error("战报目标无效");
     }
 
     private weapon(id: WeaponId) {

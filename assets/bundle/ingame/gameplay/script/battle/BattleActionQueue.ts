@@ -1,4 +1,4 @@
-import { SkillId, WeaponId } from "./BattleTypes";
+import { BattleResolution, SkillId, WeaponId } from "./BattleTypes";
 
 export enum BattleActionStepType {
     Equip,
@@ -17,6 +17,7 @@ export interface BattleActionStep {
     type: BattleActionStepType;
     weapon?: WeaponId;
     skill?: SkillId;
+    resolution?: BattleResolution;
     startedFrame?: number;
     resolveFrame?: number;
     endFrame?: number;

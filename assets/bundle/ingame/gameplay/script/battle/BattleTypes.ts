@@ -8,6 +8,10 @@ export enum BattlePhase { Countdown, Fighting, Finished }
 export enum FighterAction { Idle, Run, Attack, Retreat, Throw, Dead, Victory, Equip, Hurt, Dodge, Skill, PutDown, PickUp }
 export enum BattleIntent { Attack, Equip, Throw, Skill }
 export enum BattleCommandType { Act }
+/** 与原版战报 attHowAtt 字段一致。 */
+export enum BattleAttackType { None, Normal, Throw, Combo }
+/** 命中结果由服务端战报给出，客户端内核不再自行随机。 */
+export enum BattleReaction { None, Hit, Dodge, Block }
 export enum BattleEventType { Countdown, Start, Move, Attack, Throw, Hit, Dodge, Block, Equip, Finish, Skill, Heal, PutDown, PickUp }
 
 export interface BattleRules {
@@ -108,8 +112,31 @@ export interface BattleCommand {
     player: number;
     sequence: number;
     type: BattleCommandType;
+    /** 原版的一条服务端动作序号；反击和连击仍属于同一回合。 */
+    round: number;
     intent: BattleIntent;
     entryId: number;
+    attackType: BattleAttackType;
+    /** 原版 victimAtt 展开出的反击动作。 */
+    counter: boolean;
+    /** 连击中的命中序号，非连击为 0。 */
+    comboIndex: number;
+    resolution: BattleResolution;
+}
+
+export interface BattleResolution {
+    target: number;
+    reaction: BattleReaction;
+    damage: number;
+    healing: number;
+    critical: boolean;
+}
+
+/** 服务端已结算的完整战报；客户端只按 actions 顺序执行。 */
+export interface BattleReport {
+    version: 1;
+    battleId: string;
+    actions: BattleCommand[];
 }
 
 export interface ServiceFrame {
@@ -145,6 +172,8 @@ export interface ProjectileState {
     target: number;
     weapon: WeaponId;
     damage: number;
+    reaction: BattleReaction;
+    critical: boolean;
     startX: number;
     endX: number;
     startFrame: number;
@@ -178,7 +207,7 @@ export interface BattleStepResult {
 }
 
 export interface BattleRecording {
-    version: 4;
+    version: 5;
     configVersion: number;
     battle: BattleInfo;
     frames: ServiceFrame[];

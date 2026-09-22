@@ -1,7 +1,7 @@
 import { BattleEngine } from "./BattleEngine";
 import {
-    BattleCommand, BattleCommandType, BattleDefinitions, BattleInfo, BattleIntent, BattlePhase, BattleRecording,
-    BattleStepResult, ServiceFrame,
+    BattleAttackType, BattleCommand, BattleCommandType, BattleDefinitions, BattleInfo, BattleIntent, BattlePhase,
+    BattleReaction, BattleRecording, BattleStepResult, ServiceFrame,
 } from "./BattleTypes";
 import { validateBattleInfo } from "./BattleValidator";
 
@@ -33,7 +33,7 @@ export class LocalFrameServer implements FrameSource {
             !Number.isSafeInteger(command.sequence) ||
             command.sequence <= (this.sequences.get(command.player) ?? 0)) return;
         this.sequences.set(command.player, command.sequence);
-        this.pending.push({ ...command });
+        this.pending.push({ ...command, resolution: { ...command.resolution } });
     }
 
     advance(dt: number) {
@@ -77,26 +77,40 @@ export class ReplayFrameSource implements FrameSource {
 
 /** 先校验配置版本、初始数据和连续服务帧，再允许外部录像进入逻辑层。 */
 export function validateRecording(recording: BattleRecording, config: BattleDefinitions) {
-    if (!recording || recording.version !== 4) throw new Error("不支持的录像版本");
+    if (!recording || recording.version !== 5) throw new Error("不支持的录像版本");
     if (recording.configVersion !== config.rules.version) throw new Error("录像配置版本不匹配");
     validateBattleInfo(recording.battle, config);
     if (!Array.isArray(recording.frames) || !recording.frames.length || recording.frames.length > config.rules.maxFrames) {
         throw new Error("录像帧数无效");
     }
     const sequences = recording.battle.fighters.map(() => 0);
+    let round = 0;
     recording.frames.forEach((frame, index) => {
         const players = new Set<number>();
         if (!frame || frame.tick !== index + 1 || !Array.isArray(frame.commands) ||
-            frame.commands.length > recording.battle.fighters.length ||
+            frame.commands.length > 1 ||
             frame.commands.some((command) => {
                 if (!command || !Number.isInteger(command.player) || command.player < 0 ||
                     command.player >= recording.battle.fighters.length || players.has(command.player) ||
                     !Number.isSafeInteger(command.sequence) || command.sequence <= sequences[command.player]! ||
-                    command.type !== BattleCommandType.Act ||
+                    command.type !== BattleCommandType.Act || !Number.isSafeInteger(command.round) ||
+                    command.round <= 0 || command.round < round ||
                     ![BattleIntent.Attack, BattleIntent.Equip, BattleIntent.Throw, BattleIntent.Skill].includes(command.intent) ||
-                    !Number.isSafeInteger(command.entryId)) return true;
+                    ![BattleAttackType.None, BattleAttackType.Normal, BattleAttackType.Throw,
+                        BattleAttackType.Combo].includes(command.attackType) || typeof command.counter !== "boolean" ||
+                    !Number.isSafeInteger(command.comboIndex) || command.comboIndex < 0 ||
+                    !Number.isSafeInteger(command.entryId) || !command.resolution ||
+                    !Number.isInteger(command.resolution.target) || command.resolution.target < 0 ||
+                    command.resolution.target >= recording.battle.fighters.length ||
+                    ![BattleReaction.None, BattleReaction.Hit, BattleReaction.Dodge,
+                        BattleReaction.Block].includes(command.resolution.reaction) ||
+                    !Number.isSafeInteger(command.resolution.damage) || command.resolution.damage < 0 ||
+                    !Number.isSafeInteger(command.resolution.healing) || command.resolution.healing < 0 ||
+                    typeof command.resolution.critical !== "boolean" ||
+                    (command.resolution.reaction !== BattleReaction.Hit && command.resolution.damage !== 0)) return true;
                 players.add(command.player);
                 sequences[command.player] = command.sequence;
+                round = command.round;
                 return false;
             })) {
             throw new Error("录像服务帧无效：" + (index + 1));
@@ -122,7 +136,7 @@ export class BattleSession {
     ) {
         const battle = JSON.parse(JSON.stringify(info)) as BattleInfo;
         this.engine = new BattleEngine(battle, config);
-        this.recording = { version: 4, configVersion: config.rules.version, battle, frames: [] };
+        this.recording = { version: 5, configVersion: config.rules.version, battle, frames: [] };
         source.onFrame = (frame) => {
             this.receive(frame);
             if (this.stepCallback) this.drain(this.stepCallback);
@@ -139,7 +153,10 @@ export class BattleSession {
         if (!Number.isSafeInteger(frame.tick) || frame.tick <= this.engine.state.tick || this.frames.has(frame.tick)) return;
         this.frames.set(frame.tick, {
             tick: frame.tick,
-            commands: frame.commands.map((command) => ({ ...command })),
+            commands: frame.commands.map((command) => ({
+                ...command,
+                resolution: { ...command.resolution },
+            })),
         });
     }
 

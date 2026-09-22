@@ -3,7 +3,7 @@ import type { GameplayView } from "../GameplayView";
 import { BattleSession, LocalFrameServer, ReplayFrameSource } from "../battle/BattleSession";
 import type { BattleInfo, BattleRecording } from "../battle/BattleTypes";
 import { validateBattleInfo } from "../battle/BattleValidator";
-import { AutoBattleCommandProducer } from "../server/AutoBattleCommandProducer";
+import { BattleReportProducer } from "../server/BattleReportProducer";
 
 /** 管理对战数据源和会话生命周期，不操作任何 Cocos 节点。 */
 export class BattleController extends BaseController<GameplayView> {
@@ -16,7 +16,7 @@ export class BattleController extends BaseController<GameplayView> {
             info,
             config,
             new LocalFrameServer(config),
-            new AutoBattleCommandProducer(info.seed),
+            new BattleReportProducer(info, config),
         );
         context.replaying = false;
         context.completed = false;
