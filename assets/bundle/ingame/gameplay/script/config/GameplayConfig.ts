@@ -123,6 +123,7 @@ export class GameplayConfig {
         return npcId + ":" + phase + ":" + action + ":" + skill;
     }
 
+    /** 只准备本场参战者按配装可播放的动作，不按角色目录整批加载。 */
     getRequiredAnimations(info: { fighters: readonly {
         gender: FighterGender;
         weapons: readonly WeaponId[];
@@ -151,8 +152,33 @@ export class GameplayConfig {
                 continue;
             }
             const weapons = new Set<WeaponId>([this.battle.rules.defaultWeapon, ...fighter.weapons]);
-            for (const row of this.animations.values()) {
-                if (row.gender === fighter.gender && weapons.has(row.weapon as WeaponId)) result.set(row.id, row);
+            const skills = fighter.skills.map(skill => this.getSkill(skill.id));
+            for (const weaponId of weapons) {
+                const weapon = this.getWeapon(weaponId);
+                const armed = weaponId !== this.battle.rules.defaultWeapon;
+                const add = (action: FighterAction, skill?: SkillId) => {
+                    const row = this.getAnimationForAction(fighter.gender, weaponId, action, skill);
+                    this.getFrames(row.id);
+                    result.set(row.id, row);
+                };
+                // 任意动作都可能在达到最大战斗帧时进入结算。
+                add(FighterAction.Victory);
+                add(FighterAction.Dead);
+                if (armed) {
+                    add(FighterAction.Equip);
+                    add(FighterAction.Throw);
+                }
+                // 远程武器取出后直接投出，不会持械移动、普攻或施放技能。
+                if (weapon.ranged) continue;
+                for (const action of [FighterAction.Idle, FighterAction.Run, FighterAction.Retreat,
+                    FighterAction.Hurt, FighterAction.Dodge, FighterAction.Attack]) add(action);
+                if (armed && skills.some(skill => skill.requiresUnarmed)) {
+                    add(FighterAction.PutDown);
+                    add(FighterAction.PickUp);
+                }
+                for (const skill of skills) {
+                    if (!armed || !skill.requiresUnarmed) add(FighterAction.Skill, skill.id);
+                }
             }
         }
         return Array.from(result.values());
