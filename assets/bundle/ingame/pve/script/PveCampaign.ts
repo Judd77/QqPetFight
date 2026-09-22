@@ -1,24 +1,17 @@
-import { sys } from "cc";
 import type { Schema } from "db://assets/bundle/shared/script/schema/Schema";
 import { playerGateway } from "db://assets/bundle/shared/script/player/PlayerGateway";
 import { BattleEntry, BattleMode } from "../../gameplay/script/battle/BattleEntry";
 
-const progressKey = "qpet.pve.progress.v1";
+let clearedStages = 0;
 
-/** 关卡编排和本地进度；仅胜利结算推进，录像回放不调用此处。 */
+/** 关卡编排和本次运行进度；关闭或刷新游戏后从第一关重新开始。 */
 export class PveCampaign {
     getStages(tables: Schema.Tables) {
         return tables.TbPveStage.getDataList().slice().sort((a, b) => a.id - b.id);
     }
 
     getCleared() {
-        const raw = sys.localStorage.getItem(progressKey);
-        if (!raw) return 0;
-        const value = JSON.parse(raw);
-        if (value.version !== 1 || !Number.isSafeInteger(value.cleared) || value.cleared < 0) {
-            throw new Error("闯关存档损坏，请检查本机存储");
-        }
-        return value.cleared as number;
+        return clearedStages;
     }
 
     getCurrent(tables: Schema.Tables) {
@@ -67,6 +60,6 @@ export class PveCampaign {
         const cleared = this.getCleared();
         if (index < 0 || index > cleared) throw new Error("无法结算未解锁关卡");
         if (index < cleared) return;
-        sys.localStorage.setItem(progressKey, JSON.stringify({ version: 1, cleared: cleared + 1 }));
+        clearedStages = cleared + 1;
     }
 }
