@@ -1234,5 +1234,497 @@
     "frame": 0,
     "x": 40.5,
     "y": 74
+  },
+  {
+    "clipId": "npc5012-win",
+    "frame": 0,
+    "x": 67,
+    "y": 87
+  },
+  {
+    "clipId": "npc5012-ready",
+    "frame": 27,
+    "x": 67,
+    "y": 87
+  },
+  {
+    "clipId": "npc5012-lose",
+    "frame": 0,
+    "x": 67,
+    "y": 87
+  },
+  {
+    "clipId": "npc5012-idle",
+    "frame": 0,
+    "x": 40,
+    "y": 87
+  },
+  {
+    "clipId": "npc5012-dodge",
+    "frame": 0,
+    "x": 40,
+    "y": 87
+  },
+  {
+    "clipId": "npc5012-hurt",
+    "frame": 0,
+    "x": 40,
+    "y": 86
+  },
+  {
+    "clipId": "npc5012-attack-1",
+    "frame": 0,
+    "x": 40,
+    "y": 87
+  },
+  {
+    "clipId": "npc5012-attack-2",
+    "frame": 0,
+    "x": 41,
+    "y": 87
+  },
+  {
+    "clipId": "npc5014-win",
+    "frame": 0,
+    "x": 41.5,
+    "y": 125
+  },
+  {
+    "clipId": "npc5014-ready",
+    "frame": 46,
+    "x": 41.5,
+    "y": 125
+  },
+  {
+    "clipId": "npc5014-lose",
+    "frame": 0,
+    "x": 41.5,
+    "y": 126
+  },
+  {
+    "clipId": "npc5014-idle",
+    "frame": 0,
+    "x": 44.5,
+    "y": 125
+  },
+  {
+    "clipId": "npc5014-dodge",
+    "frame": 0,
+    "x": 45,
+    "y": 125
+  },
+  {
+    "clipId": "npc5014-hurt",
+    "frame": 0,
+    "x": 44.5,
+    "y": 125
+  },
+  {
+    "clipId": "npc5014-attack-1",
+    "frame": 0,
+    "x": 44.5,
+    "y": 126
+  },
+  {
+    "clipId": "npc5014-attack-2",
+    "frame": 0,
+    "x": 44.5,
+    "y": 126
+  },
+  {
+    "clipId": "npc5016-idle",
+    "frame": 0,
+    "x": 57.5,
+    "y": 141
+  },
+  {
+    "clipId": "npc5016-dodge",
+    "frame": 0,
+    "x": 57.5,
+    "y": 141
+  },
+  {
+    "clipId": "npc5016-hurt",
+    "frame": 0,
+    "x": 57.5,
+    "y": 141
+  },
+  {
+    "clipId": "npc5016-attack-2",
+    "frame": 0,
+    "x": 57.5,
+    "y": 142
+  },
+  {
+    "clipId": "npc5016-attack-1",
+    "frame": 0,
+    "x": 57,
+    "y": 141
+  },
+  {
+    "clipId": "npc5016-lose",
+    "frame": 0,
+    "x": 62.5,
+    "y": 141
+  },
+  {
+    "clipId": "npc5016-ready",
+    "frame": 49,
+    "x": 62.5,
+    "y": 142
+  },
+  {
+    "clipId": "npc5016-win",
+    "frame": 0,
+    "x": 62,
+    "y": 141
+  },
+  {
+    "clipId": "npc5018-lose",
+    "frame": 0,
+    "x": 67,
+    "y": 149
+  },
+  {
+    "clipId": "npc5018-ready",
+    "frame": 35,
+    "x": 67.5,
+    "y": 148
+  },
+  {
+    "clipId": "npc5018-win",
+    "frame": 0,
+    "x": 67,
+    "y": 148
+  },
+  {
+    "clipId": "npc5018-idle",
+    "frame": 0,
+    "x": 73.5,
+    "y": 149
+  },
+  {
+    "clipId": "npc5018-dodge",
+    "frame": 0,
+    "x": 73.5,
+    "y": 149
+  },
+  {
+    "clipId": "npc5018-hurt",
+    "frame": 0,
+    "x": 73.5,
+    "y": 149
+  },
+  {
+    "clipId": "npc5018-attack-2",
+    "frame": 0,
+    "x": 73.5,
+    "y": 148
+  },
+  {
+    "clipId": "npc5018-attack-1",
+    "frame": 0,
+    "x": 73.5,
+    "y": 149
+  },
+  {
+    "clipId": "npc5020-win",
+    "frame": 0,
+    "x": 70,
+    "y": 130
+  },
+  {
+    "clipId": "npc5020-ready",
+    "frame": 49,
+    "x": 70,
+    "y": 131
+  },
+  {
+    "clipId": "npc5020-lose",
+    "frame": 0,
+    "x": 70,
+    "y": 130
+  },
+  {
+    "clipId": "npc5020-idle",
+    "frame": 0,
+    "x": 60,
+    "y": 131
+  },
+  {
+    "clipId": "npc5020-dodge",
+    "frame": 0,
+    "x": 60,
+    "y": 130
+  },
+  {
+    "clipId": "npc5020-hurt",
+    "frame": 0,
+    "x": 60,
+    "y": 130
+  },
+  {
+    "clipId": "npc5020-attack-1",
+    "frame": 0,
+    "x": 60,
+    "y": 131
+  },
+  {
+    "clipId": "npc5020-attack-2",
+    "frame": 0,
+    "x": 60,
+    "y": 130
+  },
+  {
+    "clipId": "npc5020-attack-3",
+    "frame": 0,
+    "x": 60,
+    "y": 131
+  },
+  {
+    "clipId": "npc5022-win",
+    "frame": 0,
+    "x": 58.5,
+    "y": 150
+  },
+  {
+    "clipId": "npc5022-ready",
+    "frame": 73,
+    "x": 57.5,
+    "y": 150
+  },
+  {
+    "clipId": "npc5022-lose",
+    "frame": 0,
+    "x": 57.5,
+    "y": 150
+  },
+  {
+    "clipId": "npc5022-idle",
+    "frame": 0,
+    "x": 41.5,
+    "y": 150
+  },
+  {
+    "clipId": "npc5022-dodge",
+    "frame": 0,
+    "x": 41.5,
+    "y": 150
+  },
+  {
+    "clipId": "npc5022-hurt",
+    "frame": 0,
+    "x": 41.5,
+    "y": 150
+  },
+  {
+    "clipId": "npc5022-attack-1",
+    "frame": 0,
+    "x": 53.5,
+    "y": 151
+  },
+  {
+    "clipId": "npc5022-attack-2",
+    "frame": 0,
+    "x": 41.5,
+    "y": 150
+  },
+  {
+    "clipId": "npc5024-win",
+    "frame": 0,
+    "x": 67.5,
+    "y": 119
+  },
+  {
+    "clipId": "npc5024-ready",
+    "frame": 47,
+    "x": 67,
+    "y": 119
+  },
+  {
+    "clipId": "npc5024-lose",
+    "frame": 0,
+    "x": 67,
+    "y": 119
+  },
+  {
+    "clipId": "npc5024-idle",
+    "frame": 0,
+    "x": 85,
+    "y": 119
+  },
+  {
+    "clipId": "npc5024-dodge",
+    "frame": 0,
+    "x": 84.5,
+    "y": 119
+  },
+  {
+    "clipId": "npc5024-hurt",
+    "frame": 0,
+    "x": 85,
+    "y": 119
+  },
+  {
+    "clipId": "npc5024-attack-1",
+    "frame": 0,
+    "x": 85,
+    "y": 119
+  },
+  {
+    "clipId": "npc5024-attack-2",
+    "frame": 0,
+    "x": 84.5,
+    "y": 119
+  },
+  {
+    "clipId": "npc5026-idle",
+    "frame": 0,
+    "x": 41.5,
+    "y": 101
+  },
+  {
+    "clipId": "npc5026-dodge",
+    "frame": 0,
+    "x": 41.5,
+    "y": 101
+  },
+  {
+    "clipId": "npc5026-hurt",
+    "frame": 0,
+    "x": 42,
+    "y": 101
+  },
+  {
+    "clipId": "npc5026-attack-2",
+    "frame": 0,
+    "x": 39,
+    "y": 98
+  },
+  {
+    "clipId": "npc5026-attack-1",
+    "frame": 0,
+    "x": 41.5,
+    "y": 105
+  },
+  {
+    "clipId": "npc5026-lose",
+    "frame": 0,
+    "x": 54.5,
+    "y": 101
+  },
+  {
+    "clipId": "npc5026-ready",
+    "frame": 44,
+    "x": 50.5,
+    "y": 98
+  },
+  {
+    "clipId": "npc5026-win",
+    "frame": 0,
+    "x": 54,
+    "y": 101
+  },
+  {
+    "clipId": "npc5028-win",
+    "frame": 0,
+    "x": 40.5,
+    "y": 106
+  },
+  {
+    "clipId": "npc5028-ready",
+    "frame": 76,
+    "x": 41.5,
+    "y": 106
+  },
+  {
+    "clipId": "npc5028-lose",
+    "frame": 0,
+    "x": 41,
+    "y": 107
+  },
+  {
+    "clipId": "npc5028-idle",
+    "frame": 0,
+    "x": 47,
+    "y": 107
+  },
+  {
+    "clipId": "npc5028-dodge",
+    "frame": 0,
+    "x": 47.5,
+    "y": 106
+  },
+  {
+    "clipId": "npc5028-hurt",
+    "frame": 0,
+    "x": 47.5,
+    "y": 106
+  },
+  {
+    "clipId": "npc5028-attack-1",
+    "frame": 0,
+    "x": 47.5,
+    "y": 107
+  },
+  {
+    "clipId": "npc5028-attack-2",
+    "frame": 0,
+    "x": 47.5,
+    "y": 107
+  },
+  {
+    "clipId": "npc5030-win",
+    "frame": 0,
+    "x": 70.5,
+    "y": 201
+  },
+  {
+    "clipId": "npc5030-ready",
+    "frame": 36,
+    "x": 66.5,
+    "y": 191
+  },
+  {
+    "clipId": "npc5030-lose",
+    "frame": 0,
+    "x": 70.5,
+    "y": 201
+  },
+  {
+    "clipId": "npc5030-idle",
+    "frame": 0,
+    "x": 69.5,
+    "y": 182
+  },
+  {
+    "clipId": "npc5030-dodge",
+    "frame": 0,
+    "x": 69.5,
+    "y": 181
+  },
+  {
+    "clipId": "npc5030-hurt",
+    "frame": 0,
+    "x": 69.5,
+    "y": 181
+  },
+  {
+    "clipId": "npc5030-attack-1",
+    "frame": 0,
+    "x": 69.5,
+    "y": 181
+  },
+  {
+    "clipId": "npc5030-attack-2",
+    "frame": 0,
+    "x": 69.5,
+    "y": 181
+  },
+  {
+    "clipId": "npc5030-attack-3",
+    "frame": 0,
+    "x": 69,
+    "y": 182
   }
 ]
