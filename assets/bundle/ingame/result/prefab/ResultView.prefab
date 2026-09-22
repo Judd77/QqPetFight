@@ -775,7 +775,7 @@
       "__id__": 28
     },
     "_children": [],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 30
@@ -939,8 +939,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 220,
-      "height": 72
+      "width": 326,
+      "height": 126
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -976,7 +976,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "63c0ebff-6af6-4025-bf66-f6c225ceaf0e@f9941",
+      "__uuid__": "eec58b81-8676-4695-b4a1-3e688f88e6a6@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,

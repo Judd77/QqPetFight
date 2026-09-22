@@ -1,6 +1,6 @@
 import { Node, Sprite, SpriteAtlas } from "cc";
 import type { GameplayConfig } from "../config/GameplayConfig";
-import { BattleState, FighterAction, FighterInfo, FighterState } from "../battle/BattleTypes";
+import { BattlePhase, BattleState, FighterAction, FighterInfo, FighterState } from "../battle/BattleTypes";
 
 export interface RoleAssetProvider {
     getRoleAtlas(clipId: string): SpriteAtlas;
@@ -34,13 +34,26 @@ export class RoleRenderer {
             view.actorY,
         );
         const facing = fighter.action === FighterAction.Retreat ? -fighter.facing : fighter.facing;
-        const animation = config.getFighterAnimation(info, fighter, state.phase);
-        this.node.setScale(facing * (animation.facing ?? 1), 1, 1);
-        const frames = config.getFrames(animation.id);
-        const elapsed = Math.max(
+        let animation = config.getFighterAnimation(info, fighter, state.phase);
+        let frames = config.getFrames(animation.id);
+        let elapsed = Math.max(
             0,
             (state.tick - 1 + alpha - fighter.actionFrame) / config.battle.rules.frameRate,
         ) + finishElapsed;
+        if (info.npcId !== undefined && fighter.action === FighterAction.Idle && fighter.actionFrame === 0) {
+            const entryAnimation = config.getFighterAnimation(info, fighter, BattlePhase.Countdown);
+            const entryFrames = config.getFrames(entryAnimation.id);
+            const entryDuration = entryFrames.length / entryAnimation.fps;
+            if (state.phase === BattlePhase.Countdown && elapsed < entryDuration) {
+                animation = entryAnimation;
+                frames = entryFrames;
+            } else {
+                animation = config.getFighterAnimation(info, fighter, BattlePhase.Fighting);
+                frames = config.getFrames(animation.id);
+                elapsed = Math.max(0, elapsed - entryDuration);
+            }
+        }
+        this.node.setScale(facing * (animation.facing ?? 1), 1, 1);
         const index = animation.loop
             ? Math.floor(elapsed * animation.fps) % frames.length
             : Math.min(frames.length - 1, Math.floor(elapsed * animation.fps));

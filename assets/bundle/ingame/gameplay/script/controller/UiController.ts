@@ -25,6 +25,11 @@ export class UiController extends BaseController<GameplayView> {
             const portraitScale = view.portraitSize / Math.max(portraitSize.width, portraitSize.height);
             player.portrait.node.setScale(portraitScale, portraitScale, 1);
 
+            const showLoadout = fighter.npcId === undefined;
+            player.weapons.active = showLoadout;
+            player.skills.active = showLoadout;
+            if (!showLoadout) continue;
+
             for (const weaponId of fighter.weapons) {
                 const node = instantiate(this.view.assetCtrl.weaponCellPrefab);
                 const cell = node.getComponent(WeaponCellComponent)!;
@@ -105,7 +110,7 @@ export class UiController extends BaseController<GameplayView> {
         }
         component.roundLabel.string = state.phase === BattlePhase.Countdown
             ? String(Math.max(1, Math.ceil((rules.countdownFrames - state.tick) / rules.frameRate)))
-            : this.view.config.format(this.view.config.view.roundText, Math.ceil(state.round / 2));
+            : this.view.config.format(this.view.config.view.roundText, state.round);
         if (state.tick > this.actionExpires) component.actionLabel.string = "";
         if (session.finished && !session.paused) this.finishElapsed += dt * session.speed;
         if (session.finished && this.finishElapsed > this.view.config.view.resultDelay &&
