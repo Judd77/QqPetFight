@@ -10,7 +10,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/skill-water/spriteFrame",
     "sound": "KuangQuanShui",
-    "repeatable": false
+    "repeatable": false,
+    "approach": false
   },
   {
     "id": 25,
@@ -23,7 +24,8 @@
     "requiresUnarmed": true,
     "iconPath": "ingame/gameplay/texture/atlas/skill/skill-kick/spriteFrame",
     "sound": "FoShanWuYingJiao",
-    "repeatable": false
+    "repeatable": false,
+    "approach": false
   },
   {
     "id": 27,
@@ -36,7 +38,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/skill-roar/spriteFrame",
     "sound": "QiEHou",
-    "repeatable": false
+    "repeatable": false,
+    "approach": false
   },
   {
     "id": 50121,
@@ -49,7 +52,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5012-attack-1/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
   },
   {
     "id": 50122,
@@ -62,7 +66,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5012-attack-2/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
   },
   {
     "id": 50141,
@@ -75,7 +80,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5014-attack-1/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
   },
   {
     "id": 50142,
@@ -88,7 +94,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5014-attack-2/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
   },
   {
     "id": 50162,
@@ -101,7 +108,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5016-attack-2/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
   },
   {
     "id": 50161,
@@ -114,7 +122,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5016-attack-1/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
   },
   {
     "id": 50182,
@@ -127,7 +136,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5018-attack-2/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
   },
   {
     "id": 50181,
@@ -140,7 +150,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5018-attack-1/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
   },
   {
     "id": 50201,
@@ -153,7 +164,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5020-attack-1/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
   },
   {
     "id": 50202,
@@ -166,7 +178,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5020-attack-2/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
   },
   {
     "id": 50203,
@@ -179,7 +192,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5020-attack-3/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
   },
   {
     "id": 50221,
@@ -192,7 +206,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5022-attack-1/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
   },
   {
     "id": 50222,
@@ -205,7 +220,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5022-attack-2/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
   },
   {
     "id": 50241,
@@ -218,7 +234,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5024-attack-1/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
   },
   {
     "id": 50242,
@@ -231,7 +248,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5024-attack-2/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
   },
   {
     "id": 50262,
@@ -244,7 +262,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5026-attack-2/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
   },
   {
     "id": 50261,
@@ -257,7 +276,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5026-attack-1/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
   },
   {
     "id": 50281,
@@ -270,7 +290,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5028-attack-1/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
   },
   {
     "id": 50282,
@@ -283,7 +304,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5028-attack-2/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
   },
   {
     "id": 50301,
@@ -296,7 +318,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5030-attack-1/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
   },
   {
     "id": 50302,
@@ -309,7 +332,8 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5030-attack-2/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
   },
   {
     "id": 50303,
@@ -322,6 +346,49 @@
     "requiresUnarmed": false,
     "iconPath": "ingame/gameplay/texture/atlas/skill/npc5030-attack-3/spriteFrame",
     "sound": "",
-    "repeatable": true
+    "repeatable": true,
+    "approach": false
+  },
+  {
+    "id": 15,
+    "name": "黑龙波",
+    "effect": 0,
+    "power": 68,
+    "animation": 16,
+    "hitFrame": 48,
+    "duration": 75,
+    "requiresUnarmed": true,
+    "iconPath": "ingame/gameplay/texture/atlas/skill/skill-black-dragon/spriteFrame",
+    "sound": "HeiLongBo",
+    "repeatable": false,
+    "approach": false
+  },
+  {
+    "id": 28,
+    "name": "企鹅挠痒",
+    "effect": 0,
+    "power": 56,
+    "animation": 17,
+    "hitFrame": 34,
+    "duration": 63,
+    "requiresUnarmed": false,
+    "iconPath": "ingame/gameplay/texture/atlas/skill/skill-scratch/spriteFrame",
+    "sound": "QiESaoYang",
+    "repeatable": false,
+    "approach": true
+  },
+  {
+    "id": 31,
+    "name": "如来神掌",
+    "effect": 0,
+    "power": 82,
+    "animation": 18,
+    "hitFrame": 66,
+    "duration": 103,
+    "requiresUnarmed": true,
+    "iconPath": "ingame/gameplay/texture/atlas/skill/skill-palm/spriteFrame",
+    "sound": "RuLaiShenZhang",
+    "repeatable": false,
+    "approach": false
   }
 ]

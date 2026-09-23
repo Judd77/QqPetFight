@@ -904,6 +904,8 @@ export namespace Schema {
             this.sound = _json_.sound;
             if (_json_.repeatable === undefined) throw new Error();
             this.repeatable = _json_.repeatable;
+            if (_json_.approach === undefined) throw new Error();
+            this.approach = _json_.approach;
         }
 
         /**
@@ -950,6 +952,10 @@ export namespace Schema {
         * 可重复施放（NPC固有攻击）
         */
         readonly repeatable: boolean;
+        /**
+        * 是否接近目标
+        */
+        readonly approach: boolean;
 
         protected resolve(tables: Tables): void {
         }
