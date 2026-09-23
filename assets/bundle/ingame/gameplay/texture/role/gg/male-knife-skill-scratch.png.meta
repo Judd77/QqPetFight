@@ -1,0 +1,134 @@
+{
+  "ver": "1.0.27",
+  "importer": "image",
+  "imported": true,
+  "uuid": "14befa51-b563-4d31-a7a2-460ee1f230a6",
+  "files": [
+    ".json",
+    ".png"
+  ],
+  "subMetas": {
+    "6c48a": {
+      "importer": "texture",
+      "uuid": "14befa51-b563-4d31-a7a2-460ee1f230a6@6c48a",
+      "displayName": "male-knife-skill-scratch",
+      "id": "6c48a",
+      "name": "texture",
+      "userData": {
+        "wrapModeS": "clamp-to-edge",
+        "wrapModeT": "clamp-to-edge",
+        "imageUuidOrDatabaseUri": "14befa51-b563-4d31-a7a2-460ee1f230a6",
+        "isUuid": true,
+        "visible": false,
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "f9941": {
+      "importer": "sprite-frame",
+      "uuid": "14befa51-b563-4d31-a7a2-460ee1f230a6@f9941",
+      "displayName": "male-knife-skill-scratch",
+      "id": "f9941",
+      "name": "spriteFrame",
+      "userData": {
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 2,
+        "trimY": 2,
+        "width": 1764,
+        "height": 73,
+        "rawWidth": 1768,
+        "rawHeight": 77,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [
+            -882,
+            -36.5,
+            0,
+            882,
+            -36.5,
+            0,
+            -882,
+            36.5,
+            0,
+            882,
+            36.5,
+            0
+          ],
+          "indexes": [
+            0,
+            1,
+            2,
+            2,
+            1,
+            3
+          ],
+          "uv": [
+            2,
+            75,
+            1766,
+            75,
+            2,
+            2,
+            1766,
+            2
+          ],
+          "nuv": [
+            0.0011312217194570137,
+            0.025974025974025976,
+            0.998868778280543,
+            0.025974025974025976,
+            0.0011312217194570137,
+            0.974025974025974,
+            0.998868778280543,
+            0.974025974025974
+          ],
+          "minPos": [
+            -882,
+            -36.5,
+            0
+          ],
+          "maxPos": [
+            882,
+            36.5,
+            0
+          ]
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "14befa51-b563-4d31-a7a2-460ee1f230a6@6c48a",
+        "atlasUuid": "",
+        "trimType": "auto"
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "type": "sprite-frame",
+    "fixAlphaTransparencyArtifacts": false,
+    "hasAlpha": true,
+    "redirect": "14befa51-b563-4d31-a7a2-460ee1f230a6@6c48a"
+  }
+}

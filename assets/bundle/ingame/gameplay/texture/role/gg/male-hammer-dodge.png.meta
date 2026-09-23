@@ -1,0 +1,134 @@
+{
+  "ver": "1.0.27",
+  "importer": "image",
+  "imported": true,
+  "uuid": "b22dcd33-37ef-4a70-b500-6f00856b212e",
+  "files": [
+    ".json",
+    ".png"
+  ],
+  "subMetas": {
+    "6c48a": {
+      "importer": "texture",
+      "uuid": "b22dcd33-37ef-4a70-b500-6f00856b212e@6c48a",
+      "displayName": "male-hammer-dodge",
+      "id": "6c48a",
+      "name": "texture",
+      "userData": {
+        "wrapModeS": "clamp-to-edge",
+        "wrapModeT": "clamp-to-edge",
+        "imageUuidOrDatabaseUri": "b22dcd33-37ef-4a70-b500-6f00856b212e",
+        "isUuid": true,
+        "visible": false,
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "f9941": {
+      "importer": "sprite-frame",
+      "uuid": "b22dcd33-37ef-4a70-b500-6f00856b212e@f9941",
+      "displayName": "male-hammer-dodge",
+      "id": "f9941",
+      "name": "spriteFrame",
+      "userData": {
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 2,
+        "trimY": 2,
+        "width": 2004,
+        "height": 1422,
+        "rawWidth": 2008,
+        "rawHeight": 1426,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [
+            -1002,
+            -711,
+            0,
+            1002,
+            -711,
+            0,
+            -1002,
+            711,
+            0,
+            1002,
+            711,
+            0
+          ],
+          "indexes": [
+            0,
+            1,
+            2,
+            2,
+            1,
+            3
+          ],
+          "uv": [
+            2,
+            1424,
+            2006,
+            1424,
+            2,
+            2,
+            2006,
+            2
+          ],
+          "nuv": [
+            0.00099601593625498,
+            0.001402524544179523,
+            0.999003984063745,
+            0.001402524544179523,
+            0.00099601593625498,
+            0.9985974754558204,
+            0.999003984063745,
+            0.9985974754558204
+          ],
+          "minPos": [
+            -1002,
+            -711,
+            0
+          ],
+          "maxPos": [
+            1002,
+            711,
+            0
+          ]
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "b22dcd33-37ef-4a70-b500-6f00856b212e@6c48a",
+        "atlasUuid": "",
+        "trimType": "auto"
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "type": "sprite-frame",
+    "fixAlphaTransparencyArtifacts": false,
+    "hasAlpha": true,
+    "redirect": "b22dcd33-37ef-4a70-b500-6f00856b212e@6c48a"
+  }
+}

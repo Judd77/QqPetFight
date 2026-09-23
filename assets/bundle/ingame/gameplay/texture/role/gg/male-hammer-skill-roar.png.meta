@@ -1,0 +1,134 @@
+{
+  "ver": "1.0.27",
+  "importer": "image",
+  "imported": true,
+  "uuid": "e6929157-8ed6-4da5-96cb-a349eb800230",
+  "files": [
+    ".json",
+    ".png"
+  ],
+  "subMetas": {
+    "6c48a": {
+      "importer": "texture",
+      "uuid": "e6929157-8ed6-4da5-96cb-a349eb800230@6c48a",
+      "displayName": "male-hammer-skill-roar",
+      "id": "6c48a",
+      "name": "texture",
+      "userData": {
+        "wrapModeS": "clamp-to-edge",
+        "wrapModeT": "clamp-to-edge",
+        "imageUuidOrDatabaseUri": "e6929157-8ed6-4da5-96cb-a349eb800230",
+        "isUuid": true,
+        "visible": false,
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "f9941": {
+      "importer": "sprite-frame",
+      "uuid": "e6929157-8ed6-4da5-96cb-a349eb800230@f9941",
+      "displayName": "male-hammer-skill-roar",
+      "id": "f9941",
+      "name": "spriteFrame",
+      "userData": {
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": -1,
+        "offsetY": 0,
+        "trimX": 2,
+        "trimY": 2,
+        "width": 2038,
+        "height": 3535,
+        "rawWidth": 2044,
+        "rawHeight": 3539,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [
+            -1019,
+            -1767.5,
+            0,
+            1019,
+            -1767.5,
+            0,
+            -1019,
+            1767.5,
+            0,
+            1019,
+            1767.5,
+            0
+          ],
+          "indexes": [
+            0,
+            1,
+            2,
+            2,
+            1,
+            3
+          ],
+          "uv": [
+            2,
+            3537,
+            2040,
+            3537,
+            2,
+            2,
+            2040,
+            2
+          ],
+          "nuv": [
+            0.0009784735812133072,
+            0.0005651313930488839,
+            0.9980430528375733,
+            0.0005651313930488839,
+            0.0009784735812133072,
+            0.9994348686069511,
+            0.9980430528375733,
+            0.9994348686069511
+          ],
+          "minPos": [
+            -1019,
+            -1767.5,
+            0
+          ],
+          "maxPos": [
+            1019,
+            1767.5,
+            0
+          ]
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "e6929157-8ed6-4da5-96cb-a349eb800230@6c48a",
+        "atlasUuid": "",
+        "trimType": "auto"
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "type": "sprite-frame",
+    "fixAlphaTransparencyArtifacts": false,
+    "hasAlpha": true,
+    "redirect": "e6929157-8ed6-4da5-96cb-a349eb800230@6c48a"
+  }
+}

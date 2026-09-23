@@ -1,0 +1,134 @@
+{
+  "ver": "1.0.27",
+  "importer": "image",
+  "imported": true,
+  "uuid": "6ad88ff8-b2dd-4142-b724-5bf07fba5397",
+  "files": [
+    ".json",
+    ".png"
+  ],
+  "subMetas": {
+    "6c48a": {
+      "importer": "texture",
+      "uuid": "6ad88ff8-b2dd-4142-b724-5bf07fba5397@6c48a",
+      "displayName": "brick-throw",
+      "id": "6c48a",
+      "name": "texture",
+      "userData": {
+        "wrapModeS": "clamp-to-edge",
+        "wrapModeT": "clamp-to-edge",
+        "imageUuidOrDatabaseUri": "6ad88ff8-b2dd-4142-b724-5bf07fba5397",
+        "isUuid": true,
+        "visible": false,
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "f9941": {
+      "importer": "sprite-frame",
+      "uuid": "6ad88ff8-b2dd-4142-b724-5bf07fba5397@f9941",
+      "displayName": "brick-throw",
+      "id": "f9941",
+      "name": "spriteFrame",
+      "userData": {
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": -1,
+        "offsetY": 0,
+        "trimX": 2,
+        "trimY": 2,
+        "width": 978,
+        "height": 505,
+        "rawWidth": 984,
+        "rawHeight": 509,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [
+            -489,
+            -252.5,
+            0,
+            489,
+            -252.5,
+            0,
+            -489,
+            252.5,
+            0,
+            489,
+            252.5,
+            0
+          ],
+          "indexes": [
+            0,
+            1,
+            2,
+            2,
+            1,
+            3
+          ],
+          "uv": [
+            2,
+            507,
+            980,
+            507,
+            2,
+            2,
+            980,
+            2
+          ],
+          "nuv": [
+            0.0020325203252032522,
+            0.003929273084479371,
+            0.9959349593495935,
+            0.003929273084479371,
+            0.0020325203252032522,
+            0.9960707269155207,
+            0.9959349593495935,
+            0.9960707269155207
+          ],
+          "minPos": [
+            -489,
+            -252.5,
+            0
+          ],
+          "maxPos": [
+            489,
+            252.5,
+            0
+          ]
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "6ad88ff8-b2dd-4142-b724-5bf07fba5397@6c48a",
+        "atlasUuid": "",
+        "trimType": "auto"
+      },
+      "ver": "1.0.12",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "type": "sprite-frame",
+    "fixAlphaTransparencyArtifacts": false,
+    "hasAlpha": true,
+    "redirect": "6ad88ff8-b2dd-4142-b724-5bf07fba5397@6c48a"
+  }
+}
