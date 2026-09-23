@@ -1,5 +1,3 @@
-import { BattleEngine } from "../battle/BattleEngine";
-import type { CommandProducer } from "../battle/BattleSession";
 import {
     BattleAttackType, BattleCommand, BattleCommandType, BattleDefinitions, BattleInfo, BattleIntent,
     BattleRandom, BattleReaction, BattleReport, SkillEffect, SkillId, WeaponId,
@@ -17,21 +15,12 @@ interface ReportFighterState {
  * 本地服务端战报适配器。
  * 随机选择、命中和伤害全部在战斗开始前结算；客户端内核只消费已结算动作。
  */
-export class BattleReportProducer implements CommandProducer {
-    private readonly report: BattleReport;
-    private index = 0;
-
-    constructor(info: BattleInfo, config: BattleDefinitions) {
-        this.report = this.generate(info, config);
-    }
-
-    create(engine: BattleEngine): BattleCommand | undefined {
-        if (!engine.needsCommand) return;
-        const action = this.report.actions[this.index++];
-        return action ? this.cloneAction(action) : undefined;
-    }
-
-    private generate(info: BattleInfo, config: BattleDefinitions): BattleReport {
+export class BattleReportProducer {
+    /**
+     * 根据战斗初始数据一次性生成已结算战报。
+     * 相同配置和 seed 必须生成完全相同的指令顺序与结算结果。
+     */
+    generateReport(info: BattleInfo, config: BattleDefinitions): BattleReport {
         const rules = config.rules;
         const random = new BattleRandom(info.seed ^ 0x9e3779b9);
         const fighters: ReportFighterState[] = info.fighters.map((fighter) => ({
@@ -46,7 +35,7 @@ export class BattleReportProducer implements CommandProducer {
 
         while (fighters.every((fighter) => fighter.hp > 0) && actions.length < rules.maxFrames) {
             const player = random.next(fighters.length);
-            const command = this.createAction(
+            const command = this.createResolvedCommand(
                 info,
                 config,
                 fighters,
@@ -61,7 +50,11 @@ export class BattleReportProducer implements CommandProducer {
         return { version: 1, battleId: info.id, actions };
     }
 
-    private createAction(
+    /**
+     * 创建一条已确定武器、技能、命中与伤害结果的服务端行动。
+     * 此方法只修改战报生成阶段的临时状态，不接触客户端 BattleEngine。
+     */
+    private createResolvedCommand(
         info: BattleInfo,
         config: BattleDefinitions,
         fighters: ReportFighterState[],
@@ -144,7 +137,7 @@ export class BattleReportProducer implements CommandProducer {
                 critical: false,
             };
         } else {
-            resolution = this.resolveDamage(fighters, random, rules, target, power);
+            resolution = this.createDamageResolution(fighters, random, rules, target, power);
         }
         return {
             player,
@@ -160,7 +153,8 @@ export class BattleReportProducer implements CommandProducer {
         };
     }
 
-    private resolveDamage(
+    /** 根据闪避、暴击和伤害浮动规则生成一次伤害结算。 */
+    private createDamageResolution(
         fighters: ReportFighterState[],
         random: BattleRandom,
         rules: BattleDefinitions["rules"],
@@ -179,7 +173,4 @@ export class BattleReportProducer implements CommandProducer {
         return { target, reaction: BattleReaction.Hit, damage, healing: 0, critical };
     }
 
-    private cloneAction(action: BattleCommand): BattleCommand {
-        return { ...action, resolution: { ...action.resolution } };
-    }
 }

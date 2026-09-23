@@ -2,7 +2,7 @@ import { sys } from "cc";
 import { BaseController } from "db://assets/bootstrap/script/service/viewService/BaseController";
 import type { GameplayView } from "../GameplayView";
 import type { BattleRecording } from "../battle/BattleTypes";
-import { validateRecording } from "../battle/BattleSession";
+import { validateBattleRecording } from "../battle/BattleRecordingValidator";
 
 interface SavedBattle {
     id: string;
@@ -37,7 +37,7 @@ export class RecordingController extends BaseController<GameplayView> {
         if (!context.session?.finished || !context.completed || !context.lastRecording) {
             throw new Error("战斗尚未结束");
         }
-        validateRecording(context.lastRecording, this.view.config.battle);
+        validateBattleRecording(context.lastRecording, this.view.config.battle);
         const records = this.readRecords();
         if (records.some((item) =>
             item.id === context.lastRecording!.battle.id && item.checksum === context.lastChecksum)) {
@@ -82,7 +82,7 @@ export class RecordingController extends BaseController<GameplayView> {
             if (!entry || !Number.isSafeInteger(entry.savedAt) || !/^[0-9a-f]{8}$/.test(entry.checksum)) {
                 throw new Error("录像收藏信息无效");
             }
-            validateRecording(entry.recording, this.view.config.battle);
+            validateBattleRecording(entry.recording, this.view.config.battle);
             if (entry.id !== entry.recording.battle.id) throw new Error("录像收藏编号不一致");
         }
         return records;

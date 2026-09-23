@@ -1,5 +1,6 @@
 import { BattleResolution, SkillId, WeaponId } from "./BattleTypes";
 
+/** 一次行动中可逐帧执行的步骤类型。 */
 export enum BattleActionStepType {
     Equip,
     Approach,
@@ -13,6 +14,7 @@ export enum BattleActionStepType {
     Complete,
 }
 
+/** 行动步骤及其确定性执行进度。 */
 export interface BattleActionStep {
     type: BattleActionStepType;
     weapon?: WeaponId;
@@ -24,37 +26,46 @@ export interface BattleActionStep {
     resolved?: boolean;
 }
 
-/** 一次行动的显式步骤队列；状态可进入 checksum，便于定位帧同步差异。 */
+/**
+ * 保存一次行动展开后的步骤及当前位置。
+ * 队列状态会进入 BattleEngine 校验值，便于定位录像或锁步差异。
+ */
 export class BattleActionQueue {
     private readonly steps: BattleActionStep[] = [];
-    private index = 0;
+    private currentStepIndex = 0;
 
-    get current() {
-        return this.steps[this.index];
+    /** 当前应执行的步骤；整次行动结束后返回 undefined。 */
+    get currentStep() {
+        return this.steps[this.currentStepIndex];
     }
 
-    get empty() {
-        return this.index >= this.steps.length;
+    /** 当前行动是否已经没有待执行步骤。 */
+    get isEmpty() {
+        return this.currentStepIndex >= this.steps.length;
     }
 
-    replace(steps: readonly BattleActionStep[]) {
+    /** 使用一组全新步骤开始行动，并隔离调用方持有的步骤对象。 */
+    startAction(steps: readonly BattleActionStep[]) {
         this.steps.length = 0;
         this.steps.push(...steps.map((step) => ({ ...step })));
-        this.index = 0;
+        this.currentStepIndex = 0;
     }
 
-    advance() {
-        if (!this.empty) this.index++;
+    /** 标记当前步骤完成，下一逻辑帧将执行后续步骤。 */
+    advanceToNextStep() {
+        if (!this.isEmpty) this.currentStepIndex++;
     }
 
-    clear() {
+    /** 清空当前行动。 */
+    reset() {
         this.steps.length = 0;
-        this.index = 0;
+        this.currentStepIndex = 0;
     }
 
-    snapshot() {
+    /** 创建可序列化快照，供确定性校验使用。 */
+    createSnapshot() {
         return {
-            index: this.index,
+            index: this.currentStepIndex,
             steps: this.steps.map((step) => ({ ...step })),
         };
     }

@@ -70,9 +70,9 @@ export class StageController extends BaseController<GameplayView> {
         if (!session || !this.prepared || this.view.context.loading) return;
         const speed = session.paused ? 0 : session.speed;
         if (session.state.phase === BattlePhase.Finished) this.finishElapsed += dt * speed;
-        this.renderActors(session.state, session.alpha);
+        this.renderActors(session.state, session.interpolationAlpha);
         this.renderGroundWeapons(session.state);
-        this.renderProjectile(session.state, session.alpha);
+        this.renderProjectile(session.state, session.interpolationAlpha);
         this.renderDamage(dt * speed);
     }
 
@@ -97,7 +97,7 @@ export class StageController extends BaseController<GameplayView> {
         const defaultWeapon = this.view.config.battle.rules.defaultWeapon;
         for (const fighter of state.fighters) {
             const ground = component.groundWeapons[fighter.id]!;
-            ground.node.active = fighter.stowedWeapon !== defaultWeapon;
+            ground.node.active = fighter.stowedWeapon !== defaultWeapon && fighter.action !== FighterAction.PutDown;
             if (!ground.node.active) continue;
             ground.spriteFrame = this.view.assetCtrl.getWeaponFrame(fighter.stowedWeapon);
             const size = ground.spriteFrame.originalSize;

@@ -33,17 +33,17 @@ NPC 固有攻击在技能表中设为 repeatable，由自动指令生成器选�
 - 动画统一脚掌基准和翻转轴，不再按阴影或武器边界对齐；整段动作只平移，保留跑步步态、抬脚和技能腾空。
 - 图集保留官方外层动作缩放及帧原点，合并重复图片但不删除时间轴帧；按本场角色、武器、技能加载可达动作。
 - 武器栏、技能栏根据返回数据实例化 `WeaponCell`、`SkillCell` 通用项。
-- 原版 19 个战斗音效，通过 AudioController 消费逻辑事件；重复帧不重复播放，男女配音来自响应，投掷脱手后保留正确刀伤声，卷轴出现时播放胜负声音。
+- 原版 27 个战斗与结算音效，通过 AudioController 消费逻辑事件；重复帧不重复播放，男女配音来自响应，投掷脱手后保留正确刀伤声，卷轴出现时播放胜负声音。
 - “收藏录像”保存完整战斗数据、连续服务帧和最终校验值到本机；同局重复点击不重复保存。存储损坏或配额不足不会静默覆盖原存档。
 
-这不是完整复刻验收：目前主角有三把武器、三个技能，十名 NPC 有 22 套固有攻击。触发概率、威力、先后手等为当前版本调校参数，不冒充官网服务器公式；完整武器技能、强化、连击反击、背景音乐和结算奖励还没有全部实现。
+这不是完整复刻验收：目前主角有六把武器、六个技能，十名 NPC 有 22 套固有攻击。触发概率、威力、先后手等为当前版本调校参数，不冒充官网服务器公式；完整武器技能、强化、连击反击、背景音乐和结算奖励还没有全部实现。
 
 ## 素材分类
 
-- `texture/role/gg`、`texture/role/mm`：分别存放男、女角色的动作图集，共 118 张；4412 个时间轴帧条目由 shared 下的 Luban 配置表生成。
+- `texture/role/gg`、`texture/role/mm`：分别存放男、女角色的动作图集，共 226 张；8904 个时间轴帧条目由 shared 下的 Luban 配置表生成。
 - `texture/ui`：状态栏、男女头像、血条和玩法按钮。
 - `texture/atlas/skill`：技能散图。
-- `texture/weapon`：短剑、红缨枪、小李飞刀图标，库存、落地和投掷表现共用。
+- `texture/atlas/weapon`：短剑、红缨枪、小李飞刀、平底锅、板砖和大铁锤图标，库存、落地和投掷表现共用。
 - `texture/courtyard.jpg`：背景直接放 texture 根目录。
 - `audio`：战斗音效；胜负结算音效归属 `../result/audio`。
 - `../result`：独立结算业务，包含 script、prefab、texture/ui 和 audio；结算图片不再放在玩法 UI 目录。
@@ -56,8 +56,11 @@ NPC 固有攻击在技能表中设为 repeatable，由自动指令生成器选�
 - `GameplayComponent`：动态获取 Cocos 节点与组件，保存被动引用并转发按钮，不保存业务运行状态。
 - `GameplayConfig`：唯一 Luban 适配层；把生成表转换成玩法只读定义，战斗内核不依赖 Schema。
 - `shared/script/player/PlayerGateway` / `../pve/script/PveCampaign`：分别提供主角数据、关卡对手与通关进度。
-- `LocalFrameServer` / `server/BattleReportProducer`：模拟固定频率服务帧并顺序发送开战前生成的完整战报，不直接修改客户端战斗状态。
-- `BattleSession`：处理实时帧源、回放帧源、顺序帧缓存、渲染插值时间和录像。
+- `server/BattleReportProducer`：根据 seed 和规则一次性生成已结算战报，不依赖客户端战斗内核。
+- `server/BattleReportReader`：只负责按顺序读取战报行动。
+- `LocalFrameServer`：接收并校验指令，生成编号连续的服务帧；不累计时间，也不计算战斗结果。
+- `ReplayFrameSource` / `BattleRecordingValidator`：分别负责读取录像帧和校验外部录像。
+- `BattleSession`：把 Cocos 时间按配置转换为 20Hz 固定逻辑帧，处理连续帧缓存、录像记录和渲染插值。
 - `BattleEngine` / `BattleActionQueue`：纯 TypeScript 确定性逻辑；输入服务帧，输出状态与事件。
 - `GameplayAssetController`：根据本场数据加载并缓存角色、头像、武器、技能和动态格子资源。
 - `StageController` / `RoleRenderer`：渲染角色、序列帧、投射物、落地武器、飘字和角色层级，不计算结果。
@@ -68,7 +71,7 @@ NPC 固有攻击在技能表中设为 repeatable，由自动指令生成器选�
 
 收藏仍缺少玩家可操作的录像列表页面；当前可通过 `recordingCtrl.list()` 和 `recordingCtrl.replay(id, checksum)` 验证读回与回放，不能称收藏浏览流程已完成。正式联网未接入。
 
-当前录像格式为 v4，并同时校验战斗配置版本；不兼容的旧收藏使用独立存储键保留，不会被当作新版本录像读取或覆盖。
+当前录像格式为 v5，并同时校验战斗配置版本；不兼容的旧收藏使用独立存储键保留，不会被当作新版本录像读取或覆盖。
 
 ## 验证
 
@@ -100,7 +103,7 @@ node test/gameplay/verify-result.cjs <typescript 模块路径>
 
 ## 音频接入状态
 
-浏览器预览已确认 19 个战斗 AudioClip 成功解码，背景音乐素材的实际播放仍待接入。
+此前浏览器预览已确认 19 个 AudioClip 成功解码；本轮新增 8 个武器与技能音效已通过文件和配置校验，仍需在浏览器或真机逐个确认实际解码。背景音乐素材的实际播放仍待接入。
 
 音频按使用业务分类，`Win` / `Lose` 在打开 ResultView 时由 ViewService 加载 `ingame/result/audio`；其他战斗音效仍随 GameplayView 加载。
 
@@ -116,4 +119,4 @@ node test/gameplay/verify-result.cjs <typescript 模块路径>
 
 角色图集使用标准 `.plist`，在生成 Luban 配置时同步输出到 `texture/role`。Excel 仍是帧矩形、帧率和偏移的唯一配置来源；生成的 plist 不手工维护。每帧名称为 `动作ID_四位帧号`。
 
-运行时按本场配装加载 SpriteAtlas，并直接引用导入的 SpriteFrame，不再创建或销毁临时帧。Actor 使用 RAW 尺寸与表中 scale 等比缩放，保留 dx / dy 和 offsetX / offsetY 对齐。场景中绑定默认待机帧，编辑时也能定位对应资源。
+运行时按本场配装加载 SpriteAtlas，并直接引用导入的 SpriteFrame，不再创建或销毁临时帧。Actor 使用 RAW 尺寸与表中 scale 等比缩放，保留 dx / dy 和 offsetX / offsetY 对齐。场景 Actor 不绑定固定角色帧，运行时在本场资源加载完成后设置对应动画。

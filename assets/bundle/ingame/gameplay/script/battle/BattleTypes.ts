@@ -71,6 +71,8 @@ export interface SkillDefinition {
     hitFrame: number;
     duration: number;
     requiresUnarmed: boolean;
+    /** 是否需要先移动到近战距离。 */
+    approach: boolean;
     iconPath: string;
     sound: string;
     /** 是否可重复施放；NPC 的固有攻击也通过技能指令执行。 */
