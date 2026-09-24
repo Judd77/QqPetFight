@@ -1,5 +1,5 @@
 import { sys } from "cc";
-import type { FighterInfo } from "db://assets/bundle/ingame/gameplay/script/common/GameplayTypes";
+import type { FighterInfo } from "db://assets/bundle/ingame/gameplay/script/model/GameplayTypes";
 
 /** 玩家接口响应；主角配装由玩家数据提供，与关卡表独立。 */
 export interface PlayerProfile {

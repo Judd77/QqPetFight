@@ -1,4 +1,4 @@
-import type { BattleRecording, ServiceFrame } from "../common/GameplayTypes";
+import type { BattleRecording, ServiceFrame } from "../model/GameplayTypes";
 import type { FrameSource } from "./FrameSource";
 
 /** 回放服务帧来源：按录像原始顺序读取，不重新生成战斗指令。 */

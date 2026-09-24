@@ -1,8 +1,8 @@
 import { BaseView } from "db://assets/bootstrap/script/service/viewService/BaseView";
 import { ViewKeys } from "db://assets/bundle/shared/script/schema/ViewKeys";
-import { GameplayMode } from "../../gameplay/script/common/GameplayEntry";
-import type { GameplayEntry } from "../../gameplay/script/common/GameplayEntry";
-import { PveCampaign } from "../../pve/script/PveCampaign";
+import { GameplayMode } from "../../gameplay/script/model/GameplayEntry";
+import type { GameplayEntry } from "../../gameplay/script/model/GameplayEntry";
+import { PveCampaign } from "../../../outgame/pve/script/PveCampaign";
 import type { ResultComponent } from "./ResultComponent";
 
 export interface ResultParams {

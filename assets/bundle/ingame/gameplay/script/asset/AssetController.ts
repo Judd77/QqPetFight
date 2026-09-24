@@ -1,8 +1,8 @@
 import { Prefab, SpriteAtlas, SpriteFrame } from "cc";
 import { BaseController } from "db://assets/bootstrap/script/service/viewService/BaseController";
-import type { RoleAnimation } from "../common/GameplayConfig";
+import type { RoleAnimation } from "../model/GameplayConfig";
 import type { GameplayView } from "../GameplayView";
-import { BattleInfo, FighterGender, FighterInfo, SkillId, WeaponId } from "../common/GameplayTypes";
+import { BattleInfo, FighterGender, FighterInfo, SkillId, WeaponId } from "../model/GameplayTypes";
 
 const roleAtlases = new Map<string, SpriteAtlas>();
 const weaponFrames = new Map<WeaponId, SpriteFrame>();

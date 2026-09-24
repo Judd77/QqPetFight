@@ -7,7 +7,7 @@ const { ccclass } = _decorator;
 @ccclass("LobbyComponent")
 export class LobbyComponent extends BaseViewComponent<LobbyView> {
     protected override onLoad() {
-        find("Canvas/Button Pve")!.on(Button.EventType.CLICK, () => void this.view.lobbyCtrl.openPve(), this);
-        find("Canvas/Button Pvp")!.on(Button.EventType.CLICK, () => void this.view.lobbyCtrl.openPvp(), this);
+        find("Canvas/Button Pve")!.on(Button.EventType.CLICK, () => void this.view.openPve(), this);
+        find("Canvas/Button Pvp")!.on(Button.EventType.CLICK, () => void this.view.openPvp(), this);
     }
 }

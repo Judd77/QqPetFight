@@ -2,7 +2,7 @@ import { CommandController } from "../command/CommandController";
 import {
     BattleCommand, BattleDefinitions, BattleInfo, BattlePhase, BattleRecording, BattleState, BattleStepResult,
     ServiceFrame,
-} from "../common/GameplayTypes";
+} from "../model/GameplayTypes";
 import type { CommandSubmittingFrameSource, FrameSource } from "./FrameSource";
 import { ReplayFrameSource } from "./ReplayFrameSource";
 

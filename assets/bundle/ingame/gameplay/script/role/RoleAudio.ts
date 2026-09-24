@@ -1,7 +1,7 @@
 import type { GameplayView } from "../GameplayView";
 import {
     BattleEventType, BattleStepResult, FighterGender,
-} from "../common/GameplayTypes";
+} from "../model/GameplayTypes";
 
 /** 角色音效：处理移动、闪避和战败语音。 */
 export class RoleAudio {

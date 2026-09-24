@@ -1,4 +1,4 @@
-import type { BattleCommand, ServiceFrame } from "../common/GameplayTypes";
+import type { BattleCommand, ServiceFrame } from "../model/GameplayTypes";
 
 /**
  * 锁步服务使用的服务帧来源。

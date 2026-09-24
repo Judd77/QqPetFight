@@ -1,7 +1,7 @@
 import type { GameplayView } from "../GameplayView";
 import {
     BattleEventType, BattleStepResult, FighterGender, WeaponId,
-} from "../common/GameplayTypes";
+} from "../model/GameplayTypes";
 
 /** 武器音效：处理攻击、投掷和受击声音。 */
 export class WeaponAudio {

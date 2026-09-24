@@ -1,6 +1,6 @@
 import {
     BattleDefinitions, BattleRandom, BattleReaction, BattleResolution,
-} from "../common/GameplayTypes";
+} from "../model/GameplayTypes";
 
 /** 数值计算服务；只执行确定性公式，不保存任何战斗状态。 */
 export class StatsController {

@@ -11,10 +11,10 @@ import { LoadingView } from "db://assets/bundle/ingame/loading/script/LoadingVie
 import { LobbyComponent } from "db://assets/bundle/outgame/lobby/script/LobbyComponent";
 import { LobbyView } from "db://assets/bundle/outgame/lobby/script/LobbyView";
 import { ViewKeys } from "./ViewKeys";
-import { PveComponent } from "db://assets/bundle/ingame/pve/script/PveComponent";
-import { PveView } from "db://assets/bundle/ingame/pve/script/PveView";
-import { MatchingComponent } from "db://assets/bundle/ingame/pvp/script/MatchingComponent";
-import { MatchingView } from "db://assets/bundle/ingame/pvp/script/MatchingView";
+import { PveComponent } from "db://assets/bundle/outgame/pve/script/PveComponent";
+import { PveView } from "db://assets/bundle/outgame/pve/script/PveView";
+import { MatchingComponent } from "db://assets/bundle/outgame/pvp/script/MatchingComponent";
+import { MatchingView } from "db://assets/bundle/outgame/pvp/script/MatchingView";
 
 /** 仅补充 TypeScript 类型，不产生启动包到业务包的运行时依赖。 */
 declare module "db://assets/bootstrap/script/service/ConfigService" {
@@ -30,11 +30,11 @@ ViewRegistry.setSchema({
     views: [
         {
             key: ViewKeys.Matching,
-            config: { ctor: MatchingView, comp: MatchingComponent, path: "ingame/pvp", layer: ViewDefinition.ViewLayer.Popup, cache: false },
+            config: { ctor: MatchingView, comp: MatchingComponent, path: "outgame/pvp", layer: ViewDefinition.ViewLayer.Popup, cache: false },
         },
         {
             key: ViewKeys.Pve,
-            config: { ctor: PveView, comp: PveComponent, path: "ingame/pve", layer: ViewDefinition.ViewLayer.Popup, cache: false },
+            config: { ctor: PveView, comp: PveComponent, path: "outgame/pve", layer: ViewDefinition.ViewLayer.Popup, cache: false },
         },
         {
             key: ViewKeys.Loading,

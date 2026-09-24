@@ -1,7 +1,7 @@
 import { Color } from "cc";
 import { BaseController } from "db://assets/bootstrap/script/service/viewService/BaseController";
 import type { GameplayView } from "../GameplayView";
-import { BattleEventType, BattleStepResult } from "../common/GameplayTypes";
+import { BattleEventType, BattleStepResult } from "../model/GameplayTypes";
 
 /** 飘字业务入口：负责伤害、治疗、闪避和格挡文本表现。 */
 export class DamageTextController extends BaseController<GameplayView> {

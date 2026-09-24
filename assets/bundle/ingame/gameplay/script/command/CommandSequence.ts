@@ -1,4 +1,4 @@
-import { BattleResolution, SkillId, WeaponId } from "../common/GameplayTypes";
+import { BattleResolution, SkillId, WeaponId } from "../model/GameplayTypes";
 
 /** 一次行动中可逐帧执行的步骤类型。 */
 export enum CommandStepType {

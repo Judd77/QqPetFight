@@ -2,7 +2,7 @@ import { BaseController } from "db://assets/bootstrap/script/service/viewService
 import type { GameplayView } from "../GameplayView";
 import {
     BattleEventType, BattleInfo, BattlePhase, BattleStepResult,
-} from "../common/GameplayTypes";
+} from "../model/GameplayTypes";
 
 /** HUD 业务入口：负责头像、名称、血量、回合、行为提示和倍速按钮。 */
 export class UiController extends BaseController<GameplayView> {

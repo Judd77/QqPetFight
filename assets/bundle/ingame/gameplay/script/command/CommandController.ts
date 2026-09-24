@@ -3,7 +3,7 @@ import {
     BattleCommand, BattleCommandType, BattleDefinitions, BattleEvent, BattleEventType, BattleInfo, BattleIntent, BattlePhase,
     BattleReaction, BattleResolution, BattleState, BattleStepResult, FighterAction, FighterState, ServiceFrame,
     SkillEffect, SkillId, WeaponId,
-} from "../common/GameplayTypes";
+} from "../model/GameplayTypes";
 
 /** 纯 TypeScript 确定性战斗内核：只消费服务帧并输出状态与事件。 */
 export class CommandController {

@@ -1,5 +1,5 @@
 import type { GameplayView } from "../GameplayView";
-import { BattleEventType, BattleStepResult } from "../common/GameplayTypes";
+import { BattleEventType, BattleStepResult } from "../model/GameplayTypes";
 
 /** 流程音效：只处理倒计时与开战提示。 */
 export class ProcessAudio {

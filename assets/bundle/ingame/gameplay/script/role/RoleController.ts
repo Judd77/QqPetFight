@@ -1,7 +1,7 @@
 import { BaseController } from "db://assets/bootstrap/script/service/viewService/BaseController";
 import type { GameplayView } from "../GameplayView";
-import { BattlePhase } from "../common/GameplayTypes";
-import type { BattleStepResult } from "../common/GameplayTypes";
+import { BattlePhase } from "../model/GameplayTypes";
+import type { BattleStepResult } from "../model/GameplayTypes";
 import { RoleAudio } from "./RoleAudio";
 import { RolePresentation } from "./RolePresentation";
 

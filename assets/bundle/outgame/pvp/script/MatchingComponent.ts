@@ -28,7 +28,7 @@ export class MatchingComponent extends BaseViewComponent<MatchingView> {
         this.searching = panel.getChildByName("Searching")!;
         this.cancel = panel.getChildByName("Cancel")!.getComponent(Button)!;
         this.retry = panel.getChildByName("Retry")!.getComponent(Button)!;
-        this.cancel.node.on(Button.EventType.CLICK, () => this.view.matchCtrl.cancel());
-        this.retry.node.on(Button.EventType.CLICK, () => void this.view.matchCtrl.start());
+        this.cancel.node.on(Button.EventType.CLICK, () => this.view.cancel());
+        this.retry.node.on(Button.EventType.CLICK, () => void this.view.start());
     }
 }

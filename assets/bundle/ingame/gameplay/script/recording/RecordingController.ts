@@ -1,7 +1,7 @@
 import { sys } from "cc";
 import { BaseController } from "db://assets/bootstrap/script/service/viewService/BaseController";
 import type { GameplayView } from "../GameplayView";
-import type { BattleRecording } from "../common/GameplayTypes";
+import type { BattleRecording } from "../model/GameplayTypes";
 import { validateBattleRecording } from "./RecordingValidator";
 
 interface SavedBattle {

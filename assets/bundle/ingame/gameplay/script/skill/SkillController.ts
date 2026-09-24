@@ -1,7 +1,7 @@
 import { instantiate } from "cc";
 import { BaseController } from "db://assets/bootstrap/script/service/viewService/BaseController";
 import type { GameplayView } from "../GameplayView";
-import { BattleInfo, BattleStepResult } from "../common/GameplayTypes";
+import { BattleInfo, BattleStepResult } from "../model/GameplayTypes";
 import { SkillAudio } from "./SkillAudio";
 import { SkillCellComponent } from "./SkillCellComponent";
 

@@ -1,5 +1,5 @@
 import { _decorator, Component, Sprite } from "cc";
-import type { SkillId } from "../common/GameplayTypes";
+import type { SkillId } from "../model/GameplayTypes";
 const { ccclass } = _decorator;
 
 /** 技能项只保存组件引用和对应技能，不参与战斗判断。 */

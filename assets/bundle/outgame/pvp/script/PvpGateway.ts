@@ -1,6 +1,6 @@
 import { playerGateway } from "db://assets/bundle/shared/script/player/PlayerGateway";
-import { FighterGender, FighterInfo } from "../../gameplay/script/common/GameplayTypes";
-import { GameplayEntry, GameplayMode } from "../../gameplay/script/common/GameplayEntry";
+import { FighterGender, FighterInfo } from "../../../ingame/gameplay/script/model/GameplayTypes";
+import { GameplayEntry, GameplayMode } from "../../../ingame/gameplay/script/model/GameplayEntry";
 
 export interface PvpGateway {
     match(): Promise<GameplayEntry>;

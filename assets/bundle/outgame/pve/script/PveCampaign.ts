@@ -1,6 +1,6 @@
 import type { Schema } from "db://assets/bundle/shared/script/schema/Schema";
 import { playerGateway } from "db://assets/bundle/shared/script/player/PlayerGateway";
-import { GameplayEntry, GameplayMode } from "../../gameplay/script/common/GameplayEntry";
+import { GameplayEntry, GameplayMode } from "../../../ingame/gameplay/script/model/GameplayEntry";
 
 let clearedStages = 0;
 

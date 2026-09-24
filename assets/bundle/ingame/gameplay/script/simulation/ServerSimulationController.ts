@@ -1,8 +1,8 @@
 import type {
     BattleCommand, BattleDefinitions, BattleInfo, BattleReport, ServiceFrame,
-} from "../common/GameplayTypes";
-import type { CommandSubmittingFrameSource } from "./FrameSource";
-import type { StatsController } from "./StatsController";
+} from "../model/GameplayTypes";
+import type { CommandSubmittingFrameSource } from "../lockstep/FrameSource";
+import type { StatsController } from "../stats/StatsController";
 import { ServerSimulationLogic } from "./ServerSimulationLogic";
 
 /**

@@ -1,8 +1,8 @@
 import {
     BattleAttackType, BattleCommand, BattleCommandType, BattleDefinitions, BattleInfo, BattleIntent,
     BattleRandom, BattleReaction, BattleReport, SkillEffect, SkillId, WeaponId,
-} from "../common/GameplayTypes";
-import type { StatsController } from "./StatsController";
+} from "../model/GameplayTypes";
+import type { StatsController } from "../stats/StatsController";
 
 interface ReportFighterState {
     hp: number;

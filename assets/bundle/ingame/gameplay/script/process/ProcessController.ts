@@ -1,9 +1,9 @@
 import { BaseController } from "db://assets/bootstrap/script/service/viewService/BaseController";
 import type { GameplayView } from "../GameplayView";
-import type { BattleInfo, BattleRecording, BattleStepResult } from "../common/GameplayTypes";
-import { validateBattleInfo } from "../common/GameplayValidator";
-import { LockstepController } from "../service/LockstepController";
-import { ServerSimulationController } from "../service/ServerSimulationController";
+import type { BattleInfo, BattleRecording, BattleStepResult } from "../model/GameplayTypes";
+import { validateBattleInfo } from "../model/GameplayValidator";
+import { LockstepController } from "../lockstep/LockstepController";
+import { ServerSimulationController } from "../simulation/ServerSimulationController";
 import { ProcessAudio } from "./ProcessAudio";
 
 /** 控制准备、开战、推进、回放和结束等整场玩法流程。 */

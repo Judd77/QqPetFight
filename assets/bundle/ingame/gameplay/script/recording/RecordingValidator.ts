@@ -1,7 +1,7 @@
 import {
     BattleAttackType, BattleCommandType, BattleDefinitions, BattleIntent, BattleReaction, BattleRecording,
-} from "../common/GameplayTypes";
-import { validateBattleInfo } from "../common/GameplayValidator";
+} from "../model/GameplayTypes";
+import { validateBattleInfo } from "../model/GameplayValidator";
 
 /**
  * 校验外部录像能否安全交给确定性战斗内核执行。

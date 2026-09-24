@@ -1,4 +1,4 @@
-import type { LockstepController } from "../service/LockstepController";
+import type { LockstepController } from "../lockstep/LockstepController";
 import type { BattleInfo, BattleRecording } from "./GameplayTypes";
 
 /**

@@ -53,22 +53,21 @@ NPC 固有攻击在技能表中设为 repeatable，由自动指令生成器选�
 
 - `GameplayView`：玩法总入口，只创建并编排各业务 Controller。
 - `GameplayComponent`：动态获取 Cocos 节点与组件，保存被动引用并转发按钮，不保存业务运行状态。
-- `common`：集中保存 GameplayContext、GameplayTypes、GameplayEntry 和 GameplayConfig 等跨业务上下文与声明。
+- `model`：集中保存 GameplayContext、GameplayTypes、GameplayEntry 和 GameplayConfig 等跨业务上下文与声明。
 - `process/ProcessController`：控制准备、开战、推进、回放、结束和退出等整场玩法流程。
-- `service`：放置不属于具体表现业务的 Gameplay 服务，包括资源缓存、锁步、单机服务模拟和数值计算；`common` 不承载服务实现。
-- `service/LockstepController`：把 Cocos 时间转换为 20Hz 固定逻辑帧，处理连续帧缓存、录像记录和渲染插值。
-- `service/ServerSimulationController`：单机模拟服务器入口；生成已结算战报和连续服务帧，正式联网时可整体替换。
-- `service/StatsController`：命中、闪避、暴击、伤害和治疗的确定性数值入口，不保存战斗状态。
+- `lockstep/LockstepController`：把 Cocos 时间转换为 20Hz 固定逻辑帧，处理连续帧缓存、录像记录和渲染插值。
+- `simulation/ServerSimulationController`：单机模拟服务器入口；生成已结算战报和连续服务帧，正式联网时可整体替换。
+- `stats/StatsController`：命中、闪避、暴击、伤害和治疗的确定性数值入口，不保存战斗状态。
 - `command/CommandController` / `CommandSequence`：消费服务指令并逐帧执行取武器、接近、攻击、返回等确定性步骤。
 - `role/RoleController` / `RolePresentation` / `RoleAudio`：负责角色位置、动作、序列帧、攻击层级及角色音效，不计算战斗结果。
 - `weapon/WeaponController` / `WeaponAudio`：管理动态武器格、地面武器及武器音效。
 - `skill/SkillController` / `SkillAudio`：管理动态技能格及技能释放音效。
 - `process/ProcessAudio`：处理倒计时和开战提示音效。
 - `projectile/ProjectileController` / `effect/DamageTextController`：分别负责投射物和战斗飘字。
-- `service/AssetController`：根据本场数据加载并长期缓存角色、头像、武器、技能和动态格子资源。
+- `asset/AssetController`：根据本场数据加载并长期缓存角色、头像、武器、技能和动态格子资源。
 - `ui/UiController`：显示头像、名称、血量、回合、行为提示、倍速和结算入口，不加载资源。
 - `recording/RecordingController`：管理本机录像收藏；`RecordingValidator` 校验外部录像。
-- `shared/script/player/PlayerGateway` / `../pve/script/PveCampaign`：分别提供主角数据、关卡对手与通关进度。
+- `shared/script/player/PlayerGateway` / `../../outgame/pve/script/PveCampaign`：分别提供主角数据、关卡对手与通关进度。
 - `../result/script/ResultView`：完整结算业务入口，处理 PVE 通关、胜负文案与声音、收藏录像、再来一场和返回 Lobby。
 
 收藏仍缺少玩家可操作的录像列表页面；当前可通过 `recordingCtrl.list()` 和 `recordingCtrl.replay(id, checksum)` 验证读回与回放，不能称收藏浏览流程已完成。正式联网未接入。
@@ -92,7 +91,7 @@ node test/gameplay/verify-result.cjs <typescript 模块路径>
 
 分别检查：
 
-- Gameplay 脚本无循环依赖，common 与各业务目录依赖方向正确，View 与 Component 职责边界稳定，代码中不写死业务资源路径。
+- Gameplay 脚本无循环依赖，model 与各业务目录依赖方向正确，View 与 Component 职责边界稳定，代码中不写死业务资源路径。
 - Luban 战斗定义、服务帧指令消费、30/60/144 FPS 逐帧一致、40 个种子、乱序/缺帧/重复帧、暂停、库存、技能来源/效果帧/治疗和暂放拾回、远程武器原地投掷及消耗。
 - 收藏、重复点击、重载读取、回放数据、引用隔离、损坏存档保护、配额失败重试。测试使用隔离存储。
 - 所有图集矩形边界和尺寸、8 种性别/装备/技能组合的每个可达动作都能加载；同时检查脚掌基准、翻转轴和双方攻击层级。

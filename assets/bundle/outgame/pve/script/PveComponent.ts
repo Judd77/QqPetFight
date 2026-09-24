@@ -3,7 +3,7 @@ import { BaseViewComponent } from "db://assets/bootstrap/script/service/viewServ
 import type { PveView } from "./PveView";
 const { ccclass } = _decorator;
 
-/** 固定节点引用和按钮转发；内容由 Controller 按关卡数据填充。 */
+/** 固定节点引用和按钮事件转发。 */
 @ccclass("PveComponent")
 export class PveComponent extends BaseViewComponent<PveView> {
     declare title: Label;
@@ -33,7 +33,7 @@ export class PveComponent extends BaseViewComponent<PveView> {
         this.challenge = panel.getChildByName("Challenge")!.getComponent(Button)!;
         this.challengeLabel = this.challenge.node.getChildByName("Label")!.getComponent(Label)!;
         this.close = panel.getChildByName("Close")!.getComponent(Button)!;
-        this.challenge.node.on(Button.EventType.CLICK, () => void this.view.pveCtrl.challenge());
-        this.close.node.on(Button.EventType.CLICK, () => this.view.pveCtrl.close());
+        this.challenge.node.on(Button.EventType.CLICK, () => void this.view.challenge());
+        this.close.node.on(Button.EventType.CLICK, () => this.view.close());
     }
 }

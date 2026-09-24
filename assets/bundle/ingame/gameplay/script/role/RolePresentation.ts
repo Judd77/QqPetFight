@@ -1,6 +1,6 @@
 import { Node, Sprite, SpriteAtlas } from "cc";
-import type { GameplayConfig } from "../common/GameplayConfig";
-import { BattlePhase, BattleState, FighterAction, FighterInfo, FighterState } from "../common/GameplayTypes";
+import type { GameplayConfig } from "../model/GameplayConfig";
+import { BattlePhase, BattleState, FighterAction, FighterInfo, FighterState } from "../model/GameplayTypes";
 
 export interface RoleAssetProvider {
     getRoleAtlas(clipId: string): SpriteAtlas;

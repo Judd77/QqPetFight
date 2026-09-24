@@ -20,7 +20,7 @@ export class LoadingComponent extends BaseViewComponent<LoadingView> {
         this.message = this.node.getChildByName("Message")!.getComponent(Label)!;
         this.retryButton = this.node.getChildByName("Retry")!.getComponent(Button)!;
         this.backButton = this.node.getChildByName("Back")!.getComponent(Button)!;
-        this.retryButton.node.on(Button.EventType.CLICK, () => this.view.loadingCtrl.onClickRetry());
-        this.backButton.node.on(Button.EventType.CLICK, () => this.view.loadingCtrl.onClickBack());
+        this.retryButton.node.on(Button.EventType.CLICK, () => this.view.onClickRetry());
+        this.backButton.node.on(Button.EventType.CLICK, () => this.view.onClickBack());
     }
 }

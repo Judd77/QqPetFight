@@ -1,5 +1,5 @@
 import type { GameplayView } from "../GameplayView";
-import { BattleEventType, BattleStepResult } from "../common/GameplayTypes";
+import { BattleEventType, BattleStepResult } from "../model/GameplayTypes";
 
 /** 技能音效：只处理技能释放声音。 */
 export class SkillAudio {
