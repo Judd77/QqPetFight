@@ -1,14 +1,14 @@
 import { playerGateway } from "db://assets/bundle/shared/script/player/PlayerGateway";
-import { FighterGender, FighterInfo } from "../../gameplay/script/battle/BattleTypes";
-import { BattleEntry, BattleMode } from "../../gameplay/script/battle/BattleEntry";
+import { FighterGender, FighterInfo } from "../../gameplay/script/common/GameplayTypes";
+import { GameplayEntry, GameplayMode } from "../../gameplay/script/common/GameplayEntry";
 
 export interface PvpGateway {
-    match(): Promise<BattleEntry>;
+    match(): Promise<GameplayEntry>;
 }
 
 /** 离线匹配响应；当前固定为 mm，正式联网时替换此接口实现。 */
 class LocalPvpGateway implements PvpGateway {
-    async match(): Promise<BattleEntry> {
+    async match(): Promise<GameplayEntry> {
         const { fighter } = await playerGateway.getProfile();
         const opponent: FighterInfo = {
             id: 1, name: "女侠", gender: FighterGender.Female, hp: 650, maxHp: 650,
@@ -17,7 +17,7 @@ class LocalPvpGateway implements PvpGateway {
         };
         const seed = Math.floor(Math.random() * 0x7fffffff) + 1;
         return {
-            mode: BattleMode.Pvp,
+            mode: GameplayMode.Pvp,
             battle: {
                 id: "pvp-" + Date.now() + "-" + seed,
                 seed,

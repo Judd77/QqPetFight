@@ -1,5 +1,5 @@
 import { _decorator, Component, Sprite, UITransform } from "cc";
-import type { WeaponId } from "../battle/BattleTypes";
+import type { WeaponId } from "../common/GameplayTypes";
 const { ccclass } = _decorator;
 
 /** 武器项只保存组件引用与对应的武器 ID。 */

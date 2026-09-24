@@ -1,18 +1,18 @@
 import { BaseView } from "db://assets/bootstrap/script/service/viewService/BaseView";
 import type { LoadingComponent } from "./LoadingComponent";
 import { LoadingController } from "./LoadingController";
-import type { BattleEntry } from "../../gameplay/script/battle/BattleEntry";
+import type { GameplayEntry } from "../../gameplay/script/common/GameplayEntry";
 
 export type LoadingProgress = (progress: number, message?: string) => void;
 
 /** 进入玩法时显示，加载完成后销毁的临时界面。 */
-export class LoadingView extends BaseView<LoadingComponent, [BattleEntry]> {
-    declare battle: BattleEntry;
+export class LoadingView extends BaseView<LoadingComponent, [GameplayEntry]> {
+    declare battle: GameplayEntry;
     readonly loadingCtrl = new LoadingController(this);
     protected override readonly controllers = [this.loadingCtrl];
 
     /** 真正打开界面后才开始加载玩法。 */
-    protected override async onLoad(battle: BattleEntry) {
+    protected override async onLoad(battle: GameplayEntry) {
         this.battle = battle;
         await this.loadingCtrl.run();
     }

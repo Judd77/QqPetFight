@@ -24,8 +24,8 @@ export class ResultComponent extends BaseViewComponent<ResultView> {
         this.againButton = this.node.getChildByName("Again")!.getComponent(Button)!;
         this.againLabel = this.againButton.node.getChildByName("Label")!.getComponent(Label)!;
         this.closeButton = this.node.getChildByName("Close")!.getComponent(Button)!;
-        this.saveButton.node.on(Button.EventType.CLICK, () => this.view.resultCtrl.onClickSave());
-        this.againButton.node.on(Button.EventType.CLICK, () => this.view.resultCtrl.onClickAgain());
-        this.closeButton.node.on(Button.EventType.CLICK, () => this.view.resultCtrl.onClickClose());
+        this.saveButton.node.on(Button.EventType.CLICK, () => this.view.onClickSave());
+        this.againButton.node.on(Button.EventType.CLICK, () => this.view.onClickAgain());
+        this.closeButton.node.on(Button.EventType.CLICK, () => this.view.onClickClose());
     }
 }

@@ -2,8 +2,8 @@ import { Sprite, SpriteFrame } from "cc";
 import { BaseController } from "db://assets/bootstrap/script/service/viewService/BaseController";
 import { ViewKeys } from "db://assets/bundle/shared/script/schema/ViewKeys";
 import { playerGateway } from "db://assets/bundle/shared/script/player/PlayerGateway";
-import { FighterGender, FighterInfo } from "../../gameplay/script/battle/BattleTypes";
-import type { BattleEntry } from "../../gameplay/script/battle/BattleEntry";
+import { FighterGender, FighterInfo } from "../../gameplay/script/common/GameplayTypes";
+import type { GameplayEntry } from "../../gameplay/script/common/GameplayEntry";
 import type { MatchingView } from "./MatchingView";
 import { pvpGateway } from "./PvpGateway";
 
@@ -15,7 +15,7 @@ export class MatchingController extends BaseController<MatchingView> {
     private state = MatchState.Closed;
     private elapsed = 0;
     private requestId = 0;
-    private entry?: BattleEntry;
+    private entry?: GameplayEntry;
 
     async start() {
         const requestId = ++this.requestId;

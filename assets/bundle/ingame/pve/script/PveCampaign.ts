@@ -1,6 +1,6 @@
 import type { Schema } from "db://assets/bundle/shared/script/schema/Schema";
 import { playerGateway } from "db://assets/bundle/shared/script/player/PlayerGateway";
-import { BattleEntry, BattleMode } from "../../gameplay/script/battle/BattleEntry";
+import { GameplayEntry, GameplayMode } from "../../gameplay/script/common/GameplayEntry";
 
 let clearedStages = 0;
 
@@ -20,7 +20,7 @@ export class PveCampaign {
         return stages[Math.min(this.getCleared(), stages.length - 1)]!;
     }
 
-    async createBattle(stageId: number, tables: Schema.Tables): Promise<BattleEntry> {
+    async createBattle(stageId: number, tables: Schema.Tables): Promise<GameplayEntry> {
         const stages = this.getStages(tables);
         const index = stages.findIndex(stage => stage.id === stageId);
         if (index < 0 || index > this.getCleared()) throw new Error("关卡尚未解锁");
@@ -29,7 +29,7 @@ export class PveCampaign {
         const seed = Math.floor(Math.random() * 0x7fffffff) + 1;
         const player = profile.fighter;
         return {
-            mode: BattleMode.Pve,
+            mode: GameplayMode.Pve,
             stageId,
             battle: {
                 id: "pve-" + stageId + "-" + Date.now() + "-" + seed,
