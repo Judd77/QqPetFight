@@ -12,6 +12,7 @@ export class ServiceLocator {
     declare readonly audioService: AudioService;
     declare readonly viewRegistry: ViewRegistry;
     declare readonly viewService: ViewService;
+    private readonly businessServices = new Map<Function, unknown>();
 
     constructor(facadeNode: Node) {
         this.assetService = new AssetService();
@@ -23,5 +24,14 @@ export class ServiceLocator {
 
     update(dt: number) {
         this.viewService.update(dt);
+    }
+
+    /** 按业务类型创建并复用服务实例，不让启动包依赖具体业务脚本。 */
+    getService<T>(type: new () => T): T {
+        const existing = this.businessServices.get(type);
+        if (existing) return existing as T;
+        const service = new type();
+        this.businessServices.set(type, service);
+        return service;
     }
 }

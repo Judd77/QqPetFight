@@ -16,7 +16,7 @@ export interface ResultParams {
 /** 独立结算业务入口。 */
 export class ResultView extends BaseView<ResultComponent, [ResultParams]> {
     declare params: ResultParams;
-    private readonly campaign = new PveCampaign();
+    private get campaign() { return this.serve.getService(PveCampaign); }
     private busy = false;
     private saved = false;
 

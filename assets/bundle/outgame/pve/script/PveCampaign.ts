@@ -1,17 +1,17 @@
 import type { Schema } from "db://assets/bundle/shared/script/schema/Schema";
-import { playerGateway } from "db://assets/bundle/shared/script/player/PlayerGateway";
+import type { PlayerGateway } from "db://assets/bundle/shared/script/player/PlayerGateway";
 import { GameplayEntry, GameplayMode } from "../../../ingame/gameplay/script/model/GameplayEntry";
 
-let clearedStages = 0;
-
-/** 关卡编排和本次运行进度；关闭或刷新游戏后从第一关重新开始。 */
+/** 关卡编排和本次运行进度；由 ServiceLocator 保留同一实例。 */
 export class PveCampaign {
+    private clearedStages = 0;
+
     getStages(tables: Schema.Tables) {
         return tables.TbPveStage.getDataList().slice().sort((a, b) => a.id - b.id);
     }
 
     getCleared() {
-        return clearedStages;
+        return this.clearedStages;
     }
 
     getCurrent(tables: Schema.Tables) {
@@ -20,7 +20,7 @@ export class PveCampaign {
         return stages[Math.min(this.getCleared(), stages.length - 1)]!;
     }
 
-    async createBattle(stageId: number, tables: Schema.Tables): Promise<GameplayEntry> {
+    async createBattle(stageId: number, tables: Schema.Tables, playerGateway: PlayerGateway): Promise<GameplayEntry> {
         const stages = this.getStages(tables);
         const index = stages.findIndex(stage => stage.id === stageId);
         if (index < 0 || index > this.getCleared()) throw new Error("关卡尚未解锁");
@@ -60,6 +60,6 @@ export class PveCampaign {
         const cleared = this.getCleared();
         if (index < 0 || index > cleared) throw new Error("无法结算未解锁关卡");
         if (index < cleared) return;
-        clearedStages = cleared + 1;
+        this.clearedStages = cleared + 1;
     }
 }

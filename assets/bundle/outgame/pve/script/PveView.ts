@@ -1,15 +1,14 @@
 import { instantiate, Label, Prefab, Sprite, SpriteFrame } from "cc";
 import { BaseView } from "db://assets/bootstrap/script/service/viewService/BaseView";
 import { ViewKeys } from "db://assets/bundle/shared/script/schema/ViewKeys";
+import { AssetStore } from "db://assets/bundle/shared/script/asset/AssetStore";
+import { LocalPlayerGateway } from "db://assets/bundle/shared/script/player/PlayerGateway";
 import type { PveComponent } from "./PveComponent";
 import { PveCampaign } from "./PveCampaign";
 
-const frames = new Map<string, SpriteFrame>();
-let itemPrefab: Prefab | undefined;
-
 /** PVE 对手预览总入口。 */
 export class PveView extends BaseView<PveComponent> {
-    private readonly campaign = new PveCampaign();
+    private get campaign() { return this.serve.getService(PveCampaign); }
     private busy = false;
     private stageId = 0;
 
@@ -39,10 +38,8 @@ export class PveView extends BaseView<PveComponent> {
             component.portrait.spriteFrame = portrait;
             const portraitScale = 150 / Math.max(portrait.originalSize.width, portrait.originalSize.height);
             component.portrait.node.setScale(portraitScale, portraitScale, 1);
-            if (!itemPrefab) {
-                itemPrefab = await this.serve.assetService.load("outgame/pve/prefab/EquipmentItem", Prefab);
-                itemPrefab.addRef();
-            }
+            const itemPrefab = await this.serve.getService(AssetStore).load(
+                this.serve.assetService, "outgame/pve/prefab/EquipmentItem", Prefab);
             for (const root of [component.weapons, component.skills]) {
                 for (const node of root.children.slice()) node.destroy();
             }
@@ -83,7 +80,8 @@ export class PveView extends BaseView<PveComponent> {
         this.component.challenge.interactable = false;
         this.component.close.interactable = false;
         try {
-            const battle = await this.campaign.createBattle(this.stageId, this.serve.configService.tables);
+            const battle = await this.campaign.createBattle(this.stageId, this.serve.configService.tables,
+                this.serve.getService(LocalPlayerGateway));
             await this.serve.viewService.load(ViewKeys.Loading, battle);
             this.serve.viewService.unload(ViewKeys.Pve);
         } catch (error) {
@@ -105,11 +103,6 @@ export class PveView extends BaseView<PveComponent> {
 
     /** 加载并长期缓存对手头像、武器和技能图标。 */
     private async loadFrame(path: string) {
-        const cached = frames.get(path);
-        if (cached) return cached;
-        const frame = await this.serve.assetService.load(path, SpriteFrame);
-        frame.addRef();
-        frames.set(path, frame);
-        return frame;
+        return this.serve.getService(AssetStore).load(this.serve.assetService, path, SpriteFrame);
     }
 }

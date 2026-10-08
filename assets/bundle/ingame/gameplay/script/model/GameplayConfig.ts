@@ -98,6 +98,13 @@ export class GameplayConfig {
         return this.getAnimation(gender, weapon, animation);
     }
 
+    /** 根据动作 ID 找到图集路径，缓存由共享 AssetStore 管理。 */
+    getAnimationPath(clipId: string) {
+        for (const row of this.animations.values()) if (row.id === clipId) return row.assetPath;
+        for (const row of this.npcAnimations.values()) if (row.id === clipId) return row.assetPath;
+        throw new Error("缺少角色动作配置：" + clipId);
+    }
+
     getFrames(clipId: string): readonly Schema.RoleFrameEntry[] {
         const rows = this.frames.get(clipId);
         if (!rows?.length) throw new Error("缺少角色帧配置：" + clipId);

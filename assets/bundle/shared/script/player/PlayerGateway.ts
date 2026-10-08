@@ -10,8 +10,8 @@ export interface PlayerGateway {
     getProfile(): Promise<PlayerProfile>;
 }
 
-/** 当前离线版本的玩家存档适配器，联网时只替换此接口实现。 */
-class LocalPlayerGateway implements PlayerGateway {
+/** 当前离线版本的玩家存档适配器，联网时替换此实现。 */
+export class LocalPlayerGateway implements PlayerGateway {
     async getProfile(): Promise<PlayerProfile> {
         const key = "qpet.player.v1";
         const raw = sys.localStorage.getItem(key);
@@ -41,4 +41,3 @@ class LocalPlayerGateway implements PlayerGateway {
         return profile;
     }
 }
-export const playerGateway: PlayerGateway = new LocalPlayerGateway();

@@ -1,14 +1,14 @@
 import { Sprite, SpriteFrame } from "cc";
 import { BaseView } from "db://assets/bootstrap/script/service/viewService/BaseView";
 import { ViewKeys } from "db://assets/bundle/shared/script/schema/ViewKeys";
-import { playerGateway } from "db://assets/bundle/shared/script/player/PlayerGateway";
+import { LocalPlayerGateway } from "db://assets/bundle/shared/script/player/PlayerGateway";
+import { AssetStore } from "db://assets/bundle/shared/script/asset/AssetStore";
 import type { GameplayEntry } from "../../../ingame/gameplay/script/model/GameplayEntry";
 import { FighterGender, FighterInfo } from "../../../ingame/gameplay/script/model/GameplayTypes";
 import type { MatchingComponent } from "./MatchingComponent";
-import { pvpGateway } from "./PvpGateway";
+import { LocalPvpGateway } from "./PvpGateway";
 
 enum MatchState { Preparing, Waiting, Requesting, Found, Entering, Failed, Closed }
-const frames = new Map<string, SpriteFrame>();
 
 /** PVP 匹配总入口，不在加载阶段等待整个匹配流程。 */
 export class MatchingView extends BaseView<MatchingComponent> {
@@ -38,7 +38,7 @@ export class MatchingView extends BaseView<MatchingComponent> {
         component.status.string = "正在准备匹配…";
         component.elapsed.string = "";
         try {
-            const { fighter } = await playerGateway.getProfile();
+            const { fighter } = await this.serve.getService(LocalPlayerGateway).getProfile();
             const portrait = await this.loadPortrait(fighter);
             if (requestId !== this.requestId) return;
             this.setPortrait(component.playerPortrait, portrait);
@@ -87,7 +87,7 @@ export class MatchingView extends BaseView<MatchingComponent> {
         this.state = MatchState.Requesting;
         const requestId = this.requestId;
         try {
-            const entry = await pvpGateway.match();
+            const entry = await this.serve.getService(LocalPvpGateway).match(this.serve.getService(LocalPlayerGateway));
             const opponent = entry.battle.fighters[1]!;
             const portrait = await this.loadPortrait(opponent);
             if (requestId !== this.requestId) return;
@@ -132,14 +132,7 @@ export class MatchingView extends BaseView<MatchingComponent> {
         const config = this.serve.configService.tables.TbBattleView.get(1)!;
         const path = fighter.portraitPath || (fighter.gender === FighterGender.Female
             ? config.femalePortrait : config.malePortrait);
-        const cached = frames.get(path);
-        if (cached) return cached;
-        const frame = await this.serve.assetService.load(path, SpriteFrame);
-        const loaded = frames.get(path);
-        if (loaded) return loaded;
-        frame.addRef();
-        frames.set(path, frame);
-        return frame;
+        return this.serve.getService(AssetStore).load(this.serve.assetService, path, SpriteFrame);
     }
 
     /** 按原始比例设置头像。 */
