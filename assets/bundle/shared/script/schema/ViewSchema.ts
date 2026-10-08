@@ -15,6 +15,8 @@ import { PveComponent } from "db://assets/bundle/outgame/pve/script/PveComponent
 import { PveView } from "db://assets/bundle/outgame/pve/script/PveView";
 import { MatchingComponent } from "db://assets/bundle/outgame/pvp/script/MatchingComponent";
 import { MatchingView } from "db://assets/bundle/outgame/pvp/script/MatchingView";
+import { PreloadComponent } from "db://assets/bundle/outgame/preload/script/PreloadComponent";
+import { PreloadView } from "db://assets/bundle/outgame/preload/script/PreloadView";
 
 /** 仅补充 TypeScript 类型，不产生启动包到业务包的运行时依赖。 */
 declare module "db://assets/bootstrap/script/service/ConfigService" {
@@ -25,9 +27,13 @@ ConfigService.createTables = (loader) => new Schema.Tables(loader);
 
 ViewRegistry.setSchema({
     sharedPath: "shared",
-    entryView: ViewKeys.Lobby,
+    entryView: ViewKeys.Preload,
     preloadViews: [ViewKeys.Loading],
     views: [
+        {
+            key: ViewKeys.Preload,
+            config: { ctor: PreloadView, comp: PreloadComponent, path: "outgame/preload", layer: ViewDefinition.ViewLayer.System, cache: false },
+        },
         {
             key: ViewKeys.Matching,
             config: { ctor: MatchingView, comp: MatchingComponent, path: "outgame/pvp", layer: ViewDefinition.ViewLayer.Popup, cache: false },

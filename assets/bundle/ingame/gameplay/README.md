@@ -2,7 +2,7 @@
 
 通用开发规范见客户端根目录的 [AGENTS.md](../../../../AGENTS.md)。本文仅记录 Gameplay 的实现、资源与验证方式。
 
-从 Bootstrap 启动，在 Lobby 点击“江湖闯关”（PVE）预览当前关卡对手，点击“挑战”进入战斗；胜利解锁下一关，失败可重试。“乐斗切磋”（PVP）打开匹配页，等待后与女企鹅 mm 对战；当前为离线匹配，不读写 PVE 进度。玩法节点直接放在场景的 `2d` 下，固定 UI 直接放在 `Ui` 下。
+从 Bootstrap 启动后先打开 PreloadView，根据 PlayerGateway 返回的数据加载主角全部可达动作、头像、武器和技能，再进入 Lobby。点击“江湖闯关”（PVE）预览当前关卡对手，点击“挑战”进入战斗；胜利解锁下一关，失败可重试。“乐斗切磋”（PVP）打开匹配页，等待后与女企鹅 mm 对战；当前为离线匹配，不读写 PVE 进度。玩法节点直接放在场景的 `2d` 下，固定 UI 直接放在 `Ui` 下。
 
 ## NPC 完整动作
 
@@ -16,7 +16,7 @@ NPC 固有攻击在技能表中设为 repeatable，由自动指令生成器选�
 
 主角配装来自 PlayerGateway，关卡对手来自 PVE关卡表。素材转换与导出步骤见项目根目录 `tool/gameplay/README.md`。
 
-启动时根据 ViewSchema 调用一次 `viewService.preload(ViewKeys.Loading)`，只预加载 LoadingView，不创建节点或执行业务逻辑，也不预加载玩法。点击战斗真正打开 `ingame/loading` 下的 LoadingView 后，才加载玩法并显示场景切换与本场角色、武器、技能的准备进度；完成后销毁加载页，失败可重试或返回大厅。LoadingView 不缓存 View 实例，已加载的玩法资源留在可复用 Controller 中，退出战斗不释放。
+启动时根据 ViewSchema 调用一次 `viewService.preload(ViewKeys.Loading)`，只预加载战斗 LoadingView 的文件，不创建节点或执行业务逻辑。随后打开 `outgame/preload` 下的 PreloadView，加载主角全部可用资源后进入 Lobby。点击战斗打开 `ingame/loading` 下的 LoadingView 时，继续按本场数据补充 NPC 等未缓存资源；完成后销毁加载页，失败可重试或返回大厅。成功加载的玩法资源保留在 AssetStore 中，退出战斗不释放。
 
 角色加载清单由本场 BattleInfo 决定：NPC 仅加载当前对手和其技能动作，玩家根据武器、技能与动作映射选取图集。远程武器只准备取出、投掷及结算动作；需要空手的技能只准备空手版本，携带这类技能时才准备近战武器的暂放、拾回动作。不整批加载角色目录，成功缓存跨局复用。场景 Actor 不绑定固定角色图集或默认帧，避免 PVE 随场景隐式加载 mm；角色在本场资源就绪后显示。运行 `node test/gameplay/verify-battle-assets.cjs` 验证加载范围和完整战斗动作覆盖。
 
@@ -64,7 +64,8 @@ NPC 固有攻击在技能表中设为 repeatable，由自动指令生成器选�
 - `skill/SkillController` / `SkillAudio`：管理动态技能格及技能释放音效。
 - `process/ProcessAudio`：处理倒计时和开战提示音效。
 - `projectile/ProjectileController` / `effect/DamageTextController`：分别负责投射物和战斗飘字。
-- `asset/AssetController`：根据本场数据加载并长期缓存角色、头像、武器、技能和动态格子资源。
+- `shared/script/asset/AssetStore`：跨业务缓存已加载资源，由 ServiceLocator 管理；`asset/GameplayAssets` 根据本场角色数据生成加载清单。
+- `asset/AssetController`：Gameplay 的资源入口，加载动态格子模板并按本场数据补充未缓存资源。
 - `ui/UiController`：显示头像、名称、血量、回合、行为提示、倍速和结算入口，不加载资源。
 - `recording/RecordingController`：管理本机录像收藏；`RecordingValidator` 校验外部录像。
 - `shared/script/player/PlayerGateway` / `../../outgame/pve/script/PveCampaign`：分别提供主角数据、关卡对手与通关进度。
@@ -97,7 +98,7 @@ node test/gameplay/verify-result.cjs <typescript 模块路径>
 - 所有图集矩形边界和尺寸、8 种性别/装备/技能组合的每个可达动作都能加载；同时检查脚掌基准、翻转轴和双方攻击层级。
 - 音效资源存在、倒计时、事件和结算去重、不同帧率回放声音序列一致、男女配音、脱手刀伤。
 - 框架加载：缺少音频目录、并发去重、缓存复用、全局重名检查、失败重试、默认音量和保留静音、音乐播放、音频先于 View 加载。
-- 启动：Bootstrap 不运行时引用业务 Schema，业务注册 Tables 工厂；先加载 bundle、注册，再并行加载配置、公共音频和预加载 LoadingView，最后进入大厅。
+- 启动：Bootstrap 不运行时引用业务 Schema，业务注册 Tables 工厂；先加载 bundle、注册，再并行加载配置、公共音频和预加载 LoadingView，随后通过 PreloadView 加载主角资源并进入大厅。
 - 结算：胜负和平局、收藏去重与失败重试、重复开局保护、返回大厅及按钮缩放。
 
 实际原生设备的内存、帧率和触控尚未验证。
